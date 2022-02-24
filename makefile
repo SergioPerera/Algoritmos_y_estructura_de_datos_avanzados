@@ -2,6 +2,8 @@ CC = g++
 CFLAGS = -I -Weffc++ -Wall -g
 
 
+vpath %.o build/
+
 ############################# ARCHIVOS H ###################################
 #En DEPSSRC va la dirección de los .h 
 DEPSSRC = include

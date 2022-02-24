@@ -1,8 +1,11 @@
+#Compialdor
 CC = g++
+
+#Flags
 CFLAGS = -I -Weffc++ -Wall -g
 
-
-vpath %.o build/
+#Variables
+EJECUTABLE = lifegame
 
 ############################# ARCHIVOS H ###################################
 #En DEPSSRC va la dirección de los .h 
@@ -27,7 +30,7 @@ BINDIR = bin
 %.o: %.cc $(DEPS)
 				$(CC) $(CFLAGS) -c -o $@ $<
 
-$(BINDIR)/lifegame: $(OBJ)
+$(BINDIR)/$(EJECUTABLE): $(OBJ)
 				$(CC) -o $@ $^ $(CFLAGS)
 
 clean: 

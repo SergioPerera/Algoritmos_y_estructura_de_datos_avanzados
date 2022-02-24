@@ -6,14 +6,16 @@ DEPS = /include/cell.h include/grid.h include/functions.h
 OBJ = src/cell.o src/grid.o src/main_life_game.o src/functions.o
 #Dirección donde se ponen los .o
 #$(OBJDIR)/
-OBJDIR = "build"
+OBJDIR = build
+BINDIR = bin
 
-$(OBJDIR)/%.o: %.cc $(DEPS)
+%.o: %.cc $(DEPS)
 				$(CC) -c -o $@ $< $(CFLAGS)
 
-lifegame: $(OBJ)
+$(BINDIR)/lifegame: $(OBJ)
 				$(CC) -o $@ $^ $(CFLAGS)
 
 clean: 
 				rm -rf src/*.o
-				rm gamelife
+cleaner:
+				rm -rf bin/lifegame

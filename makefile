@@ -1,23 +1,25 @@
-#Compialdor
+#Compilador
 CC = g++
-
 #Flags
 CFLAGS = -I -Weffc++ -Wall -g
 
+AUX=$(ls -1 src | sed -e 's/\..*$//')
 #Variables
 EJECUTABLE = lifegame
 
-############################# ARCHIVOS H ###################################
 #En DEPSSRC va la dirección de los .h 
 DEPSSRC = include
-#En DEPS van los archivos .h
-DEPS = $(addprefix $(DEPSSRC)/, cell.h grid.h functions.h)
 
-############################# ARCHIVOS CC ###################################
 #En OBJSRC va la dirección de los .cc 
 OBJSRC = src
+
+############################# ARCHIVOS H ###################################
+#En DEPS van los archivos .h
+DEPS = $(DEPSSRC)/*.h
+
+############################# ARCHIVOS CC ###################################
+
 #En OBJ van todos los .cc pero con .o
-# OBJ = $(OBJSRC)/cell.o $(OBJSRC)/grid.o $(OBJSRC)/main_life_game.o $(OBJSRC)/functions.o
 OBJ = $(addprefix $(OBJSRC)/, cell.o grid.o functions.o functions.o main_life_game.o)
 
 ############################# DIRECCIONES DE DESTINO ###################################
@@ -33,7 +35,18 @@ BINDIR = bin
 $(BINDIR)/$(EJECUTABLE): $(OBJ)
 				$(CC) -o $@ $^ $(CFLAGS)
 
+
 clean: 
 				rm -rf src/*.o
 cleaner:
 				rm -rf bin/*
+template:
+				mkdir bin
+				mkdir build
+				mkdir include
+				mkdir src
+aux:
+	@echo "--------------------"
+	@echo $(AUX)
+	@echo "--------------------"
+

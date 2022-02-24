@@ -18,6 +18,7 @@ OBJ = $(addprefix $(OBJSRC)/, cell.o grid.o functions.o functions.o main_life_ga
 ############################# DIRECCIONES DE DESTINO ###################################
 #Dirección donde se ponen los .o
 OBJDIR = build
+# $(OBJDIR)
 #Dirección donde se ponen los ejecutables/archivos binarios
 BINDIR = bin
 
@@ -30,4 +31,4 @@ $(BINDIR)/lifegame: $(OBJ)
 clean: 
 				rm -rf src/*.o
 cleaner:
-				rm -rf bin/lifegame
+				rm -rf bin/*

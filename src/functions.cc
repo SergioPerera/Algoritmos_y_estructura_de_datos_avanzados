@@ -8,8 +8,5 @@
 * @author Sergio Perera Márquez
 * Correo: alu0101394503@ull.edu.es
 * @date 24/02/2022
-* @file cell.h
+* @file functions.cc
 */
-#ifndef _CELL_H_
-#define _CELL_H_
-#endif

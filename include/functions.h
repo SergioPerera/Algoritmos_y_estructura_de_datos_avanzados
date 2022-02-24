@@ -8,8 +8,12 @@
 * @author Sergio Perera Márquez
 * Correo: alu0101394503@ull.edu.es
 * @date 24/02/2022
-* @file cell.h
+* @file functions.h
 */
-#ifndef _CELL_H_
-#define _CELL_H_
+
+#ifndef _MAIN_LIFE_GAME_H
+#define _MAIN_LIFE_GAME_H
+void Usage (int argc, char *argv[]);
+void manual();
+void Sintaxis(char* argv1, char* argv2, int argc);
 #endif

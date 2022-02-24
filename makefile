@@ -1,16 +1,19 @@
 CC = g++
 CFLAGS = -I -Weffc++ -Wall -g
 #En DEPS van los archivos .h
-DEPS = /include/cell.h include/grid.h include/cell.h
+DEPS = /include/cell.h include/grid.h include/functions.h
 #En OBJ van todos los .cc pero con .o
-OBJ = src/cell.cc src/grid.cc src/main_life_game.cc
+OBJ = src/cell.o src/grid.o src/main_life_game.o src/functions.o
+#Dirección donde se ponen los .o
+#$(OBJDIR)/
+OBJDIR = "build"
 
-%.o: %.cc $(DEPS)
+$(OBJDIR)/%.o: %.cc $(DEPS)
 				$(CC) -c -o $@ $< $(CFLAGS)
 
 lifegame: $(OBJ)
 				$(CC) -o $@ $^ $(CFLAGS)
 
 clean: 
-				rm -rf *.o
+				rm -rf src/*.o
 				rm gamelife

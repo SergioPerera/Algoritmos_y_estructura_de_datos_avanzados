@@ -13,5 +13,5 @@
 #include <iostream>
 
 int main() {
- 
+  std::cout << "WOOOOHOOOOOOOOOOOOOO" << std::endl;
 }

@@ -35,6 +35,7 @@ class Cell {
 
   ///Métodos
   void UpdateState(const Grid& grid);
+  int NeighborsAlive(const Grid& grid);
 
   /// Operadores
   friend std::ostream& operator<<(std::ostream& os, const Cell& cell);

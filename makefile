@@ -4,9 +4,12 @@ CC = g++
 CFLAGS = -I -Weffc++ -Wall -g
 
 
-
 #Variables
 EJECUTABLE = lifegame
+
+################################################################################
+##########################    NO TOCAR NADA DE ABAJO    ########################
+################################################################################
 
 #En DEPSSRC va la dirección de los .h 
 DEPSSRC = include
@@ -14,30 +17,35 @@ DEPSSRC = include
 #En OBJSRC va la dirección de los .cc 
 OBJSRC = src
 
-############################# ARCHIVOS H ###################################
+############################# ARCHIVOS H #######################################
 #En DEPS van los archivos .h
 DEPS = $(DEPSSRC)/*.h
 
-############################# ARCHIVOS CC ###################################
-
+DEPSCPY = $(DEPS)
+############################# ARCHIVOS CC ######################################
 #Obtenemos los archivos .cc y le ponemos .o
-AUX=$(shell echo $(shell (ls -1 src)) | sed -r 's/.cc/.o/g')
+AUX=$(OBJSRC)/*.cc
+OBJ=$(shell echo $(AUX) | sed -r 's/.cc/.o/g')
 
-#En OBJ van todos los .cc pero con .o
-OBJ = $(addprefix $(OBJSRC)/, $(AUX))
-
-############################# DIRECCIONES DE DESTINO ###################################
+############################# DIRECCIONES DE DESTINO ###########################
 #Dirección donde se ponen los .o
 OBJDIR = build
 
 #Dirección donde se ponen los ejecutables/archivos binarios
 BINDIR = bin
 
+
 %.o: %.cc $(DEPS)
 				$(CC) $(CFLAGS) -c -o $@ $<
 
+
 $(BINDIR)/$(EJECUTABLE): $(OBJ)
 				$(CC) -o $@ $^ $(CFLAGS)
+
+	@echo ""
+	@echo ARCHIVOS .o: $(OBJ)
+	@echo ARCHIVOS .h: $(DEPSCPY)
+	@echo ""
 
 
 clean: 
@@ -49,9 +57,11 @@ template:
 				mkdir build
 				mkdir include
 				mkdir src
-aux:
-	@echo "--------------------"
+	@echo "Plantilla creada correctamente"
+show:
 	@echo $(AUX)
-	@echo "--------------------"
+	@echo $(OBJ)
+	@echo $(DEPSCPY)
+
 
 

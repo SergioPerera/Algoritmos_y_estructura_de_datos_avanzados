@@ -11,16 +11,18 @@
 * @file main_life_game.cc
 */
 #include <iostream>
+#include "../include/cell.h"
+#include "../include/grid.h"
 
 int main() {
 
-  int columns{0};
-  int row{0};
+  int cols{0};
+  int rows{0};
 
   std::cout << "Introduzca el número de columnas: ";
-  std::cin >> columns;
+  std::cin >> cols;
   std::cout << "Introduzca el número de filas: ";
-  std::cin >> row;
+  std::cin >> rows;
 
   
 

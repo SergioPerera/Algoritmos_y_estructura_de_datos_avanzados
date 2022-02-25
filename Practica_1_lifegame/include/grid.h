@@ -11,13 +11,22 @@
 * @file grid.h
 */
 #ifndef _GRID_H_
-#define _CELL_H_
+#define _GRID_H_
 
+#include <vector>
+/**
+ * @brief Clase Grid que sirve para crear una matriz llena de células
+ */
 class Grid {
 
  public:
-  Grid(){};
+
+  /// Constructor
+  Grid(int& cols, int& rows, std::vector<std::pair<int,int>>& living_cells);
+
  private:
+  int rows_{0};
+  int cols_{0};
 
 };
 #endif

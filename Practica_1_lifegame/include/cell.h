@@ -14,8 +14,7 @@
 #ifndef _CELL_H_
 #define _CELL_H_
 #include "grid.h"
-#include <utility> /// Pair
-#include <fstream>
+#include <fstream> /// ofstream
 typedef int state;
 
 /**
@@ -26,11 +25,19 @@ typedef int state;
 class Cell {
 
  public:
+
+  /// Constructor
   Cell(state& initial_state, std::pair<int, int> initial_position);
+
+  /// Getters y setters
   state GetState() const {return state_;};
-  state SetState(state& new_state) {state_ = new_state;};
+  void SetState(state& new_state) {state_ = new_state;};
+
+  ///Métodos
   void UpdateState(const Grid& grid);
-  friend std::ostream& operator<<(std::ostream& os, Cell& cell);
+
+  /// Operadores
+  friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
 
  private:
   state state_{0}; /// Variable que indica el estado de la célula

@@ -13,5 +13,15 @@
 #include <iostream>
 
 int main() {
-  std::cout << "WOOOOHOOOOOOOOOOOOOO" << std::endl;
+
+  int columns{0};
+  int row{0};
+
+  std::cout << "Introduzca el número de columnas: ";
+  std::cin >> columns;
+  std::cout << "Introduzca el número de filas: ";
+  std::cin >> row;
+
+  
+
 }

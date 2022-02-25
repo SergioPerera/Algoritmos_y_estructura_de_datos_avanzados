@@ -12,4 +12,12 @@
 */
 #ifndef _GRID_H_
 #define _CELL_H_
+
+class Grid {
+
+ public:
+  Grid(){};
+ private:
+
+};
 #endif

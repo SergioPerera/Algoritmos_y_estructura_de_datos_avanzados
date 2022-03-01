@@ -1,3 +1,0 @@
-Hacer uso de switch para aumentar la modularidad en caso de que hayan más estados
-Recoger por línea de comandos las dimensiones, el número de células vivas y las iteraciones USAR OPTAGR
-Recoger las coordenadas tipo A,B y comprobar con regex

@@ -12,8 +12,23 @@
 */
 
 #include "../include/cell.h"
-
+#include <iostream>
+/**
+ * @brief Construct a new Cell:: Cell object
+ * 
+ * @param initial_state Estado inicial
+ * @param initial_position Posición dentro de la matriz de células 
+ */
 Cell::Cell(state& initial_state, std::pair<int, int> initial_position) {
   state_ = initial_state;
   position_ = initial_position;
+}
+
+std::ostream& operator<<(std::ostream& os, const Cell& cell) {
+  switch(cell.GetState()){
+    case 1:
+    std::cout << "x";
+    case 0:
+    std::cout << " ";
+  }
 }

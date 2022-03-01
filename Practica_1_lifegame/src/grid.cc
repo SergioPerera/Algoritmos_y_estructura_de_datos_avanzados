@@ -12,6 +12,7 @@
 */
 
 #include "../include/grid.h"
+#include<bits/stdc++.h> /// std::count
 /**
  * @brief Construct a new Grid:: Grid object. Vamos a crear un objeto grid con 
  * memoria dinámica haciendo uso de new y punteros. Tanto a las filas como a las
@@ -45,10 +46,21 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::pair<int,int>>& li
       /// Coordenadas actuales de la matriz
       std::pair<int,int> matrix_coordinates{i,j};
 
-      /// Creamos la célula en un estado inicial de muerte
-      state initial_state{0};
-      Cell dead_cell{initial_state, matrix_coordinates};
-      matrix_[i][j] = dead_cell;
+      /*
+       * Miramos si estamos en la coordenada de una célula viva y la
+       * introducimos como tal
+      */
+      if (std::count(living_cells.begin(), living_cells.end(), matrix_coordinates) > 0) {
+        state initial_state{1};
+        Cell alive_cell{initial_state, matrix_coordinates};
+        matrix_[i][j] = alive_cell;
+      }
+      else{
+        /// Creamos la célula en un estado inicial de muerte
+        state initial_state{0};
+        Cell dead_cell{initial_state, matrix_coordinates};
+        matrix_[i][j] = dead_cell;
+      }
     }
   }
 }
@@ -58,5 +70,19 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::pair<int,int>>& li
  * 
  */
 Grid::~Grid(){
-  
+  /// Liberamos la memoria ocupada por matrix_
+  delete[] matrix_;
 }
+/**
+ * @brief Operador para imprimir por pantalla
+ * 
+ * @param os parámetro std::ostream
+ * @param grid objeto grid para imprimir
+ * @return std::ostream& 
+ */
+std::ostream& operator<<(std::ostream& os, const Grid& grid) {
+  for (int i{0}; i < grid.GetRows(); i++) {
+
+  }
+}
+

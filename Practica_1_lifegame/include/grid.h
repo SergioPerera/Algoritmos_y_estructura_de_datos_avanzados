@@ -34,8 +34,13 @@ class Grid {
   ~Grid();
 
   /// Métodos
+  const int GetRows(){return rows_;};
+  const int GetCols(){return cols_;};
   const Cell& getCell(int row, int col) const;
-	void NextGeneration();
+  void NextGeneration();
+
+  /// Operadores
+  friend std::ostream& operator<<(std::ostream& os, const Grid& grid);
 
  private:
   int rows_{0}; /// número de filas 

@@ -62,11 +62,13 @@ int main (int argc, char *argv[]){
       }
     }
   }
-                                                                        // for (long unsigned int i{0}; i < alive_cells_positions.size(); i ++){
-                                                                        //   std::cout << i << " " << alive_cells_positions[i].first << " " << alive_cells_positions[i].second << std::endl;
-                                                                        // }
+                                                     // for (long unsigned int i{0}; i < alive_cells_positions.size(); i ++){
+                                                     //   std::cout << i << " " << alive_cells_positions[i].first << " " << alive_cells_positions[i].second << std::endl;
+                                                     // }
 
-  
+  /// Creamos la matriz de células 
+  Grid grid{arguments.rows, arguments.cols, alive_cells_positions};
+
 
 
   return(0);

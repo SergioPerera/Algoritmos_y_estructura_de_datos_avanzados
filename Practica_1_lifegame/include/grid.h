@@ -14,7 +14,7 @@
 #define _GRID_H_
 
 #include "cell.h"
-#include <vector>
+#include <vector> /// vector
 
 /*
 Al Tener header guards la clase cell no se define otra vez, por ello hay que
@@ -30,15 +30,17 @@ class Grid {
  public:
 
   /// Constructor
-  Grid(int& cols, int& rows, std::vector<std::pair<int,int>>& living_cells);
+  Grid(int& rows, int& cols, std::vector<std::pair<int,int>>& living_cells);
+  ~Grid();
 
   /// Métodos
   const Cell& getCell(int row, int col) const;
 	void NextGeneration();
 
  private:
-  int rows_{0};
-  int cols_{0};
+  int rows_{0}; /// número de filas 
+  int cols_{0}; /// número de columnas
+  int** matrix; /// puntero que apunta a vector de vectores de enteros 
 
 };
 

@@ -35,64 +35,47 @@ void manual() {
  */
 CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
   int c;
-  while ( (c = getopt(argc, argv, "h:dat")) != -1) {
+  while ( (c = getopt(argc, argv, "hd:at")) != -1) {
   
     switch (c) {
       case 'h': 
         manual();
               break;
       case 'd': {
-
         /// Comprobamos que se hayan itroducido las dimensiones 
         /// de manera NúmeroxNúmero
-        if (!regex_match (optarg, std::regex("\\d+x\\d+"))) {
+        if (!regex_match (optarg, std::regex("([1-9]+)x([1-9]+)"))) {
           throw std::invalid_argument("Dimensión incorrecta");
         }
 
         /// Recogemos las dimensiones
-        std::regex regexp("\\d+"); 
+        std::regex regexp("([1-9]+)x([1-9]+)");
+        /// smatch recoge las coincidencias dentro de los paréntesis 
         std::smatch m;
         std::string argument_str{optarg};
         std::regex_search(argument_str, m, regexp);
         cols = std::stoi(m[0]);
-        rows = std::stoi(m[1]);
-        
-        if (cols < 1 || rows < 2) {
-          throw std::invalid_argument("Las dimensiones tienen que ser mayores que 0");
-        }
-        std::cout << "Cols: " << cols << " Rows: " << rows << std::endl;
+        rows = std::stoi(m[2]);
       }
       break;
-      case 'p':
-        // if (!regex_match (optarg, std::regex("\\d+"))) {
-        //   throw std::invalid_argument("Número de puerto inválido");
-        // }
-        // s.clear();
-        // s = argv[5];
-        // if (!regex_match (s, std::regex("\\d+"))) {
-        //   throw std::invalid_argument("Número de puerto inválido");
-        // }
-        // conn_port =  std::stoi(argv[5]);
-        // local_port = std::atoi(optarg);   
-
-              break;
-      case 'c':
-        // ip = optarg;
-        // /// Comprobación de errores
-        // if (argc > 6 || argc < 6) {
-        //   throw std::invalid_argument("Faltan o sobran argumentos");
-        // }
-        // /// Comprobamos si la ip es válida
-        // if (!ip.empty()) {
-        //   struct sockaddr_in sa;
-        //   int result = inet_pton(AF_INET, ip.c_str(), &(sa.sin_addr));
-        //   if (result != 1) {
-        //     throw std::invalid_argument("Número de ip no válido");
-        //   }
-        // }
-              break;
+      case 'a': {
+        /// Comprobamos que es un número mayor que 0
+        if (!regex_match (optarg, std::regex("[1-9]+"))) {
+          throw std::invalid_argument("Número de células vivas incorrecto");
+        }
+        alive_cells = std::stoi(optarg);
+      }
+      break;
+      case 't': {
+        /// Comprobamos que es un número mayor que 0
+        if (!regex_match (optarg, std::regex("[1-9]+"))) {
+          throw std::invalid_argument("Número de turnos incorrecto");
+        }
+        turns = std::stoi(optarg);
+      }
+      break;
       case '?':
-        throw std::invalid_argument("Argumento de línea de comandos desconocido");
+        throw std::invalid_argument("Argumento de línea de comandos desconocido, pruebe ./lifegame -h");
       default:
         throw std::runtime_error("Error procesando la línea de comandos");
     }

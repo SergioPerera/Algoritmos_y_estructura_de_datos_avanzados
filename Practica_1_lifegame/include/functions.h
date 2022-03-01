@@ -13,7 +13,10 @@
 
 #ifndef _MAIN_LIFE_GAME_H
 #define _MAIN_LIFE_GAME_H
-
+#include <vector> /// std::vector 
+#include <unistd.h> /// getopt
+#include <regex> /// regular expressions
+#include <iostream> /// std::cout << ...
 /**
  * @brief Struct engargada de recoger los argumenos por línea de comandos.
  * Con esto podemos trabajar con los argumentos por línea de comandos y
@@ -29,7 +32,7 @@ struct CommandLineArguments {
 
   /// Función encargada de recoger y comprobar los argumentos
   CommandLineArguments(int argc, char* argv[]); 
-
 };
 void manual();
+std::vector<std::pair<int,int>> AliveCellsCoordinates (const CommandLineArguments& arguments);
 #endif

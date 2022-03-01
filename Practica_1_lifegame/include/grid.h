@@ -15,6 +15,8 @@
 
 #include "cell.h"
 #include <vector> /// vector
+#include <fstream>
+
 
 /*
 Al Tener header guards la clase cell no se define otra vez, por ello hay que
@@ -30,13 +32,14 @@ class Grid {
  public:
 
   /// Constructor
+  Grid(){};
   Grid(const int& rows, const int& cols, std::vector<std::pair<int,int>>& living_cells);
   ~Grid();
 
   /// Métodos
   const int GetRows(){return rows_;};
   const int GetCols(){return cols_;};
-  const Cell& getCell(int row, int col) const;
+  const Cell& GetCell(int row, int col) const;
   void NextGeneration();
 
   /// Operadores

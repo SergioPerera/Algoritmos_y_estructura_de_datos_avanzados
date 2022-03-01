@@ -12,7 +12,7 @@
 */
 
 #include "../include/grid.h"
-#include<bits/stdc++.h> /// std::count
+#include <bits/stdc++.h> /// std::count
 /**
  * @brief Construct a new Grid:: Grid object. Vamos a crear un objeto grid con 
  * memoria dinámica haciendo uso de new y punteros. Tanto a las filas como a las
@@ -73,6 +73,18 @@ Grid::~Grid(){
   /// Liberamos la memoria ocupada por matrix_
   delete[] matrix_;
 }
+
+/**
+ * @brief Función que devuelve la célula en modo lectura
+ * 
+ * @param row Filas
+ * @param col Columnas
+ * @return const Cell& 
+ */
+const Cell& Grid::GetCell(int row, int col) const {
+  return(matrix_[row][col]);
+}
+
 /**
  * @brief Operador para imprimir por pantalla
  * 
@@ -81,8 +93,14 @@ Grid::~Grid(){
  * @return std::ostream& 
  */
 std::ostream& operator<<(std::ostream& os, const Grid& grid) {
-  for (int i{0}; i < grid.GetRows(); i++) {
-
+  Grid grid_cpy;
+  grid_cpy = grid;
+  for (int i{0}; i < grid_cpy.GetRows(); i++) {
+    for(int j{0}; j < grid_cpy.GetCols(); j++) {
+      os << grid.GetCell(i,j);
+    }
+    os << std::endl;
   }
+  return(os);
 }
 

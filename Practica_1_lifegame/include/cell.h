@@ -13,10 +13,11 @@
 
 #ifndef _CELL_H_
 #define _CELL_H_
+
 #include "grid.h"
 #include <fstream> /// ofstream
 typedef int state;
-
+class Grid;
 /**
  * @brief Clase encargada de crear objetos cell que tienen distintos estados y 
  * distintas posiciones iniciales. Estos objetos tienen la propiedad de cambiar
@@ -27,6 +28,7 @@ class Cell {
  public:
 
   /// Constructor
+  Cell(){};
   Cell(state& initial_state, std::pair<int, int> initial_position);
 
   /// Getters y setters
@@ -41,7 +43,12 @@ class Cell {
   friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
 
  private:
-  state state_{0}; /// Variable que indica el estado de la célula
+  /*
+  * Variable que indica el estado de la célula
+  * 0: célula muerta
+  * 1: célula viva
+  */
+  state state_{0}; 
   std::pair<int,int> position_; /// Posición de la célula dentro de la matriz
   int neighbours{0}; /// Número de células adyacentes a esta que están vivas
 };

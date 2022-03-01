@@ -30,7 +30,7 @@ class Grid {
  public:
 
   /// Constructor
-  Grid(int& rows, int& cols, std::vector<std::pair<int,int>>& living_cells);
+  Grid(const int& rows, const int& cols, std::vector<std::pair<int,int>>& living_cells);
   ~Grid();
 
   /// Métodos
@@ -40,7 +40,7 @@ class Grid {
  private:
   int rows_{0}; /// número de filas 
   int cols_{0}; /// número de columnas
-  int** matrix; /// puntero que apunta a vector de vectores de enteros 
+  Cell** matrix_; /// puntero que apunta a vector de vectores de cell
 
 };
 

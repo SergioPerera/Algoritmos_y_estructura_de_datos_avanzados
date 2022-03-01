@@ -23,9 +23,34 @@
  * @param cols columnas de la matriz
  * @param living_cells posiciones de las células vivas
  */
-Grid::Grid(int& rows, int& cols, std::vector<std::pair<int,int>>& living_cells) {
-  rows+=2;
-  cols+=2;
+Grid::Grid(const int& rows, const int& cols, std::vector<std::pair<int,int>>& living_cells) {
+
+  /// Hacemos esto por lo descrito anteriormente
+  rows_ = rows + 2;
+  cols_ = cols + 2;
+
+  /*
+  * Creamos un vector y dentro de cada una de las posiciones creamos otro vector
+  * y lo rellenamos a medida que las creamos con células muertas
+  */
+  /// Creamos las filas
+  matrix_ = new Cell* [rows_];
+  for (int i{0}; i < rows_; i++) {
+
+    /// Creamos las columnas
+    matrix_[i] = new Cell [cols_]; 
+
+    /// Rellenamos las columnas con células muertas
+    for(int j{0}; j < cols_; j++) {
+      /// Coordenadas actuales de la matriz
+      std::pair<int,int> matrix_coordinates{i,j};
+
+      /// Creamos la célula en un estado inicial de muerte
+      state initial_state{0};
+      Cell dead_cell{initial_state, matrix_coordinates};
+      matrix_[i][j] = dead_cell;
+    }
+  }
 }
 
 /**

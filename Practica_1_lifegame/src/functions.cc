@@ -13,15 +13,15 @@
 */
 
 #include "../include/functions.h"
-#include <stdio.h> 
-#include <unistd.h>
-#include <regex>
+// #include <stdio.h> 
+#include <unistd.h> /// getopt
+#include <regex> /// regular expressions
 #include <iostream>
 
 void manual() {
     std::cout << "Para ejecutar hacer uso de ./lifegame -d NumxNum -a Num -t Num\n"
               << "Opciones:\n" 
-              << "-d: Dimensión de la matriz. Tiene que ser mayor que 0 y su formato ser NúmeroxNúmero\n"
+              << "-d: Dimensión de la matriz. Tiene que ser mayor que 0 y su formato ser FilasxColumnas\n"
               << "-a: Alive cells (células vivas). Tiene que ser un número mayor que 0\n"
               << "-t: Turnos. Tiene que ser un número mayor que 0\n" 
               << "-h: Help. Muestra información del comando\n" << std::endl;
@@ -59,8 +59,8 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
         std::smatch m;
         std::string argument_str{optarg};
         std::regex_search(argument_str, m, regexp);
-        cols = std::stoi(m[0]);
-        rows = std::stoi(m[2]);
+        rows = std::stoi(m[0]);
+        cols = std::stoi(m[2]);
       }
       break;
       case 'a': {
@@ -86,10 +86,7 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
     }
   }
 
-//   if (optind < argc) {
-//     for (; optind < argc; ++optind) {
-
-//       other_arguments.push_back(argv[optind]);
-//     }
-//   }
+  if (argc > 7) {
+    throw std::invalid_argument("Demasiados argumentos, pruebe ./lifegame -h");
+  }
 }

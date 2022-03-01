@@ -39,7 +39,9 @@ void manual() {
  *   -h para saber como usar el programa y cual es su función
  */
 CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
-  int c;
+
+  bool help = false; /// Flag que determina si han puesto -h
+  int c; /// Salida de la función getopt
   while ( (c = getopt(argc, argv, "hd:a:t:")) != -1) {
   
     switch (c) {
@@ -88,5 +90,8 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
 
   if (argc > 7) {
     throw std::invalid_argument("Demasiados argumentos, pruebe ./lifegame -h");
+  }
+  else if( argc < 7 && help == false) {
+    throw std::invalid_argument("Faltan argumentos, pruebe ./lifegame -h");
   }
 }

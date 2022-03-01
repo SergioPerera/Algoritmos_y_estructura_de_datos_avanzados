@@ -2,3 +2,5 @@ Hacer uso de switch para aumentar la modularidad en caso de que hayan más estad
 Recoger por línea de comandos las dimensiones, el número de células vivas y las iteraciones USAR OPTAGR
 Recoger las coordenadas tipo A,B y comprobar con regex
 Crear README.TXT y la opción --help
+
+En caso de ser el juego en 3 dimensiones cambiar en el main el pair por una tupla

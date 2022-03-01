@@ -13,7 +13,23 @@
 
 #ifndef _MAIN_LIFE_GAME_H
 #define _MAIN_LIFE_GAME_H
-void Usage (int argc, char *argv[]);
+
+/**
+ * @brief Struct engargada de recoger los argumenos por línea de comandos.
+ * Con esto podemos trabajar con los argumentos por línea de comandos y
+ * permite una mejor modularidad en caso e meter nueos argumentos
+ * 
+ */
+struct CommandLineArguments {
+
+  int cols{0}; /// Número de columnas de la matriz visible
+  int rows{0}; /// Número de filas de la matriz visible
+  int alive_cells{0}; /// Número de células vivas
+  int turns{0}; /// Número de iteraciones o turnos del juego
+
+  /// Función encargada de recoger y comprobar los argumentos
+  CommandLineArguments(int argc, char* argv[]); 
+
+};
 void manual();
-void Sintaxis(char* argv1, char* argv2, int argc);
 #endif

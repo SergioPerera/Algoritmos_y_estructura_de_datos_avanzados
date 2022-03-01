@@ -29,7 +29,7 @@ std::ostream& operator<<(std::ostream& os, const Cell& cell) {
     case 1:
     os << "x";
     case 0:
-    os << " ";
+    os << "o";
   }
   return(os);
 }

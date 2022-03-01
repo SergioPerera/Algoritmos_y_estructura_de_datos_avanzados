@@ -66,6 +66,8 @@ int main (int argc, char *argv[]){
                                                                         //   std::cout << i << " " << alive_cells_positions[i].first << " " << alive_cells_positions[i].second << std::endl;
                                                                         // }
 
+  
+
 
   return(0);
 }

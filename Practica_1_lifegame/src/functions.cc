@@ -28,6 +28,8 @@ void manual() {
 }
 /**
  * @brief Construct a new Command Line Arguments:: Command Line Arguments object
+ * dentro del getopt están las opciones hd:a:t:. Los 2 puntos indican que van a 
+ * ir seguidos de un argumento
  * 
  * @param argc Contiene el número de comandos introducidos 
  * @param argv Contiene el contenido de los comandos
@@ -47,7 +49,8 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
     switch (c) {
       case 'h': 
         manual();
-              break;
+        help = true;
+      break;
       case 'd': {
         /// Comprobamos que se hayan itroducido las dimensiones 
         /// de manera NúmeroxNúmero

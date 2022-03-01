@@ -131,10 +131,10 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
       alive_col = std::stoi(m[2]);
 
       /// Comprobamos que las coordenadas estén dentro de la matriz
-      if (alive_col > arguments.cols - 1 || alive_row > arguments.rows - 1){
+      if (alive_col > arguments.cols || alive_row > arguments.rows){
         std::cout << "  Las coordenadas tienen que estar comprendidas entre:\n"
-                  << "  Filas [1," << arguments.rows - 1 << "], usted puso: " << alive_row << "\n"
-                  << "  Columnas [1," << arguments.cols - 1 << "], usted puso: " << alive_col << std::endl; 
+                  << "  Filas [1," << arguments.rows << "], usted puso: " << alive_row << "\n"
+                  << "  Columnas [1," << arguments.cols << "], usted puso: " << alive_col << std::endl; 
         i--;
       }
       else{

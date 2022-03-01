@@ -98,6 +98,10 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
   else if( argc < 7 && help == false) {
     throw std::invalid_argument("Faltan argumentos, pruebe ./lifegame -h");
   }
+
+  if (alive_cells > cols*rows) {
+    throw std::invalid_argument("Número de células vivas mayor al permitido");
+  }
   
 }
 

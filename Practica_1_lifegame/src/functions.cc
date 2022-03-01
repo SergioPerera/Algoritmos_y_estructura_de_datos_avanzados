@@ -112,9 +112,9 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
     std::cout << "Introduzca las coordenadas de la célula viva "<< i <<" [fil,col]: ";
     std::cin >> coordinates;
 
-    if (!regex_match (coordinates, std::regex("([0-9]+),([0-9]+)"))) {
+    if (!regex_match (coordinates, std::regex("([1-9]+),([1-9]+)"))) {
       std::cout << "  Coordenadas incorrectas, se escribe de la forma: fil,col\n"
-                << "  La primera fila 0, idem para las columnas" << std::endl;
+                << "  La primera fila es 1, idem para las columnas" << std::endl;
       i--;
     }
     else {
@@ -131,10 +131,10 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
       alive_col = std::stoi(m[2]);
 
       /// Comprobamos que las coordenadas estén dentro de la matriz
-      if (alive_col > arguments.cols || alive_row > arguments.rows){
+      if (alive_col > arguments.cols - 1 || alive_row > arguments.rows - 1){
         std::cout << "  Las coordenadas tienen que estar comprendidas entre:\n"
-                  << "  Filas [0," << arguments.rows << "], usted puso: " << alive_row << "\n"
-                  << "  Columnas [0," << arguments.cols << "], usted puso: " << alive_col << std::endl; 
+                  << "  Filas [1," << arguments.rows - 1 << "], usted puso: " << alive_row << "\n"
+                  << "  Columnas [1," << arguments.cols - 1 << "], usted puso: " << alive_col << std::endl; 
         i--;
       }
       else{

@@ -95,9 +95,9 @@ const Cell& Grid::GetCell(int row, int col) const {
 std::ostream& operator<<(std::ostream& os, const Grid& grid) {
   Grid grid_cpy;
   grid_cpy = grid;
-  for (int i{0}; i < grid_cpy.GetRows(); i++) {
-    for(int j{0}; j < grid_cpy.GetCols(); j++) {
-      os << grid.GetCell(i,j);
+  for (int i{1}; i < grid_cpy.GetRows() - 1; i++) {
+    for(int j{1}; j < grid_cpy.GetCols() - 1; j++) {
+      os << grid.GetCell(i,j) << " ";
     }
     os << std::endl;
   }

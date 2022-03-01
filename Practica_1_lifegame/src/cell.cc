@@ -27,9 +27,11 @@ Cell::Cell(state& initial_state, std::pair<int, int> initial_position) {
 std::ostream& operator<<(std::ostream& os, const Cell& cell) {
   switch(cell.GetState()){
     case 1:
-    os << "x";
+      os << "x";
+    break;
     case 0:
-    os << "o";
+      os << "o";
+    break;
   }
   return(os);
 }

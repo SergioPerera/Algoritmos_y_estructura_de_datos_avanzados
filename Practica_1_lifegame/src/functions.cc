@@ -143,5 +143,9 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
       }
     }
   }
+                                                    //    for (long unsigned int i{0}; i < alive_cells_positions.size(); i ++){
+                                                    //    std::cout << i << " " << alive_cells_positions[i].first << " " << alive_cells_positions[i].second << std::endl;
+                                                    //  }
+
   return (alive_cells_positions);
 }

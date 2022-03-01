@@ -1,3 +1,4 @@
 Hacer uso de switch para aumentar la modularidad en caso de que hayan más estados
 Crear README.TXT
 En caso de ser el juego en 3 dimensiones cambiar en el main el pair por una tupla
+el número de células vivas no puede superar al número de células máximas dentro de la matriz (NxM)

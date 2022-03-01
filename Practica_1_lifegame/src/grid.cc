@@ -24,7 +24,8 @@
  * @param living_cells posiciones de las células vivas
  */
 Grid::Grid(int& rows, int& cols, std::vector<std::pair<int,int>>& living_cells) {
-  
+  rows+=2;
+  cols+=2;
 }
 
 /**

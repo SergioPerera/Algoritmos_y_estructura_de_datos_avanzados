@@ -19,7 +19,12 @@
 #include <iostream>
 
 void manual() {
-    std::cout << "Se usa de la siguiente maneraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
+    std::cout << "Para ejecutar hacer uso de ./lifegame -d NumxNum -a Num -t Num\n"
+              << "Opciones:\n" 
+              << "-d: Dimensión de la matriz. Tiene que ser mayor que 0 y su formato ser NúmeroxNúmero\n"
+              << "-a: Alive cells (células vivas). Tiene que ser un número mayor que 0\n"
+              << "-t: Turnos. Tiene que ser un número mayor que 0\n" 
+              << "-h: Help. Muestra información del comando\n" << std::endl;
 }
 /**
  * @brief Construct a new Command Line Arguments:: Command Line Arguments object
@@ -35,7 +40,7 @@ void manual() {
  */
 CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
   int c;
-  while ( (c = getopt(argc, argv, "hd:at")) != -1) {
+  while ( (c = getopt(argc, argv, "hd:a:t:")) != -1) {
   
     switch (c) {
       case 'h': 

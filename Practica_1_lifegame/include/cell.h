@@ -35,9 +35,9 @@ class Cell {
   state GetState() const {return state_;};
   void SetState(state& new_state) {state_ = new_state;};
   std::pair<int,int> GetPosition() {return position_;};
-  
+
   ///Métodos
-  void UpdateState(const Grid& grid);
+  void UpdateState();
   int NeighborsAlive(const Grid& grid);
 
   /// Operadores

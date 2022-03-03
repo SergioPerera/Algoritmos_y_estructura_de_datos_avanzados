@@ -65,3 +65,31 @@ std::ostream& operator<<(std::ostream& os, const Cell& cell) {
   }
   return(os);
 }
+
+/**
+ * @brief Método encargado de que la célula se actualice según los vecinos vivos 
+ * que tenga
+ * 
+ */
+void Cell::UpdateState() {
+  switch(state_) {
+    case (0): {
+      if (neighbours_ == 3) {
+        state new_state{1};
+        SetState(new_state);
+      }
+    }
+    break;
+    case (1): {
+      if (neighbours_ != 2 || neighbours_ != 3) {
+        state new_state{10};
+        SetState(new_state);
+      }
+    }
+    break;
+    default: {
+      state new_state{10};
+      SetState(new_state);
+    }
+  }
+}

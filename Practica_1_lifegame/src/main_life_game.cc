@@ -30,17 +30,7 @@ int main (int argc, char *argv[]){
 
   /// Haremos las turn iteraciones 
   for(int k{0}; k < arguments.turns; k++) {
-    /*
-    * Hacemos un bucle que recorra todas las células, menos los bordes para que
-    * cuenten las células vecinas que tienen
-    */
-    for (int i{1}; i < grid.GetRows() - 1; i++) {
-      for(int j{1}; j < grid.GetCols() - 1; j++) {
-        /// Cogemos la célula y hacemos que mire sus vecinos
-        Cell cell_cpy = grid.GetCell(i,j);
-        cell_cpy.NeighborsAlive(grid);
-      }
-    }
+
 
     grid.NextGeneration();
 

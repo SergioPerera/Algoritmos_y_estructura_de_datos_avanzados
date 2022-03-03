@@ -36,13 +36,15 @@ Cell::Cell(state& initial_state, std::pair<int, int>& initial_position) {
 int Cell::NeighborsAlive(const Grid& grid) {
   int x = position_.first;
   int y = position_.second;
-  std::cout << x << "ñaaaaaaaaaaaaaaaaaaaa" << y << std::endl;
 
+  /// Miramos las coordenadas adyacentes
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {
       if ((x != x + i) || (y != y + j)) {
-        std::cout << x + i << " " << y + j << std::endl; // imprime los vecinos
-        // std::cout << grid.GetCell(x + i, y + j); // prints all the neighbours
+        int neightbour_x = x + i;
+        int neightbour_y = y + j;
+        std::cout <<neightbour_x << " " << neightbour_y << std::endl; // imprime los vecinos
+        grid.GetCell(neightbour_x, neightbour_y); // prints all the neighbours
       }
     }
   }

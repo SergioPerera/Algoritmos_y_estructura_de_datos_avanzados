@@ -37,7 +37,6 @@ int main (int argc, char *argv[]){
     for (int i{1}; i < grid.GetRows() - 1; i++) {
       for(int j{1}; j < grid.GetCols() - 1; j++) {
         /// Cogemos la célula y hacemos que mire sus vecinos
-        std::cout << i << "----------------------------" << j << std::endl;
         Cell cell_cpy = grid.GetCell(i,j);
         cell_cpy.NeighborsAlive(grid);
       }

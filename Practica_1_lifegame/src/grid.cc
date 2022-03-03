@@ -123,9 +123,7 @@ void Grid::NextGeneration() {
   for (int i{1}; i < rows_ - 1; i++) {
     for(int j{1}; j < cols_ - 1; j++) {
       /// Cogemos la célula y hacemos que mire sus vecinos
-      std::cout << i << "----------------------------" << j << std::endl;
-      Cell cell_cpy = GetCell(i,j);
-      cell_cpy.UpdateState();
+      matrix_[i][j].UpdateState();
     }
   }
 }

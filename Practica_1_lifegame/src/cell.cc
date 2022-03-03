@@ -50,7 +50,6 @@ int Cell::NeighborsAlive(const Grid& grid) {
     }
   }
 
-std::cout << neighbours_ << std::endl;
   return (neighbours_);
 }
 
@@ -62,6 +61,9 @@ std::ostream& operator<<(std::ostream& os, const Cell& cell) {
     case 0:
       os << "o";
     break;
+    default :{
+      os << "?";
+    }
   }
   return(os);
 }
@@ -82,14 +84,10 @@ void Cell::UpdateState() {
     break;
     case (1): {
       if (neighbours_ != 2 || neighbours_ != 3) {
-        state new_state{10};
+        state new_state{0};
         SetState(new_state);
       }
     }
     break;
-    default: {
-      state new_state{10};
-      SetState(new_state);
-    }
   }
 }

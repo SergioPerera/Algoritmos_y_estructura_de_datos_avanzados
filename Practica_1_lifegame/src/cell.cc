@@ -43,12 +43,14 @@ int Cell::NeighborsAlive(const Grid& grid) {
       if ((x != x + i) || (y != y + j)) {
         int neightbour_x = x + i;
         int neightbour_y = y + j;
-        std::cout <<neightbour_x << " " << neightbour_y << std::endl; // imprime los vecinos
-        grid.GetCell(neightbour_x, neightbour_y); // prints all the neighbours
+        if (grid.GetCell(neightbour_x, neightbour_y).GetState() == 1 ){
+          neighbours_++;
+        };
       }
     }
   }
 
+std::cout << neighbours_ << std::endl;
   return (neighbours_);
 }
 

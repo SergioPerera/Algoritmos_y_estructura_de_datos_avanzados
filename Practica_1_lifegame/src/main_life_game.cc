@@ -28,6 +28,19 @@ int main (int argc, char *argv[]){
 
   std::cout << grid << std::endl;
 
+  /// Haremos las turn iteraciones 
+  for(int k{0}; k < arguments.turns; k++) {
+    /// Hacemos un bucle que recorra todas las células, menos los bordes
+    for (int i{1}; i < grid.GetRows() - 1; i++) {
+      for(int j{1}; j < grid.GetCols() - 1; j++) {
+        /// Cogemos la célula y hacemos que mire sus vecinos
+        std::cout << i << "----------------------------" << j << std::endl;
+        Cell cell_cpy = grid.GetCell(i,j);
+        cell_cpy.NeighborsAlive(grid);
+
+      }
+    }
+  }
 
   return(0);
 }

@@ -29,12 +29,12 @@ class Cell {
 
   /// Constructor
   Cell(){};
-  Cell(state& initial_state, std::pair<int, int> initial_position);
+  Cell(state& initial_state, std::pair<int, int>& initial_position);
 
   /// Getters y setters
   state GetState() const {return state_;};
   void SetState(state& new_state) {state_ = new_state;};
-
+  std::pair<int,int> GetPosition() {return position_;};
   ///Métodos
   void UpdateState(const Grid& grid);
   int NeighborsAlive(const Grid& grid);
@@ -49,7 +49,7 @@ class Cell {
   * 1: célula viva
   */
   state state_{0}; 
-  std::pair<int,int> position_; /// Posición de la célula dentro de la matriz
-  int neighbours{0}; /// Número de células adyacentes a esta que están vivas
+  std::pair<int,int> position_{0,0}; /// Posición de la célula dentro de la matriz
+  int neighbours_{0}; /// Número de células adyacentes a esta que están vivas
 };
 #endif

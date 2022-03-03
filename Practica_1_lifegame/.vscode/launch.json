@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/lifegame",
-            "args": ["-d", "4x4"],
+            "args": ["-d", "4x4", "-a", "4", "-t", "4"],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],

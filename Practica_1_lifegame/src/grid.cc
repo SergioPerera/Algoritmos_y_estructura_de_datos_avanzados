@@ -72,7 +72,14 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::pair<int,int>>& li
  */
 Grid::~Grid(){
   /// Liberamos la memoria ocupada por matrix_
-  delete[] matrix_;
+  /*
+  * Primero tendríamos que borrar los vectores que contienen vectores y, por 
+  * último borrar el vector que contenía los vectores anteriormente dichos
+  */
+  for (int i{0}; i < rows_; i++) {
+    delete [] matrix_[i];
+  }
+  delete [] matrix_; 
 }
 
 /**
@@ -82,7 +89,7 @@ Grid::~Grid(){
  * @param col Columnas
  * @return const Cell& 
  */
-const Cell& Grid::GetCell(int row, int col) const {
+const Cell& Grid::GetCell(int& row, int& col) const {
   return(matrix_[row][col]);
 }
 
@@ -93,12 +100,10 @@ const Cell& Grid::GetCell(int row, int col) const {
  * @param grid objeto grid para imprimir
  * @return std::ostream& 
  */
-std::ostream& operator<<(std::ostream& os, const Grid& grid) {
-  Grid grid_cpy;
-  grid_cpy = grid;
+std::ostream& operator<<(std::ostream& os, Grid& grid) {
 
-  for (int i{1}; i < grid_cpy.GetRows() - 1; i++) {
-    for(int j{1}; j < grid_cpy.GetCols() - 1; j++) {
+  for (int i{1}; i < grid.GetRows() - 1; i++) {
+    for(int j{1}; j < grid.GetCols() - 1; j++) {
       os << grid.GetCell(i,j) << " ";
     }
     os << std::endl;

@@ -111,3 +111,19 @@ std::ostream& operator<<(std::ostream& os, Grid& grid) {
   return(os);
 }
 
+void Grid::NextGeneration() {
+  /*
+  * Hacemos un bucle que recorra todas las células, menos los bordes para que
+  * cuenten las células vecinas que tienen
+  */
+  for (int i{1}; i < rows_ - 1; i++) {
+    for(int j{1}; j < cols_ - 1; j++) {
+      /// Cogemos la célula y hacemos que mire sus vecinos
+      std::cout << i << "----------------------------" << j << std::endl;
+      Cell cell_cpy = GetCell(i,j);
+      cell_cpy.NeighborsAlive(grid);
+    }
+  }
+}
+
+

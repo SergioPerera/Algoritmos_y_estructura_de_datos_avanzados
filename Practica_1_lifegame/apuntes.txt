@@ -1,2 +1,6 @@
 Crear README.TXT
 En caso de ser el juego en 3 dimensiones cambiar en functions el pair por una tupla
+
+^[1-9][0-9]*$
+
+Usar esa expresión regular para coger todos los comandos

@@ -55,12 +55,12 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
       case 'd': {
         /// Comprobamos que se hayan itroducido las dimensiones 
         /// de manera NúmeroxNúmero
-        if (!regex_match (optarg, std::regex("([1-9]+)x([1-9]+)"))) {
+        if (!regex_match (optarg, std::regex("([1-9][0-9]*)x([1-9][0-9]*)"))) {
           throw std::invalid_argument("Dimensión incorrecta");
         }
 
         /// Recogemos las dimensiones
-        std::regex regexp("([1-9]+)x([1-9]+)");
+        std::regex regexp("([0-9]+)x([0-9]+)");
         /// smatch recoge las coincidencias dentro de los paréntesis 
         std::smatch m;
         std::string argument_str{optarg};
@@ -71,7 +71,7 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
       break;
       case 'a': {
         /// Comprobamos que es un número mayor que 0
-        if (!regex_match (optarg, std::regex("[1-9]+"))) {
+        if (!regex_match (optarg, std::regex("[1-9][0-9]*"))) {
           throw std::invalid_argument("Número de células vivas incorrecto");
         }
         alive_cells = std::stoi(optarg);
@@ -79,7 +79,7 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
       break;
       case 't': {
         /// Comprobamos que es un número mayor que 0
-        if (!regex_match (optarg, std::regex("[1-9]+"))) {
+        if (!regex_match (optarg, std::regex("[1-9][0-9]*"))) {
           throw std::invalid_argument("Número de turnos incorrecto");
         }
         turns = std::stoi(optarg);
@@ -116,7 +116,7 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
     std::cout << "Introduzca las coordenadas de la célula viva "<< i <<" [fil,col]: ";
     std::cin >> coordinates;
 
-    if (!regex_match (coordinates, std::regex("([1-9]+),([1-9]+)"))) {
+    if (!regex_match (coordinates, std::regex("([1-9][0-9]*),([1-9][0-9]*)"))) {
       std::cout << "  Coordenadas incorrectas, se escribe de la forma: fil,col\n"
                 << "  La primera fila es 1, idem para las columnas" << std::endl;
       i--;
@@ -147,9 +147,6 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
       }
     }
   }
-                                                    //    for (long unsigned int i{0}; i < alive_cells_positions.size(); i ++){
-                                                    //    std::cout << i << " " << alive_cells_positions[i].first << " " << alive_cells_positions[i].second << std::endl;
-                                                    //  }
 
   return (alive_cells_positions);
 }

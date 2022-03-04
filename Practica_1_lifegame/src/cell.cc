@@ -61,7 +61,7 @@ std::ostream& operator<<(std::ostream& os, const Cell& cell) {
       os << "x";
     break;
     case 0:
-      os << "o";
+      os << " ";
     break;
     default :{
       os << "?";

@@ -101,7 +101,8 @@ const Cell& Grid::GetCell(int& row, int& col) const {
  * @return std::ostream& 
  */
 std::ostream& operator<<(std::ostream& os, Grid& grid) {
-
+  
+  os << std::endl;
   for (int i{1}; i < grid.GetRows() - 1; i++) {
     for(int j{1}; j < grid.GetCols() - 1; j++) {
       os << grid.GetCell(i,j) << " ";

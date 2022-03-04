@@ -123,8 +123,6 @@ void Grid::NextGeneration() {
   for (int i{1}; i < rows_ - 1; i++) {
     for(int j{1}; j < cols_ - 1; j++) {
       /// Cogemos la célula y hacemos que mire sus vecinos
-      // Cell cell_cpy = grid.GetCell(i,j);
-      // cell_cpy.NeighborsAlive(grid);
       matrix_[i][j].NeighborsAlive(*this);
     }
   }

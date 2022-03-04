@@ -34,6 +34,9 @@ Cell::Cell(state& initial_state, std::pair<int, int>& initial_position) {
  * @return int Retorna el número de células vivas
  */
 int Cell::NeighborsAlive(const Grid& grid) {
+  /// Reiniciamos neighbours_ para que cuando hagamos varias iteraciones no se
+  /// sumen entre ellas
+  neighbours_ = 0;
   int x = position_.first;
   int y = position_.second;
 
@@ -49,7 +52,6 @@ int Cell::NeighborsAlive(const Grid& grid) {
       }
     }
   }
-
   return (neighbours_);
 }
 
@@ -79,11 +81,17 @@ void Cell::UpdateState() {
       if (neighbours_ == 3) {
         state new_state{1};
         SetState(new_state);
+      }else {
+        state new_state{0};
+        SetState(new_state);
       }
     }
     break;
     case (1): {
-      if (neighbours_ != 2 || neighbours_ != 3) {
+      if (neighbours_ == 2 || neighbours_ == 3) {
+        state new_state{1};
+        SetState(new_state);
+      }else {
         state new_state{0};
         SetState(new_state);
       }

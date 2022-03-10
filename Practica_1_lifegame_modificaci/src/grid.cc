@@ -103,6 +103,8 @@ const Cell& Grid::GetCell(int& row, int& col) const {
 std::ostream& operator<<(std::ostream& os, Grid& grid) {
   
   os << std::endl;
+  /// Con 2 imprimimos la matriz normal
+  /// Con 0 imprimimimos todas las células
   for (int i{2}; i < grid.GetRows() - 2; i++) {
     for(int j{2}; j < grid.GetCols() - 2; j++) {
       os << grid.GetCell(i,j) << " ";
@@ -121,8 +123,8 @@ void Grid::NextGeneration() {
   * Hacemos un bucle que recorra todas las células, menos los bordes para que
   * cuenten las células vecinas que tienen
   */
-  for (int i{1}; i < rows_ - 1; i++) {
-    for(int j{1}; j < cols_ - 1; j++) {
+  for (int i{2}; i < rows_ - 2; i++) {
+    for(int j{2}; j < cols_ - 2; j++) {
       /// Cogemos la célula y hacemos que mire sus vecinos
       matrix_[i][j].NeighborsAlive(*this);
     }
@@ -131,8 +133,8 @@ void Grid::NextGeneration() {
   * Hacemos un bucle que recorra todas las células, menos los bordes para que
   * cada célula actualice su estado
   */
-  for (int i{1}; i < rows_ - 1; i++) {
-    for(int j{1}; j < cols_ - 1; j++) {
+  for (int i{2}; i < rows_ - 2; i++) {
+    for(int j{2}; j < cols_ - 2; j++) {
       /// Cogemos la célula y hacemos que mire sus vecinos
       matrix_[i][j].UpdateState();
     }

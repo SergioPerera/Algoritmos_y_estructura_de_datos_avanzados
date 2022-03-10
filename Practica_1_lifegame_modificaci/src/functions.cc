@@ -131,8 +131,8 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
       /// smatch recoge las coincidencias dentro de los paréntesis 
       std::smatch m;
       std::regex_search(coordinates, m, regexp);
-      alive_row = std::stoi(m[0]);
-      alive_col = std::stoi(m[2]);
+      alive_row = std::stoi(m[0]) + 1;
+      alive_col = std::stoi(m[2]) + 1;
 
       /// Comprobamos que las coordenadas estén dentro de la matriz
       if (alive_col > arguments.cols || alive_row > arguments.rows){

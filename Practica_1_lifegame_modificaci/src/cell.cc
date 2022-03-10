@@ -41,17 +41,60 @@ int Cell::NeighborsAlive(const Grid& grid) {
   int y = position_.second;
 
   /// Miramos las coordenadas adyacentes
-  for (int i : {-1, 0, 1}) {
-    for (int j : {-1, 0, 1}) {
-      if ((x != x + i) || (y != y + j)) {
-        int neightbour_x = x + i;
-        int neightbour_y = y + j;
-        if (grid.GetCell(neightbour_x, neightbour_y).GetState() == 1 ){
-          neighbours_++;
-        };
-      }
-    }
-  }
+  // for (int i : {-1, 0, 1}) {
+  //   for (int j : {-1, 0, 1}) {
+  //     if ((x != x + i) || (y != y + j)) {
+
+  //       if (grid.GetCell(neightbour_x, neightbour_y).GetState() == 1 ){
+  //         neighbours_++;
+  //       };
+  //     }
+  //   }
+  // }
+x = position_.first;
+y = position_.second + 1;
+if (grid.GetCell(x,y).GetState() == 1 ) {
+  neighbours_++;
+}
+x = position_.first;
+y = position_.second + 2;
+if (grid.GetCell(x,y).GetState() == 1 ) {
+  neighbours_++;
+}
+x = position_.first + 1;
+y = position_.second;
+if (grid.GetCell(x,y).GetState() == 1 ) {
+  neighbours_++;
+}
+x = position_.first + 2;
+y = position_.second;
+if (grid.GetCell(x,y).GetState() == 1 ) {
+  neighbours_++;
+}
+x = position_.first;
+y = position_.second -1;
+if (grid.GetCell(x,y).GetState() == 1 ) {
+  neighbours_++;
+
+}
+x = position_.first;
+y = position_.second -2;
+if (grid.GetCell(x,y).GetState() == 1 ) {
+  neighbours_++;
+
+}
+x = position_.first - 1;
+y = position_.second;
+if (grid.GetCell(x,y).GetState() == 1 ) {
+  neighbours_++;
+
+}
+x = position_.first - 2;
+y = position_.second;
+if (grid.GetCell(x,y).GetState() == 1 ) {
+
+}
+  
   return (neighbours_);
 }
 
@@ -61,7 +104,7 @@ std::ostream& operator<<(std::ostream& os, const Cell& cell) {
       os << "x";
     break;
     case 0:
-      os << "o";
+      os << " ";
     break;
     default :{
       os << "?";

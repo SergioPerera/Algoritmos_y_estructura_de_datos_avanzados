@@ -112,15 +112,17 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
   std::vector<std::tuple<int,int,char>> alive_cells_positions;
   /// Hacemos un for para solicitar ls coordenadas de cada célula viva
   for (int i{0}; i < arguments.alive_cells; i++) {
+
+
     char state = ' ';
     std::string state_str;
+
+    /// Solicitamos al usuario las coordenadas
     std::string coordinates;
     std::cout << "Introduzca las coordenadas de la célula viva "<< i <<" [fil,col]: ";
     std::cin >> coordinates;
-    std::cout << "\tIntroduzca el estado de la célula " << i << " [H,L,P,A]: ";
-    std::cin >> state;
-    state_str = state;
 
+    /// Comprobamos que las coordenadas están bien puestas
     bool bad_positions = 0;
     if (!regex_match (coordinates, std::regex("([1-9][0-9]*),([1-9][0-9]*)"))) {
       std::cout << RED 
@@ -130,11 +132,16 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
       i--;
       bad_positions = 1;
     }
-    else if(!regex_match(state_str, std::regex("[HLPA]{1}|[hlpa]{1}"))){
+
+    /// Solicitamos al usuario el estado de la célula
+    std::cout << "\tIntroduzca el estado de la célula " << i + 1 << " [H,L,P,A]: ";
+    std::cin >> state;
+    state_str = state;
+
+    /// Comprobamos que el estado de la céĺula esté correcto
+    if(!regex_match(state_str, std::regex("[HLPA]{1}|[hlpa]{1}"))){
       std::cout << RED << "\tEstado de la célula incorrecta" << RESET << std::endl;
-      if (bad_positions == 0) {
-        i--;
-      }
+      if (bad_positions == 0) { i--;}
     }
     else {
 

@@ -42,7 +42,7 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
     /// Creamos las columnas
     matrix_[i] = new Cell [cols_]; 
 
-    /// Rellenamos las columnas con células muertas
+    /// Rellenamos las columnas con células con distintos estados
     for(int j{0}; j < cols_; j++) {
       /// Coordenadas actuales de la matriz
       std::pair<int,int> matrix_coordinates{i,j};
@@ -51,17 +51,17 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
        * Miramos si estamos en la coordenada de una célula viva y la
        * introducimos como tal
       */
-      if (std::count(living_cells.begin(), living_cells.end(), matrix_coordinates) > 0) {
-        state initial_state{1};
-        Cell alive_cell{initial_state, matrix_coordinates};
-        matrix_[i][j] = alive_cell;
-      }
-      else{
-        /// Creamos la célula en un estado inicial de muerte
-        state initial_state{0};
-        Cell dead_cell{initial_state, matrix_coordinates};
-        matrix_[i][j] = dead_cell;
-      }
+      // if (std::count(living_cells.begin(), living_cells.end(), matrix_coordinates) > 0) {
+      //   state initial_state{1};
+      //   Cell alive_cell{initial_state, matrix_coordinates};
+      //   matrix_[i][j] = alive_cell;
+      // }
+      // else{
+      //   /// Creamos la célula en un estado inicial de muerte
+      //   state initial_state{0};
+      //   Cell dead_cell{initial_state, matrix_coordinates};
+      //   matrix_[i][j] = dead_cell;
+      // }
     }
   }
 }

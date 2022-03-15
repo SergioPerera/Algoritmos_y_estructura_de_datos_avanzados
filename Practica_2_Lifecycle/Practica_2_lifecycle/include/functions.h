@@ -18,6 +18,8 @@
 #include <regex> /// regular expressions
 #include <iostream> /// std::cout << ...
 #include <tuple>   /// std::tuple
+#include <stdlib.h> /// system();
+
 /**
  * @brief Struct engargada de recoger los argumenos por línea de comandos.
  * Con esto podemos trabajar con los argumentos por línea de comandos y

@@ -13,6 +13,8 @@
 */
 
 #include "../include/functions.h"
+#define RED     "\033[31m"      /// red
+#define RESET   "\033[0m"       /// Reset 
 
 /**
  * @brief Manual que indica como usar el programa
@@ -42,7 +44,6 @@ void manual() {
  *   -h para saber como usar el programa y cual es su función
  */
 CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
-
   bool help = false; /// Flag que determina si han puesto -h
   int c; /// Salida de la función getopt
   while ( (c = getopt(argc, argv, "hd:a:t:")) != -1) {
@@ -111,16 +112,29 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
   std::vector<std::tuple<int,int,char>> alive_cells_positions;
   /// Hacemos un for para solicitar ls coordenadas de cada célula viva
   for (int i{0}; i < arguments.alive_cells; i++) {
-
+    char state = ' ';
+    std::string state_str;
     std::string coordinates;
     std::cout << "Introduzca las coordenadas de la célula viva "<< i <<" [fil,col]: ";
     std::cin >> coordinates;
+    std::cout << "\tIntroduzca el estado de la célula " << i << " [H,L,P,A]: ";
+    std::cin >> state;
+    state_str = state;
 
-
+    bool bad_positions = 0;
     if (!regex_match (coordinates, std::regex("([1-9][0-9]*),([1-9][0-9]*)"))) {
-      std::cout << "  Coordenadas incorrectas, se escribe de la forma: fil,col\n"
+      std::cout << RED 
+                << "  Coordenadas incorrectas, se escribe de la forma: fil,col\n"
+                << RESET
                 << "  La primera fila es 1, idem para las columnas" << std::endl;
       i--;
+      bad_positions = 1;
+    }
+    else if(!regex_match(state_str, std::regex("[HLPA]{1}|[hlpa]{1}"))){
+      std::cout << RED << "\tEstado de la célula incorrecta" << RESET << std::endl;
+      if (bad_positions == 0) {
+        i--;
+      }
     }
     else {
 
@@ -137,13 +151,15 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
 
       /// Comprobamos que las coordenadas estén dentro de la matriz
       if (alive_col > arguments.cols || alive_row > arguments.rows){
-        std::cout << "  Las coordenadas tienen que estar comprendidas entre:\n"
+        std::cout << RED 
+                  << "  Las coordenadas tienen que estar comprendidas entre:\n"
+                  << RESET
                   << "  Filas [1," << arguments.rows << "], usted puso: " << alive_row << "\n"
                   << "  Columnas [1," << arguments.cols << "], usted puso: " << alive_col << std::endl; 
         i--;
       }
       else{
-        std::pair<int,int> alive_position{ alive_row, alive_col};
+        std::tuple<int,int,char> alive_position{ alive_row, alive_col, state};
         alive_cells_positions.emplace_back(alive_position);
       }
     }

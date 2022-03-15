@@ -12,6 +12,12 @@
 */
 
 #include "../include/grid.h"
+#include "../include/state.h"
+#include "../include/state_egg.h"
+#include "../include/state_larva.h"
+#include "../include/state_adult.h"
+#include "../include/state_dead.h"
+
 #include <bits/stdc++.h> /// std::count
 #define DEBUG 0
 /**
@@ -44,26 +50,18 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
 
     /// Rellenamos las columnas con células con distintos estados
     for(int j{0}; j < cols_; j++) {
-      // /// Coordenadas actuales de la matriz
-      // std::pair<int,int> matrix_coordinates{i,j};
+      /// Coordenadas actuales de la matriz
+      std::pair<int,int> matrix_coordinates{i,j};
 
-      // /*
-      //  * Miramos si estamos en la coordenada de una célula viva y la
-      //  * introducimos como tal
-      // */
-      // if (std::count(living_cells.begin(), living_cells.end(), matrix_coordinates) > 0) {
-      //   state initial_state{1};
-      //   Cell alive_cell{initial_state, matrix_coordinates};
-      //   matrix_[i][j] = alive_cell;
-      // }
-      // else{
-      //   /// Creamos la célula en un estado inicial de muerte
-      //   state initial_state{0};
-      //   Cell dead_cell{initial_state, matrix_coordinates};
-      //   matrix_[i][j] = dead_cell;
-      // }
+      /// Creamos la célula muerta
+      State* initial_state{new State_dead};
+      Cell alive_cell{initial_state, matrix_coordinates};
+      matrix_[i][j] = alive_cell;
     }
   }
+
+
+  /// Poner células de cada tipo aquí#################################################################################
 }
 
 /**
@@ -105,7 +103,7 @@ std::ostream& operator<<(std::ostream& os, Grid& grid) {
   os << std::endl;
   for (int i{1}; i < grid.GetRows() - 1; i++) {
     for(int j{1}; j < grid.GetCols() - 1; j++) {
-      os << grid.GetCell(i,j) << " ";
+      os << grid.GetCell(i,j).GetState() << " ";
     }
     os << std::endl;
   }

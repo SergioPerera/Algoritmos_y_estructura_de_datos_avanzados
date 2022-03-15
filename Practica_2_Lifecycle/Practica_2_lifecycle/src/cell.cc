@@ -19,7 +19,7 @@
  * @param initial_state Estado inicial
  * @param initial_position Posición dentro de la matriz de células 
  */
-Cell::Cell(state& initial_state, std::pair<int, int>& initial_position) {
+Cell::Cell(State* initial_state, std::pair<int, int>& initial_position) {
   state_ = initial_state;
   position_ = initial_position;
 
@@ -34,39 +34,29 @@ Cell::Cell(state& initial_state, std::pair<int, int>& initial_position) {
  * @return int Retorna el número de células vivas
  */
 int Cell::NeighborsAlive(const Grid& grid) {
-  /// Reiniciamos neighbours_ para que cuando hagamos varias iteraciones no se
-  /// sumen entre ellas
-  neighbours_ = 0;
-  int x = position_.first;
-  int y = position_.second;
+  // /// Reiniciamos neighbours_ para que cuando hagamos varias iteraciones no se
+  // /// sumen entre ellas
+  // neighbours_ = 0;
+  // int x = position_.first;
+  // int y = position_.second;
 
-  /// Miramos las coordenadas adyacentes
-  for (int i : {-1, 0, 1}) {
-    for (int j : {-1, 0, 1}) {
-      if ((x != x + i) || (y != y + j)) {
-        int neightbour_x = x + i;
-        int neightbour_y = y + j;
-        if (grid.GetCell(neightbour_x, neightbour_y).GetState() == 1 ){
-          neighbours_++;
-        };
-      }
-    }
-  }
-  return (neighbours_);
+  // /// Miramos las coordenadas adyacentes
+  // for (int i : {-1, 0, 1}) {
+  //   for (int j : {-1, 0, 1}) {
+  //     if ((x != x + i) || (y != y + j)) {
+  //       int neightbour_x = x + i;
+  //       int neightbour_y = y + j;
+  //       if (grid.GetCell(neightbour_x, neightbour_y).GetState() == 1 ){
+  //         neighbours_++;
+  //       };
+  //     }
+  //   }
+  // }
+  return(state_->neighbors(grid, position_.first, position_.second));
 }
 
 std::ostream& operator<<(std::ostream& os, const Cell& cell) {
-  switch(cell.GetState()){
-    case 1:
-      os << "x";
-    break;
-    case 0:
-      os << " ";
-    break;
-    default :{
-      os << "?";
-    }
-  }
+  os << cell.GetState();
   return(os);
 }
 
@@ -76,26 +66,5 @@ std::ostream& operator<<(std::ostream& os, const Cell& cell) {
  * 
  */
 void Cell::UpdateState() {
-  switch(state_) {
-    case (0): {
-      if (neighbours_ == 3) {
-        state new_state{1};
-        SetState(new_state);
-      }else {
-        state new_state{0};
-        SetState(new_state);
-      }
-    }
-    break;
-    case (1): {
-      if (neighbours_ == 2 || neighbours_ == 3) {
-        state new_state{1};
-        SetState(new_state);
-      }else {
-        state new_state{0};
-        SetState(new_state);
-      }
-    }
-    break;
-  }
+  state_->nextState();
 }

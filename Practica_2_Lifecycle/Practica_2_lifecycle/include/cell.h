@@ -15,9 +15,9 @@
 #define _CELL_H_
 
 #include "grid.h"
+#include "state.h"
 #include <fstream> /// ofstream
 
-typedef char state;
 class Grid;
 /**
  * @brief Clase encargada de crear objetos cell que tienen distintos estados y 
@@ -30,11 +30,11 @@ class Cell {
 
   /// Constructor
   Cell(){};
-  Cell(state& initial_state, std::pair<int, int>& initial_position);
+  Cell(State* initial_state, std::pair<int, int>& initial_position);
 
   /// Getters y setters
-  state GetState() const {return state_;};
-  void SetState(state& new_state) {state_ = new_state;};
+  State* GetState() const {return state_;};
+  void SetState(State* new_state) {state_ = new_state;};
   std::pair<int,int> GetPosition() {return position_;};
 
   ///Métodos
@@ -47,10 +47,13 @@ class Cell {
  private:
   /*
   * Variable que indica el estado de la célula
-  * 0: célula muerta
-  * 1: célula viva
+  * ' ': célula muerta
+  * H : Huevo
+  * L : Larva
+  * P : Pupa
+  * A : Adulta
   */
-  state state_{0}; 
+  State* state_;
   std::pair<int,int> position_{0,0}; /// Posición de la célula dentro de la matriz
   int neighbours_{0}; /// Número de células adyacentes a esta que están vivas
 };

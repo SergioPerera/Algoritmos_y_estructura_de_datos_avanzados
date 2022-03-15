@@ -17,9 +17,11 @@
 #include "grid.h"
 class State_dead : public State {
  public:
-  int neighbors(const Grid&, int i, int j){};
+  int neighbors(const Grid&, int i, int j);
   State* nextState(){};
   char getState() const {return (' ');};
+ private:
+  int dead_adyacent_cells_{0};
 };
 
 #endif

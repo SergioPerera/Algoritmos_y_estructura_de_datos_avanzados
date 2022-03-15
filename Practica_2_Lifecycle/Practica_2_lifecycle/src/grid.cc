@@ -64,12 +64,8 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
     }
   }
 
-  // std::cout << std::get<2>(living_cells) << std::endl;
-  // switch(std::get<3>(living_cells)) {
-    
-  // }
-  /// Poner células de cada tipo aquí#################################################################################
-  for (int k{0}; k < living_cells.size(); k++) {
+  ///Introducimos las células de distinto tipo que ha especificado el usuario
+  for (long unsigned int k{0}; k < living_cells.size(); k++) {
 
     int i = std::get<0>(living_cells[k]);
     int j = std::get<1>(living_cells[k]);

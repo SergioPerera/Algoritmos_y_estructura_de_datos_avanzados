@@ -15,15 +15,16 @@
 
 #include "grid.h"
 #include <set> /// std::set
+class Grid;
 /*
 * Esta clase abstracta la vamos a usar para poder invocar los métodos comunes
 * a las demas clases hijas
 */
 class State {
  public:
-  virtual int State::neighbors(const Grid&, int i, int j)=0;
-  virtual State* State::nextState()=0;
-  virtual char State::getState() const =0;
+  virtual int neighbors(const Grid&, int i, int j)=0;
+  virtual State* nextState()=0;
+  virtual char getState() const =0;
 };
 
 #endif /// _STATE_H_

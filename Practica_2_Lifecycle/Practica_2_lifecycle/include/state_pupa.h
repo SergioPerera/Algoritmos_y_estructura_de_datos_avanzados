@@ -21,7 +21,7 @@ class State_pupa : public State {
  public:
   int neighbors(const Grid&, int i, int j){};
   State* nextState(){};
-  char getState() const {return ('L');};
+  char getState() const {return ('P');};
 };
 
 #endif

@@ -59,8 +59,8 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
 
       /// Creamos la célula muerta
       State* initial_state{new State_dead};
-      Cell alive_cell{initial_state, matrix_coordinates};
-      matrix_[i][j] = alive_cell;
+      Cell dead_cell{initial_state, matrix_coordinates};
+      matrix_[i][j] = dead_cell;
     }
   }
 
@@ -129,7 +129,7 @@ std::ostream& operator<<(std::ostream& os, Grid& grid) {
   os << std::endl;
   for (int i{1}; i < grid.GetRows() - 1; i++) {
     for(int j{1}; j < grid.GetCols() - 1; j++) {
-      os << grid.GetCell(i,j).GetState() << " ";
+      os << grid.GetCell(i,j).GetState()->getState() << " ";
     }
     os << std::endl;
   }

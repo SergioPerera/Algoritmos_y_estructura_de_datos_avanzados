@@ -22,8 +22,6 @@
 Cell::Cell(State* initial_state, std::pair<int, int>& initial_position) {
   state_ = initial_state;
   position_ = initial_position;
-
-  // std::cout << position_.first << "          " << position_.second << std::endl;
 }
 
 /**

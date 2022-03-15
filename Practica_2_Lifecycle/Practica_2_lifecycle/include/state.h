@@ -10,6 +10,8 @@
 * @date 15/03/2022
 * @file state.h
 */
+#ifndef _STATE_H_
+#define _STATE_H_
 
 #include "grid.h"
 #include <set> /// std::set
@@ -18,10 +20,10 @@
 * a las demas clases hijas
 */
 class State {
-
  public:
   virtual int State::neighbors(const Grid&, int i, int j)=0;
   virtual State* State::nextState()=0;
   virtual char State::getState() const =0;
- private:
 };
+
+#endif /// _STATE_H_

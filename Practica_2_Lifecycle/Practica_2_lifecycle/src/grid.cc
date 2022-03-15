@@ -44,13 +44,13 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
 
     /// Rellenamos las columnas con células con distintos estados
     for(int j{0}; j < cols_; j++) {
-      /// Coordenadas actuales de la matriz
-      std::pair<int,int> matrix_coordinates{i,j};
+      // /// Coordenadas actuales de la matriz
+      // std::pair<int,int> matrix_coordinates{i,j};
 
-      /*
-       * Miramos si estamos en la coordenada de una célula viva y la
-       * introducimos como tal
-      */
+      // /*
+      //  * Miramos si estamos en la coordenada de una célula viva y la
+      //  * introducimos como tal
+      // */
       // if (std::count(living_cells.begin(), living_cells.end(), matrix_coordinates) > 0) {
       //   state initial_state{1};
       //   Cell alive_cell{initial_state, matrix_coordinates};

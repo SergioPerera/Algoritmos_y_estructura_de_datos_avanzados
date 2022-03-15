@@ -10,3 +10,17 @@
 * @date 15/03/2022
 * @file state_adult.h
 */
+
+#ifndef _STATE_ADULT_H_
+#define _STATE_ADULT_H_
+
+#include "state.h"
+#include "grid.h"
+class State_adult : public State {
+ public:
+  int neighbors(const Grid&, int i, int j);
+  State* nextState();
+  char getState() const;
+};
+
+#endif

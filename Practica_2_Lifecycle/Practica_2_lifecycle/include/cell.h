@@ -16,7 +16,8 @@
 
 #include "grid.h"
 #include <fstream> /// ofstream
-typedef int state;
+
+typedef char state;
 class Grid;
 /**
  * @brief Clase encargada de crear objetos cell que tienen distintos estados y 

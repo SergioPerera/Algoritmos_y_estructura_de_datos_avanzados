@@ -10,3 +10,17 @@
 * @date 15/03/2022
 * @file state_larva.h
 */
+#ifndef _STATE_LARVA_H_
+#define _STATE_LARVA_H_
+
+
+#include "state.h"
+#include "grid.h"
+class State_larva : public State {
+ public:
+  int neighbors(const Grid&, int i, int j);
+  State* nextState();
+  char getState() const;
+};
+
+#endif

@@ -12,6 +12,14 @@
 */
 
 #include "../include/state_dead.h"
+#include "../include/grid.h"
+#include "../include/state.h"
+#include "../include/state_egg.h"
+#include "../include/state_larva.h"
+#include "../include/state_adult.h"
+#include "../include/state_dead.h"
+#include "../include/state_pupa.h"
+
 
 int State_dead::neighbors(const Grid& grid, int x, int y) {
   // for (int i : {-1, 0, 1}) {

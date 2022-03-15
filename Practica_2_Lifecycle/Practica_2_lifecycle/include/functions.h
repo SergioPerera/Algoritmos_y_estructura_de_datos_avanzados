@@ -17,6 +17,7 @@
 #include <unistd.h> /// getopt
 #include <regex> /// regular expressions
 #include <iostream> /// std::cout << ...
+#include <tuple>   /// std::tuple
 /**
  * @brief Struct engargada de recoger los argumenos por línea de comandos.
  * Con esto podemos trabajar con los argumentos por línea de comandos y
@@ -34,5 +35,5 @@ struct CommandLineArguments {
   CommandLineArguments(int argc, char* argv[]); 
 };
 void manual();
-std::vector<std::pair<int,int>> AliveCellsCoordinates (const CommandLineArguments& arguments);
+std::vector<std::tuple<int,int,char>> AliveCellsCoordinates (const CommandLineArguments& arguments);
 #endif

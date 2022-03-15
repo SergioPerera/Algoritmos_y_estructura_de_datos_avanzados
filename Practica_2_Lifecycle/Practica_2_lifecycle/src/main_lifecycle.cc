@@ -20,7 +20,7 @@ int main (int argc, char *argv[]){
   CommandLineArguments arguments(argc, argv);
 
   /// Recogemos las posiciones de las células vivas en un vector de posiciones
-  std::vector<std::pair<int,int>> alive_cells_positions;
+  std::vector<std::tuple<int,int,char>> alive_cells_positions;
   alive_cells_positions = AliveCellsCoordinates(arguments);
 
   /// Creamos la matriz de células 

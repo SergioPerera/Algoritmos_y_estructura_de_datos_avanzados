@@ -105,16 +105,17 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
   
 }
 
-std::vector<std::pair<int,int>> 
+std::vector<std::tuple<int,int,char>> 
 AliveCellsCoordinates (const CommandLineArguments& arguments) {
     /// Recogemos las posiciones de las células vivas en un vector de posiciones
-  std::vector<std::pair<int,int>> alive_cells_positions;
+  std::vector<std::tuple<int,int,char>> alive_cells_positions;
   /// Hacemos un for para solicitar ls coordenadas de cada célula viva
   for (int i{0}; i < arguments.alive_cells; i++) {
 
     std::string coordinates;
     std::cout << "Introduzca las coordenadas de la célula viva "<< i <<" [fil,col]: ";
     std::cin >> coordinates;
+
 
     if (!regex_match (coordinates, std::regex("([1-9][0-9]*),([1-9][0-9]*)"))) {
       std::cout << "  Coordenadas incorrectas, se escribe de la forma: fil,col\n"

@@ -33,7 +33,7 @@ class Grid {
 
   /// Constructor
   Grid(){};
-  Grid(const int& rows, const int& cols, std::vector<std::pair<int,int>>& living_cells);
+  Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells);
   ~Grid();
 
   /// Métodos

@@ -25,7 +25,7 @@
  * @param cols columnas de la matriz
  * @param living_cells posiciones de las células vivas
  */
-Grid::Grid(const int& rows, const int& cols, std::vector<std::pair<int,int>>& living_cells) {
+Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells) {
 
   /// Hacemos esto por lo descrito anteriormente
   rows_ = rows + 2;

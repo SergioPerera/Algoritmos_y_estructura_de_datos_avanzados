@@ -34,7 +34,7 @@ class Cell {
 
   /// Getters y setters
   State* GetState() const {return state_;};
-  void SetState(State* new_state) {state_ = new_state;};
+  void SetState(State* new_state) {delete[] state_; state_ = new_state;};
   std::pair<int,int> GetPosition() {return position_;};
 
   ///Métodos

@@ -17,6 +17,10 @@
 #include "../include/state_larva.h"
 #include "../include/state_adult.h"
 #include "../include/state_dead.h"
+#include "../include/state_pupa.h"
+
+#include <iostream>
+#include <tuple>
 
 #include <bits/stdc++.h> /// std::count
 #define DEBUG 0
@@ -60,11 +64,34 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
     }
   }
 
-  switch(std::get<3> living_cells) {
+  // std::cout << std::get<2>(living_cells) << std::endl;
+  // switch(std::get<3>(living_cells)) {
     
-  }
+  // }
   /// Poner células de cada tipo aquí#################################################################################
+  for (int k{0}; k < living_cells.size(); k++) {
 
+    int i = std::get<0>(living_cells[k]);
+    int j = std::get<1>(living_cells[k]);
+    switch(std::get<2>(living_cells[k])) {
+      case 'H' : {
+        matrix_[i][j].SetState(new State_egg);
+      }
+      break;
+      case 'L' : {
+        matrix_[i][j].SetState(new State_larva);
+      }
+      break;
+      case 'P' : {
+        matrix_[i][j].SetState(new State_pupa);
+      }
+      break;
+      case 'A' : {
+        matrix_[i][j].SetState(new State_adult);
+      }
+      break;
+    }
+  }
 }
 
 /**

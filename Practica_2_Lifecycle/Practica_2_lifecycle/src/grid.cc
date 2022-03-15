@@ -60,8 +60,11 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
     }
   }
 
-
+  switch(std::get<3> living_cells) {
+    
+  }
   /// Poner células de cada tipo aquí#################################################################################
+
 }
 
 /**

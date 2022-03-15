@@ -5,7 +5,7 @@ CFLAGS = -I -Weffc++ -Wall -g
 
 
 #Variables
-EJECUTABLE = lifegame
+EJECUTABLE = lifecycle
 
 ################################################################################
 ##########################    NO TOCAR NADA DE ABAJO    ########################

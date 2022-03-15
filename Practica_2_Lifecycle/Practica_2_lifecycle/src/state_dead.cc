@@ -12,15 +12,28 @@
 */
 
 #include "../include/state_dead.h"
+#include <iostream>
 
 int State_dead::neighbors(const Grid& grid, int x, int y) {
+
+  adult_adyacent_cells_ = 0;
+
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {
       if ((x != x + i) || (y != y + j)) {
-        if (grid.GetCell(x,y).GetState()->getState() == 'A'){
-          dead_adyacent_cells_++;
+                                                std::cout << " ñaaaaaaaaaa-"<< grid.GetCell(x,y).GetState()->getState() << "-" <<  x << " " << y<< " " << adult_adyacent_cells_ << std::endl;
+        int posx = x + i;
+        int posy = y + j;
+        if (grid.GetCell(posx,posy).GetState()->getState() == 'A'){
+          adult_adyacent_cells_++;
         }
       }
     }
+  }
+}
+
+State* State_dead::nextState() {
+  if (adult_adyacent_cells_ > 2 ) {
+    
   }
 }

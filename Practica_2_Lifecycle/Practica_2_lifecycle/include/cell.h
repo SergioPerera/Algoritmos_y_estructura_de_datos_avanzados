@@ -19,6 +19,7 @@
 #include <fstream> /// ofstream
 
 class Grid;
+class State;
 /**
  * @brief Clase encargada de crear objetos cell que tienen distintos estados y 
  * distintas posiciones iniciales. Estos objetos tienen la propiedad de cambiar

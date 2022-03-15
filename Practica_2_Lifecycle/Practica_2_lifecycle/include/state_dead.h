@@ -17,11 +17,11 @@
 #include "grid.h"
 class State_dead : public State {
  public:
-  int neighbors(const Grid&, int i, int j);
-  State* nextState(){};
-  char getState() const {return (' ');};
+  int neighbors(const Grid& grid, int i, int j) override;
+  State* nextState() override;
+  char getState() const override {return (' ');};
  private:
-  int dead_adyacent_cells_{0};
+  int adult_adyacent_cells_{0};
 };
 
 #endif

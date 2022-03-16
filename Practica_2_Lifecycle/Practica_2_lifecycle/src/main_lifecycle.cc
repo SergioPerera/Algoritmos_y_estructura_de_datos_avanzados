@@ -26,15 +26,14 @@ int main (int argc, char *argv[]){
   /// Creamos la matriz de células 
   Grid grid{arguments.rows, arguments.cols, alive_cells_positions};
 
-  std::cout << grid << std::endl;
+  std::cout << "Turno: 0" <<grid << std::endl;
 
   /// Haremos las turn iteraciones 
   for(int k{0}; k < arguments.turns; k++) {
 
-
     grid.NextGeneration();
 
-    std::cout << grid << std::endl;
+    std::cout << "Turno: "<< k + 1 << grid << std::endl;
 
   }
 

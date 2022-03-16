@@ -54,7 +54,7 @@ int Cell::NeighborsAlive(const Grid& grid) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Cell& cell) {
-  // os << cell.GetState();
+  os << cell.GetState();
   return(os);
 }
 

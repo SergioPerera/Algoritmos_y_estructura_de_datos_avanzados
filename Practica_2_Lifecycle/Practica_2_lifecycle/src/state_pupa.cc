@@ -49,6 +49,7 @@ int State_pupa::neighbors(const Grid& grid, int x, int y) {
       }
     }
   }
+  return (0);
 }
 
 State* State_pupa::nextState() {
@@ -56,6 +57,6 @@ State* State_pupa::nextState() {
     return(new State_dead);
   }
   else {
-    return(new State_pupa);
+    return(new State_adult);
   }
 }

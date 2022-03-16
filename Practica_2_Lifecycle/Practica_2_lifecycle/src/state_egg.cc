@@ -38,6 +38,7 @@ int State_egg::neighbors(const Grid& grid, int x, int y) {
       }
     }
   }
+ return (0);
 }
 
 State* State_egg::nextState() {

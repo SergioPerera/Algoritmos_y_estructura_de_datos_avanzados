@@ -18,9 +18,11 @@
 #include "grid.h"
 class State_adult : public State {
  public:
-  int neighbors(const Grid&, int i, int j){};
-  State* nextState(){};
+  int neighbors(const Grid&, int i, int j);
+  State* nextState();
   char getState() const {return ('A');};
+ private:
+  int adults_{0};
 };
 
 #endif

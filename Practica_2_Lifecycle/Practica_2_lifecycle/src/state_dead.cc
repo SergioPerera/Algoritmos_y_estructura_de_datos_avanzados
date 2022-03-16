@@ -32,6 +32,7 @@ int State_dead::neighbors(const Grid& grid, int x, int y) {
       }
     }
   }
+  return (0);
 }
 
 State* State_dead::nextState() {

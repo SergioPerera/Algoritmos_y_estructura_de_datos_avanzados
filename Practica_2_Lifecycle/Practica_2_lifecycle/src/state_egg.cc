@@ -20,9 +20,6 @@
 
 int State_egg::neighbors(const Grid& grid, int x, int y) {
 
-  // int larvas_{0};
-  // int eggs_{0};
-
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {
       if ((x != x + i) || (y != y + j)) {
@@ -34,7 +31,6 @@ int State_egg::neighbors(const Grid& grid, int x, int y) {
         if (grid.GetCell(posx,posy).GetState()->getState() == 'H'){
           eggs_++;
         }
-                                                            //  std::cout << " ñaaaaaaaaaa-"<< grid.GetCell(posx,posy).GetState()->getState() << "-" <<  x + i  << " " << y + j << " " << larvas_ << " " << eggs_ << std::endl;
       }
     }
   }
@@ -42,13 +38,10 @@ int State_egg::neighbors(const Grid& grid, int x, int y) {
 }
 
 State* State_egg::nextState() {
-  std::cout << "->" << larvas_ << " " << eggs_ << std::endl;
   if (larvas_ > eggs_ ) {
-    std::cout << "retorno muerta " << std::endl;
     return(new State_dead);
   }
   else {
-    std::cout << "retorno larva " << std::endl;
     return(new State_larva);
   }
 }

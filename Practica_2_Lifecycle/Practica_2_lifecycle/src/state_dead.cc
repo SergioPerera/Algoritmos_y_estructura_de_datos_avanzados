@@ -23,7 +23,6 @@ int State_dead::neighbors(const Grid& grid, int x, int y) {
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {
       if ((x != x + i) || (y != y + j)) {
-                                                           // std::cout << " ñaaaaaaaaaa-"<< grid.GetCell(x,y).GetState()->getState() << "-" <<  x << " " << y<< " " << adult_adyacent_cells_ << std::endl;
         int posx = x + i;
         int posy = y + j;
         if (grid.GetCell(posx,posy).GetState()->getState() == 'A'){

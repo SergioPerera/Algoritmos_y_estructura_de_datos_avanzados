@@ -21,12 +21,10 @@
 
 int State_adult::neighbors(const Grid& grid, int x, int y) {
 
-  // int adults_{0};
 
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {
       if ((x != x + i) || (y != y + j)) {
-                                                           // std::cout << " ñaaaaaaaaaa-"<< grid.GetCell(x,y).GetState()->getState() << "-" <<  x << " " << y<< " " << adult_adyacent_cells_ << std::endl;
         int posx = x + i;
         int posy = y + j;
         if (grid.GetCell(posx,posy).GetState()->getState() == 'A'){
@@ -39,14 +37,10 @@ int State_adult::neighbors(const Grid& grid, int x, int y) {
 }
 
 State* State_adult::nextState() {
-  std::cout << "->" << adults_ << std::endl;
   if (adults_ >= 1) {
-    std::cout << "Retorno huevo" << std::endl;
     return(new State_egg);
   }
   else {
-    std::cout << "Retorno dead" << std::endl;
-
     return(new State_dead);
   }
 }

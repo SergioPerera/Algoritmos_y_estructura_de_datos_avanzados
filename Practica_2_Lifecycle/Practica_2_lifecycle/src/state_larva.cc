@@ -22,10 +22,10 @@
 
 int State_larva::neighbors(const Grid& grid, int x, int y) {
 
-  int larvas_{0};
-  int eggs_{0};
-  int adults_{0};
-  int pupas_{0};
+  // int larvas_{0};
+  // int eggs_{0};
+  // int adults_{0};
+  // int pupas_{0};
 
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {
@@ -52,10 +52,13 @@ int State_larva::neighbors(const Grid& grid, int x, int y) {
 }
 
 State* State_larva::nextState() {
+  std::cout << "->" << larvas_ << " " << eggs_ << " " << pupas_ << " " << adults_ << std::endl;
   if (larvas_ > eggs_ + adults_ + pupas_) {
+    std::cout << "Retorno dead" << std::endl;
     return(new State_dead);
   }
   else {
+    std::cout << "Retorno pupa" << std::endl;
     return(new State_pupa);
   }
 }

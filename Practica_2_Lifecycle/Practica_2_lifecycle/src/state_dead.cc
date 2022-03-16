@@ -18,7 +18,7 @@
 
 int State_dead::neighbors(const Grid& grid, int x, int y) {
 
-  adult_adyacent_cells_ = 0;
+  // adult_adyacent_cells_ = 0;
 
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {

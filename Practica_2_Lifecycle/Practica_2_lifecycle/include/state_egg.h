@@ -18,9 +18,12 @@
 #include "grid.h"
 class State_egg : public State {
  public:
-  int neighbors(const Grid&, int i, int j){};
-  State* nextState(){};
-  char getState() const {return ('H');};
+  int neighbors(const Grid&, int i, int j) override;
+  State* nextState() override;
+  char getState() const override {return ('H');};
+ private:
+  int larvas_{0};
+  int eggs_{0};
 };
 
 #endif

@@ -113,63 +113,76 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
   /// Hacemos un for para solicitar ls coordenadas de cada célula viva
   for (int i{0}; i < arguments.alive_cells; i++) {
 
-
     char state = ' ';
-    std::string state_str;
 
-    /// Solicitamos al usuario las coordenadas
+    /*
+    * Hacemos la solicitud de las coordenadas y en caso de ser erróneas las 
+    * vuelve a solicitar
+    */
     std::string coordinates;
-    std::cout << "Introduzca las coordenadas de la célula viva "<< i <<" [fil,col]: ";
-    std::cin >> coordinates;
-
-    /// Comprobamos que las coordenadas están bien puestas
-    bool bad_positions = 0;
-    if (!regex_match (coordinates, std::regex("([1-9][0-9]*),([1-9][0-9]*)"))) {
-      std::cout << RED 
-                << "  Coordenadas incorrectas, se escribe de la forma: fil,col\n"
-                << RESET
-                << "  La primera fila es 1, idem para las columnas" << std::endl;
-      i--;
-      bad_positions = 1;
-    }
-
-    /// Solicitamos al usuario el estado de la célula
-    std::cout << "\tIntroduzca el estado de la célula " << i + 1 << " [H,L,P,A]: ";
-    std::cin >> state;
-    state_str = state;
-
-    /// Comprobamos que el estado de la céĺula esté correcto
-    if(!regex_match(state_str, std::regex("[HLPA]{1}|[hlpa]{1}"))){
-      std::cout << RED << "\tEstado de la célula incorrecta" << RESET << std::endl;
-      if (bad_positions == 0) { i--;}
-    }
-    else {
-
-      /// Recogemos las coordenadas
-      int alive_row {0};
-      int alive_col{0};
-
-      std::regex regexp("(\\d+),(\\d+)");
-      /// smatch recoge las coincidencias dentro de los paréntesis 
-      std::smatch m;
-      std::regex_search(coordinates, m, regexp);
-      alive_row = std::stoi(m[0]);
-      alive_col = std::stoi(m[2]);
-
-      /// Comprobamos que las coordenadas estén dentro de la matriz
-      if (alive_col > arguments.cols || alive_row > arguments.rows){
+    while (true) {
+      /// Solicitamos al usuario las coordenadas
+      std::cout << "Introduzca las coordenadas de la célula viva "<< i <<" [fil,col]: ";
+      std::cin >> coordinates;
+  
+      /// Comprobamos que las coordenadas están bien puestas
+      if(regex_match (coordinates, std::regex("([1-9][0-9]*),([1-9][0-9]*)"))) {
+        break;
+      }
+      else {
         std::cout << RED 
-                  << "  Las coordenadas tienen que estar comprendidas entre:\n"
+                  << "  Coordenadas incorrectas, se escribe de la forma: fil,col\n"
                   << RESET
-                  << "  Filas [1," << arguments.rows << "], usted puso: " << alive_row << "\n"
-                  << "  Columnas [1," << arguments.cols << "], usted puso: " << alive_col << std::endl; 
-        i--;
-      }
-      else{
-        std::tuple<int,int,char> alive_position{ alive_row, alive_col, state};
-        alive_cells_positions.emplace_back(alive_position);
+                  << "  La primera fila es 1, idem para las columnas" << std::endl;
       }
     }
+
+    /*
+    * Hacemos la solicitud del estado y en caso de ser erróneo los vuelve a solicitar
+    */
+    std::string state_str;
+    while (true) {
+      /// Solicitamos al usuario el estado de la célula
+      std::cout << "\tIntroduzca el estado de la célula " << i << " [H,L,P,A]: ";
+      std::cin >> state_str;
+      // state_str = state;
+      state = state_str[0];
+  
+      /// Comprobamos que el estado de la céĺula esté correcto
+      if(regex_match(state_str, std::regex("^[HLPA]$"))) {
+        break;
+      }
+      else {
+        std::cout << RED << "\tEstado de la célula incorrecta" << RESET << std::endl;
+      }
+    }
+
+    std::cout << "\n" << std::endl;
+    /// Recogemos las coordenadas
+    int alive_row {0};
+    int alive_col{0};
+
+    std::regex regexp("(\\d+),(\\d+)");
+    /// smatch recoge las coincidencias dentro de los paréntesis 
+    std::smatch m;
+    std::regex_search(coordinates, m, regexp);
+    alive_row = std::stoi(m[0]);
+    alive_col = std::stoi(m[2]);
+
+    /// Comprobamos que las coordenadas estén dentro de la matriz
+    if (alive_col > arguments.cols || alive_row > arguments.rows){
+      std::cout << RED 
+                << "  Las coordenadas tienen que estar comprendidas entre:\n"
+                << RESET
+                << "  Filas [1," << arguments.rows << "], usted puso: " << alive_row << "\n"
+                << "  Columnas [1," << arguments.cols << "], usted puso: " << alive_col << std::endl; 
+      i--;
+    }
+    else{
+      std::tuple<int,int,char> alive_position{ alive_row, alive_col, state};
+      alive_cells_positions.emplace_back(alive_position);
+    }
+    
   }
 
   return (alive_cells_positions);

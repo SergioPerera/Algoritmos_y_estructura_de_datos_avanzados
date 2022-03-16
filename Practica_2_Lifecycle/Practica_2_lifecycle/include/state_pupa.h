@@ -22,6 +22,11 @@ class State_pupa : public State {
   int neighbors(const Grid&, int i, int j){};
   State* nextState(){};
   char getState() const {return ('P');};
+ private:
+  int larvas_{0};
+  int eggs_{0};
+  int adults_{0};
+  int pupas_{0};
 };
 
 #endif

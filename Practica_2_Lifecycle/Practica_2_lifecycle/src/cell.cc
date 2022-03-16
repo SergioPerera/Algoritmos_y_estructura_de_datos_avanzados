@@ -66,3 +66,8 @@ std::ostream& operator<<(std::ostream& os, const Cell& cell) {
 void Cell::UpdateState() {
   state_ = state_->nextState();
 }
+
+void Cell::SetState(State* new_state) {
+  delete[] state_; 
+  state_ = new_state;
+}

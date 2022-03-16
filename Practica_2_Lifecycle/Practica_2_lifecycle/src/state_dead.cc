@@ -12,6 +12,8 @@
 */
 
 #include "../include/state_dead.h"
+#include "../include/state_egg.h"
+
 #include <iostream>
 
 int State_dead::neighbors(const Grid& grid, int x, int y) {
@@ -33,7 +35,10 @@ int State_dead::neighbors(const Grid& grid, int x, int y) {
 }
 
 State* State_dead::nextState() {
-  if (adult_adyacent_cells_ > 2 ) {
-    
+  if (adult_adyacent_cells_ >= 2 ) {
+    return(new State_egg);
+  }
+  else {
+    return(new State_dead);
   }
 }

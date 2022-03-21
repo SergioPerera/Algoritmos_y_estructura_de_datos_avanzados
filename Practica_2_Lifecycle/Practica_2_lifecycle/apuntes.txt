@@ -1,3 +1,0 @@
-Crear README.TXT
-En caso de ser el juego en 3 dimensiones cambiar en functions el pair por una tupla
-Mirar como sería una posible modificación de un estado más

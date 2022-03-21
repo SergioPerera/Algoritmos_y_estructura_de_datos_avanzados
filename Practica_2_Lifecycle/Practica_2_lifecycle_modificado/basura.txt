@@ -1,2 +1,0 @@
-g++ -I -Weffc++ -Wall -g -c -o src/functions.o src/functions.cc
-g++ -I -Weffc++ -Wall -g -c -o src/grid.o src/grid.cc

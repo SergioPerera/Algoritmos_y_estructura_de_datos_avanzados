@@ -13,11 +13,7 @@
 
 #include "../include/grid.h"
 #include "../include/state.h"
-#include "../include/state_egg.h"
-#include "../include/state_larva.h"
-#include "../include/state_adult.h"
 #include "../include/state_dead.h"
-#include "../include/state_pupa.h"
 
 #include <iostream>
 #include <tuple>
@@ -70,20 +66,12 @@ Grid::Grid(const int& rows, const int& cols, std::vector<std::tuple<int,int,char
     int i = std::get<0>(living_cells[k]);
     int j = std::get<1>(living_cells[k]);
     switch(std::get<2>(living_cells[k])) {
-      case 'H' : {
-        matrix_[i][j].SetState(new State_egg);
+      case ' ' : {
+        matrix_[i][j].SetState(new State_dead);
       }
       break;
-      case 'L' : {
-        matrix_[i][j].SetState(new State_larva);
-      }
-      break;
-      case 'P' : {
-        matrix_[i][j].SetState(new State_pupa);
-      }
-      break;
-      case 'A' : {
-        matrix_[i][j].SetState(new State_adult);
+      case 'X' : {
+        matrix_[i][j].SetState(new State_dead);  ///////////////////retornar el estado adecuado
       }
       break;
     }

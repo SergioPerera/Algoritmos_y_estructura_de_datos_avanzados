@@ -13,8 +13,8 @@
 #ifndef _STATE_DEAD_H_
 #define _STATE_DEAD_H_
 
-#include "state.h"
-#include "grid.h"
+#include "../include/state.h"
+
 class State_dead : public State {
  public:
   int neighbors(const Grid& grid, int i, int j) override;

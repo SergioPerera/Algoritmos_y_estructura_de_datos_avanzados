@@ -35,7 +35,7 @@ OBJDIR = build
 BINDIR = bin
 
 
-%.o: %.cc $(DEPS)
+./kk/%.o: %.cc $(DEPS)
 				$(CC) $(CFLAGS) -c -o $@ $<
 
 

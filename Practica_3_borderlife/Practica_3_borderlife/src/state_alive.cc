@@ -38,4 +38,5 @@ State* State_alive::nextState() {
   if ((alive_cells_ != 2) || (alive_cells_ != 3) ) {
     return(new State_dead);
   }
+  return(new State_alive);
 }

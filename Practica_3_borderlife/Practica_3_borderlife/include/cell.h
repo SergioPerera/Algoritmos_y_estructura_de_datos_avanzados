@@ -14,13 +14,13 @@
 #ifndef _CELL_H_
 #define _CELL_H_
 
-#include "grid.h"
+#include "grid_open_border.h"
 #include "state.h"
 #include <fstream> /// ofstream
 
 class Grid;
 class State;
-/**
+/** 
  * @brief Clase encargada de crear objetos cell que tienen distintos estados y 
  * distintas posiciones iniciales. Estos objetos tienen la propiedad de cambiar
  * en función de los objetos alrededor de ellos

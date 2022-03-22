@@ -14,7 +14,6 @@
 #include "../include/cell.h"
 #include "../include/grid.h"
 #include "../include/functions.h"
-
 int main (int argc, char *argv[]){
 
   CommandLineArguments arguments(argc, argv);
@@ -24,14 +23,19 @@ int main (int argc, char *argv[]){
   alive_cells_positions = AliveCellsCoordinates(arguments);
 
   /// Creamos la matriz de células 
-  Grid grid{arguments.rows, arguments.cols, alive_cells_positions};
+  // Grid grid{arguments.rows, arguments.cols, alive_cells_positions};
 
-  std::cout << "Turno: 0" <<grid << std::endl;
+  Grid* grid; 
+
+  if(arguments.mirror) {grid = new GridWithOpenBorder;};
+
+
+  std::cout << "Turno: 0" << grid << std::endl;
 
   /// Haremos las turn iteraciones 
   for(int k{0}; k < arguments.turns; k++) {
 
-    grid.NextGeneration();
+    grid->NextGeneration();
 
     std::cout << "Turno: "<< k + 1 << grid << std::endl;
 

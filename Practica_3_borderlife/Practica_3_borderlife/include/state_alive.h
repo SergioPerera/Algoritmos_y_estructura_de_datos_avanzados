@@ -21,7 +21,7 @@ class State_alive : public State {
   State* nextState() override;
   char getState() const override {return (' ');};
  private:
-  int adult_adyacent_cells_{0};
+  int alive_cells_{0};
 };
 
 #endif

@@ -25,7 +25,7 @@ int State_dead::neighbors(const Grid& grid, int x, int y) {
         int posx = x + i;
         int posy = y + j;
         if (grid.GetCell(posx,posy).GetState()->getState() == 'A'){
-          adult_adyacent_cells_++;
+          alive_cells_ ++;
         }
       }
     }
@@ -34,7 +34,7 @@ int State_dead::neighbors(const Grid& grid, int x, int y) {
 }
 
 State* State_dead::nextState() {
-  if (adult_adyacent_cells_ = 3 ) {
+  if (alive_cells_  = 3 ) {
     return(new State_alive); ///////////////////////////////// poner el estado correspondiente;
   }
   else {

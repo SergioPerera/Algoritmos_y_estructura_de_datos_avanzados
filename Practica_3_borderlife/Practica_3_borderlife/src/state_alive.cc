@@ -35,7 +35,7 @@ int State_alive::neighbors(const Grid& grid, int x, int y) {
 }
 
 State* State_alive::nextState() {
-  if (alive_cells_ != 2 || alive_cells_ != 3 ) {
+  if ((alive_cells_ != 2) || (alive_cells_ != 3) ) {
     return(new State_dead);
   }
 }

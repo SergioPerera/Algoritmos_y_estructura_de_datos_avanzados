@@ -25,7 +25,7 @@ DEPSCPY = $(DEPS)
 ############################# ARCHIVOS CC ######################################
 #Obtenemos los archivos .cc y le ponemos .o
 AUX=$(OBJSRC)/*.cc
-OBJ=$(shell echo $(AUX) | sed -r 's/.cc/.o/g' | sed -r 's/src/obj/g')
+OBJ=$(shell echo $(AUX) | sed -r 's/.cc/.o/g' | sed -r 's/src/build/g')
 ############################# DIRECCIONES DE DESTINO ###########################
 #Dirección donde se ponen los .o
 OBJDIR = build
@@ -34,7 +34,7 @@ OBJDIR = build
 BINDIR = bin
 
 
-obj/%.o: src/%.cc $(DEPS)
+build/%.o: src/%.cc $(DEPS)
 				$(CC) $(CFLAGS) -c -o $@ $<
 		@echo $(OBJ)
 

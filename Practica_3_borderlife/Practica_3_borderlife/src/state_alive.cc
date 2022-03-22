@@ -8,14 +8,14 @@
 * @author Sergio Perera Márquez
 * Correo: alu0101394503@ull.edu.es
 * @date 15/03/2022
-* @file state_dead.cc
+* @file State_alive.cc
 */
 
-#include "../include/state_dead.h"
+#include "../include/state_alive.h"
 
 #include <iostream>
 
-int State_dead::neighbors(const Grid& grid, int x, int y) {
+int State_alive::neighbors(const Grid& grid, int x, int y) {
 
 
   for (int i : {-1, 0, 1}) {
@@ -32,11 +32,11 @@ int State_dead::neighbors(const Grid& grid, int x, int y) {
   return (0);
 }
 
-State* State_dead::nextState() {
+State* State_alive::nextState() {
   if (adult_adyacent_cells_ >= 2 ) {
-    return(new State_dead); ///////////////////////////////// poner el estado correspondiente;
+    return(new State_alive); ///////////////////////////////// poner el estado correspondiente;
   }
   else {
-    return(new State_dead);
+    return(new State_alive);
   }
 }

@@ -32,6 +32,8 @@ struct CommandLineArguments {
   int rows{0}; /// Número de filas de la matriz visible
   int alive_cells{0}; /// Número de células vivas
   int turns{0}; /// Número de iteraciones o turnos del juego
+  bool periodic = false;
+  bool mirror = false;
 
   /// Función encargada de recoger y comprobar los argumentos
   CommandLineArguments(int argc, char* argv[]); 

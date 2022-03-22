@@ -5,7 +5,7 @@ CFLAGS = -I -Weffc++ -Wall -g -std=c++20
 
 
 #Variables
-EJECUTABLE = lifecycle
+EJECUTABLE = borderlife
 
 #En DEPSSRC va la dirección de los .h 
 DEPSSRC = include

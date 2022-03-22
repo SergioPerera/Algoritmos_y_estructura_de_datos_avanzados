@@ -12,6 +12,7 @@
 */
 
 #include "../include/state_dead.h"
+#include "../include/state_alive.h"
 
 #include <iostream>
 
@@ -33,8 +34,8 @@ int State_dead::neighbors(const Grid& grid, int x, int y) {
 }
 
 State* State_dead::nextState() {
-  if (adult_adyacent_cells_ >= 2 ) {
-    return(new State_dead); ///////////////////////////////// poner el estado correspondiente;
+  if (adult_adyacent_cells_ = 3 ) {
+    return(new State_alive); ///////////////////////////////// poner el estado correspondiente;
   }
   else {
     return(new State_dead);

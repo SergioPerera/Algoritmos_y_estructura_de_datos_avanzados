@@ -12,6 +12,8 @@
 */
 
 #include "../include/state_alive.h"
+#include "../include/state_dead.h"
+
 
 #include <iostream>
 
@@ -23,7 +25,7 @@ int State_alive::neighbors(const Grid& grid, int x, int y) {
       if ((x != x + i) || (y != y + j)) {
         int posx = x + i;
         int posy = y + j;
-        if (grid.GetCell(posx,posy).GetState()->getState() == 'A'){
+        if (grid.GetCell(posx,posy).GetState()->getState() == 'A') {
           adult_adyacent_cells_++;
         }
       }
@@ -33,10 +35,7 @@ int State_alive::neighbors(const Grid& grid, int x, int y) {
 }
 
 State* State_alive::nextState() {
-  if (adult_adyacent_cells_ >= 2 ) {
-    return(new State_alive); ///////////////////////////////// poner el estado correspondiente;
-  }
-  else {
-    return(new State_alive);
+  if (adult_adyacent_cells_ != 2 || adult_adyacent_cells_ != 3 ) {
+    return(new State_dead);
   }
 }

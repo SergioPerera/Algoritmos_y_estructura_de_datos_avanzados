@@ -21,11 +21,13 @@
  * 
  */
 void manual() {
-    std::cout << "Para ejecutar hacer uso de ./lifegame -d NumxNum -a Num -t Num\n"
+    std::cout << "Para ejecutar hacer uso de ./lifegame -d NumxNum -a Num -t Num -[p|r]\n"
               << "Opciones:\n" 
               << "-d: Dimensión de la matriz. Tiene que ser mayor que 0 y su formato ser FilasxColumnas\n"
               << "-a: Alive cells (células vivas). Tiene que ser un número mayor que 0\n"
-              << "-t: Turnos. Tiene que ser un número mayor que 0\n" 
+              << "-t: Turnos. Tiene que ser un número mayor que 0\n"
+              << "-p: Periódica. Crear una matriz periódica\n"
+              << "-r: Reflectiva. Crear una matriz reflectiva\n"
               << "-h: Help. Muestra información del comando\n" << std::endl;
 }
 
@@ -46,7 +48,7 @@ void manual() {
 CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
   bool help = false; /// Flag que determina si han puesto -h
   int c; /// Salida de la función getopt
-  while ( (c = getopt(argc, argv, "hd:a:t:")) != -1) {
+  while ( (c = getopt(argc, argv, "hd:a:t:pr")) != -1) {
   
     switch (c) {
       case 'h': 
@@ -86,6 +88,20 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
         turns = std::stoi(optarg);
       }
       break;
+      case 'p': {
+        if (periodic || mirror) {
+          throw std::invalid_argument("Solo se puede especificar un tipo de matriz");
+        } 
+        periodic = true;
+      }
+      break;
+      case 'r': {
+        if (periodic || mirror) {
+          throw std::invalid_argument("Solo se puede especificar un tipo de matriz");
+        } 
+        mirror = true;
+      }
+      break;
       case '?':
         throw std::invalid_argument("Argumento de línea de comandos desconocido, pruebe ./lifegame -h");
       default:
@@ -93,7 +109,7 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
     }
   }
 
-  if (argc > 7) {
+  if (argc > 8) {
     throw std::invalid_argument("Demasiados argumentos, pruebe ./lifegame -h");
   }
   else if( argc < 7 && help == false) {
@@ -143,13 +159,13 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
     std::string state_str;
     while (true) {
       /// Solicitamos al usuario el estado de la célula
-      std::cout << "\tIntroduzca el estado de la célula " << i << " [H,L,P,A]: ";
+      std::cout << "\tIntroduzca el estado de la célula " << i << " [A]: ";
       std::cin >> state_str;
       // state_str = state;
       state = state_str[0];
   
       /// Comprobamos que el estado de la céĺula esté correcto
-      if(regex_match(state_str, std::regex("^[HLPA]$"))) {
+      if(regex_match(state_str, std::regex("^[A]$"))) {
         break;
       }
       else {

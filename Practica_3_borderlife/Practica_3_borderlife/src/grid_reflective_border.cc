@@ -124,7 +124,7 @@ const Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) const {
     periodic_row = row%rows_;
     periodic_col = col%cols_;
 
-    std::cout << "Estoy en la célula " << debugrow << " " << debugcol << " Y la periódica es: " << periodic_row << " " << periodic_col << std::endl;
+    std::cout << "Estoy en la célula " << debugrow + 1 << " " << debugcol + 1 << " Y la periódica es: " << periodic_row << " " << periodic_col << std::endl;
   }
 
   return(matrix_[periodic_row][periodic_col]);

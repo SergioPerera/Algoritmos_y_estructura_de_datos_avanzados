@@ -24,16 +24,20 @@ int main (int argc, char *argv[]){
   alive_cells_positions = AliveCellsCoordinates(arguments);
 
   /// Creamos la matriz de células 
-  // Grid grid{arguments.rows, arguments.cols, alive_cells_positions};
-
   Grid* grid; 
 
   if(arguments.normal == true) {
     std::cout << "Matriz normal\n" << std::endl;
-    grid = new GridWithOpenBorder{arguments.rows, arguments.cols, alive_cells_positions};};
+    grid = new GridWithOpenBorder{arguments.rows, arguments.cols, alive_cells_positions};
+  };
+  if(arguments.periodic == true) {
+    std::cout << "Matriz periódica\n" << std::endl;
+    grid = new GridWithPeriodicBorder{arguments.rows, arguments.cols, alive_cells_positions};
+  };
   if(arguments.mirror == true) {
     std::cout << "Matriz reflectiva\n" << std::endl;
-    grid = new GridWithOpenBorder{arguments.rows, arguments.cols, alive_cells_positions};};
+    grid = new GridWithOpenBorder{arguments.rows, arguments.cols, alive_cells_positions};
+  };
 
 
   std::cout << "Turno: 0" << *grid << std::endl;

@@ -21,7 +21,7 @@
 #include <tuple>
 
 #include <bits/stdc++.h> /// std::count
-#define DEBUG 0
+#define EXTRA_SIZE  0
 /**
  * @brief Construct a new Grid:: Grid object. Vamos a crear un objeto grid con 
  * memoria dinámica haciendo uso de new y punteros. Tanto a las filas como a las
@@ -36,8 +36,8 @@
 GridWithPeriodicBorder::GridWithPeriodicBorder(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells) {
 
   /// Hacemos esto por lo descrito anteriormente
-  rows_ = rows + 2;
-  cols_ = cols + 2;
+  rows_ = rows + EXTRA_SIZE;
+  cols_ = cols + EXTRA_SIZE;
   /*
   * Creamos un vector y dentro de cada una de las posiciones creamos otro vector
   * y lo rellenamos a medida que las creamos con células muertas
@@ -64,8 +64,8 @@ GridWithPeriodicBorder::GridWithPeriodicBorder(const int& rows, const int& cols,
   ///Introducimos las células de distinto tipo que ha especificado el usuario
   for (long unsigned int k{0}; k < living_cells.size(); k++) {
 
-    int i = std::get<0>(living_cells[k]);
-    int j = std::get<1>(living_cells[k]);
+    int i = std::get<0>(living_cells[k]) - 1;
+    int j = std::get<1>(living_cells[k]) - 1;
     switch(std::get<2>(living_cells[k])) {
       case ' ' : {
         matrix_[i][j].SetState(new State_dead);
@@ -79,7 +79,7 @@ GridWithPeriodicBorder::GridWithPeriodicBorder(const int& rows, const int& cols,
   }
 }
 
-/**
+/**UPLOAD
  * @brief Destroy the Grid:: Grid object. Liberamos el objeto grid de memoria
  * 
  */
@@ -103,6 +103,10 @@ GridWithPeriodicBorder::~GridWithPeriodicBorder(){
  * @return const Cell& 
  */
 const Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) const {
+    if (row > rows_ || row < 0 || col > cols_ || col < 0) {
+      std::cout << "Estoy fuera de la matriz " << row << ", " << col << std::endl;
+
+    }
   return(matrix_[row][col]);
 }
 
@@ -132,8 +136,8 @@ std::ostream& operator<<(std::ostream& os, GridWithPeriodicBorder& grid) {
  */
 void GridWithPeriodicBorder::PrintMatrix (std::ostream& os) {
   os << std::endl;
-  for (int i{1}; i < GetRows() - 1; i++) {
-    for(int j{1}; j < GetCols() - 1; j++) {
+  for (int i{0}; i < GetRows() - 0; i++) {
+    for(int j{0}; j < GetCols() - 0; j++) {
       os << GetCell(i,j).GetState()->getState() << " ";
     }
     os << std::endl;

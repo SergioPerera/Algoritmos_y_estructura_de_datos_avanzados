@@ -12,7 +12,6 @@
 */
 
 #include "../include/grid.h"
-#define PLUS_SIZE 1
 /**
  * @brief Método encargado de hacer que las propias células se actualicen
  * 
@@ -22,20 +21,21 @@ void Grid::NextGeneration() {
   * Hacemos un bucle que recorra todas las células, menos los bordes para que
   * cuenten las células vecinas que tienen
   */
-  for (int i{PLUS_SIZE}; i < rows_ - PLUS_SIZE; i++) {
-    for(int j{PLUS_SIZE}; j < cols_ - PLUS_SIZE; j++) {
+  for (int i{0}; i < rows_less; i++) {
+    for(int j{0}; j < cols_less; j++) {
       /// Cogemos la célula y hacemos que mire sus vecinos
-      matrix_[i][j].NeighborsAlive(*this);
+      GetCell(i,j).NeighborsAlive(*this);
     }
   }
   /*
   * Hacemos un bucle que recorra todas las células, menos los bordes para que
   * cada célula actualice su estado
   */
-  for (int i{PLUS_SIZE}; i < rows_ - PLUS_SIZE; i++) {
-    for(int j{PLUS_SIZE}; j < cols_ - PLUS_SIZE; j++) {
+  for (int i{0}; i < rows_less; i++) {
+    for(int j{0}; j < cols_less; j++) {
       /// Cogemos la célula y hacemos que mire sus vecinos
-      matrix_[i][j].UpdateState();
+
+      GetCell(i,j).UpdateState();
     }
   }
 }

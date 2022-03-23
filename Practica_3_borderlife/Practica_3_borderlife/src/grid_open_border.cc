@@ -16,11 +16,11 @@
 #include "../include/state_dead.h"
 #include "../include/state_alive.h"
 
-
 #include <iostream>
 #include <tuple>
 
 #include <bits/stdc++.h> /// std::count
+#define EXTRA_SIZE  2
 #define DEBUG 0
 /**
  * @brief Construct a new Grid:: Grid object. Vamos a crear un objeto grid con 
@@ -38,6 +38,8 @@ GridWithOpenBorder::GridWithOpenBorder(const int& rows, const int& cols, std::ve
   /// Hacemos esto por lo descrito anteriormente
   rows_ = rows + 2;
   cols_ = cols + 2;
+  rows_less = rows;
+  cols_less = cols;
   /*
   * Creamos un vector y dentro de cada una de las posiciones creamos otro vector
   * y lo rellenamos a medida que las creamos con células muertas
@@ -107,7 +109,7 @@ const Cell& GridWithOpenBorder::GetCell(int& row, int& col) const {
 }
 
 Cell& GridWithOpenBorder::GetCell(int& row, int& col) {
-  return(matrix_[row][col]);
+  return(matrix_[row + 1][col + 1]);
 }
 
 /**
@@ -132,8 +134,8 @@ std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid) {
  */
 void GridWithOpenBorder::PrintMatrix (std::ostream& os) {
   os << std::endl;
-  for (int i{1}; i < GetRows() - 1; i++) {
-    for(int j{1}; j < GetCols() - 1; j++) {
+  for (int i{}; i < GetRows() - 2; i++) {
+    for(int j{0}; j < GetCols() - 2; j++) {
       os << GetCell(i,j).GetState()->getState() << " ";
     }
     os << std::endl;

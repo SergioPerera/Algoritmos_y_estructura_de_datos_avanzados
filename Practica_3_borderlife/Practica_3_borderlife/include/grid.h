@@ -47,6 +47,8 @@ class Grid {
   Cell** matrix_; /// puntero que apunta a vector de vectores de cell
   int rows_{0}; /// número de filas 
   int cols_{0}; /// número de columnas
+  int rows_less{0}; /// número de filas 
+  int cols_less{0}; /// número de columnas
 };
 
 

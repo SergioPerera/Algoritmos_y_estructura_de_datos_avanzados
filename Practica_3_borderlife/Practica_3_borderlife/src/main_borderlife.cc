@@ -36,7 +36,7 @@ int main (int argc, char *argv[]){
   };
   if(arguments.mirror == true) {
     std::cout << "Matriz reflectiva\n" << std::endl;
-    grid = new GridWithOpenBorder{arguments.rows, arguments.cols, alive_cells_positions};
+    grid = new GridWithReflectiveBorder{arguments.rows, arguments.cols, alive_cells_positions};
   };
 
 

@@ -98,4 +98,27 @@ class GridWithPeriodicBorder : public Grid {
   friend std::ostream& operator<<(std::ostream& os, GridWithPeriodicBorder& grid);
 };
 
+/**
+ * @brief Clase para matriz normal
+ * 
+ */
+class GridWithReflectiveBorder : public Grid {
+ public:
+
+  /// Constructor
+  GridWithReflectiveBorder(){};
+  GridWithReflectiveBorder(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells);
+  ~GridWithReflectiveBorder();
+
+  /// Métodos
+  const int GetRows(){return rows_;};
+  const int GetCols(){return cols_;};
+
+  Cell& GetCell(int&, int&) override;
+  const Cell& GetCell(int&, int&) const override;
+
+  /// Operadores
+  void PrintMatrix(std::ostream& os) override;
+  friend std::ostream& operator<<(std::ostream& os, GridWithReflectiveBorder& grid);
+};
 #endif

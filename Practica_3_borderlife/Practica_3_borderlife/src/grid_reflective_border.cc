@@ -33,7 +33,7 @@
  * @param cols columnas de la matriz
  * @param living_cells posiciones de las células vivas
  */
-GridWithPeriodicBorder::GridWithPeriodicBorder(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells) {
+GridWithReflectiveBorder::GridWithReflectiveBorder(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells) {
 
   /// Hacemos esto por lo descrito anteriormente
   rows_ = rows + EXTRA_SIZE;
@@ -83,7 +83,7 @@ GridWithPeriodicBorder::GridWithPeriodicBorder(const int& rows, const int& cols,
  * @brief Destroy the Grid:: Grid object. Liberamos el objeto grid de memoria
  * 
  */
-GridWithPeriodicBorder::~GridWithPeriodicBorder(){
+GridWithReflectiveBorder::~GridWithReflectiveBorder(){
   /// Liberamos la memoria ocupada por matrix_
   /*
   * Primero tendríamos que borrar los vectores que contienen vectores y, por 
@@ -103,7 +103,7 @@ GridWithPeriodicBorder::~GridWithPeriodicBorder(){
  * @param col Columnas
  * @return const Cell& 
  */
-const Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) const {
+const Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) const {
   int real_rows = rows_ - EXTRA_SIZE;
   int real_cols = cols_ - EXTRA_SIZE;
   int periodic_row{row};
@@ -112,18 +112,23 @@ const Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) const {
    * Al ser la matriz de n+2,m+2 (filas y columnas respectiamente) al estar en 
    * las posiciones 0,x | x,0 o m,x | x,m nos encontraríamos fuera de la matriz
    * por lo tanto hacemos row -1 y col -1 para que al sumarle las dimensiones 
-   * "reales" de la matriz, estemos dentro de esta
+   * "reales" de la matriz, estemos dentro de esta y al ser un borde reflectivo, 
+   * calculamos el periódico del periódico y tenemos la célula relfejada
    */
   if (row > rows_ - EXTRA_SIZE|| row <= 0 || col > cols_ - EXTRA_SIZE|| col <= 0) {
-    row = row - 1 + real_rows;
-    col = col - 1 + real_cols;
-    periodic_row = (row%real_rows) + 1;
-    periodic_col = (col%real_cols) + 1;
+                                                            std::cout << "Estoy fuera de la matri en la célula " << row << " " << col << std::endl;
+
+    for (int i{0}; i < 1; i++) {
+      row = row - 1 + real_rows;
+      col = col - 1 + real_cols;
+      periodic_row = (row%real_rows) + 1;
+      periodic_col = (col%real_cols) + 1;
+    }
   }
-  return(matrix_[periodic_row][periodic_col]);
+  return(matrix_[row][col]);
 }
 
-Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) {
+Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) {
   return(matrix_[row][col]);
 }
 
@@ -134,7 +139,7 @@ Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) {
  * @param grid objeto grid para imprimir
  * @return std::ostream& 
  */
-std::ostream& operator<<(std::ostream& os, GridWithPeriodicBorder& grid) {
+std::ostream& operator<<(std::ostream& os, GridWithReflectiveBorder& grid) {
 
   grid.PrintMatrix(os);
   return(os); 
@@ -147,10 +152,10 @@ std::ostream& operator<<(std::ostream& os, GridWithPeriodicBorder& grid) {
  * 
  * @param os 
  */
-void GridWithPeriodicBorder::PrintMatrix (std::ostream& os) {
+void GridWithReflectiveBorder::PrintMatrix (std::ostream& os) {
   os << std::endl;
-  for (int i{1}; i < GetRows() - 1; i++) {
-    for(int j{1}; j < GetCols() - 1; j++) {
+  for (int i{0}; i < GetRows() - 0; i++) {
+    for(int j{0}; j < GetCols() - 0; j++) {
       os << GetCell(i,j).GetState()->getState() << " ";
     }
     os << std::endl;

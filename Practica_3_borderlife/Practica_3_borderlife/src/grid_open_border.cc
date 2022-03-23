@@ -117,19 +117,19 @@ Cell& GridWithOpenBorder::GetCell(int& row, int& col) {
  * @param grid objeto grid para imprimir
  * @return std::ostream& 
  */
-// std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid) {
-  
-//   os << std::endl;
-//   for (int i{1}; i < grid.GetRows() - 1; i++) {
-//     for(int j{1}; j < grid.GetCols() - 1; j++) {
-//       os << grid.GetCell(i,j).GetState()->getState() << " ";
-//     }
-//     os << std::endl;
-//   }
-//   return(os);
-// }
+std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid) {
+  // os << std::endl;
+  // for (int i{1}; i < grid.GetRows() - 1; i++) {
+  //   for(int j{1}; j < grid.GetCols() - 1; j++) {
+  //     os << grid.GetCell(i,j).GetState()->getState() << " ";
+  //   }
+  //   os << std::endl;
+  // }
+  grid.PrintMatrix(os);
+  return(os);
+}
 
-std::ostream& GridWithOpenBorder::PrintMatrix (std::ostream& os) {
+void GridWithOpenBorder::PrintMatrix (std::ostream& os) {
   os << std::endl;
   for (int i{1}; i < GetRows() - 1; i++) {
     for(int j{1}; j < GetCols() - 1; j++) {
@@ -137,7 +137,6 @@ std::ostream& GridWithOpenBorder::PrintMatrix (std::ostream& os) {
     }
     os << std::endl;
   }
-  return(os);
 }
 
 

@@ -32,24 +32,6 @@ Cell::Cell(State* initial_state, std::pair<int, int>& initial_position) {
  * @return int Retorna el número de células vivas
  */
 int Cell::NeighborsAlive(const Grid& grid) {
-  // /// Reiniciamos neighbours_ para que cuando hagamos varias iteraciones no se
-  // /// sumen entre ellas
-  // neighbours_ = 0;
-  // int x = position_.first;
-  // int y = position_.second;
-
-  // /// Miramos las coordenadas adyacentes
-  // for (int i : {-1, 0, 1}) {
-  //   for (int j : {-1, 0, 1}) {
-  //     if ((x != x + i) || (y != y + j)) {
-  //       int neightbour_x = x + i;
-  //       int neightbour_y = y + j;
-  //       if (grid.GetCell(neightbour_x, neightbour_y).GetState() == 1 ){
-  //         neighbours_++;
-  //       };
-  //     }
-  //   }
-  // }
   return(state_->neighbors(grid, position_.first, position_.second));
 }
 

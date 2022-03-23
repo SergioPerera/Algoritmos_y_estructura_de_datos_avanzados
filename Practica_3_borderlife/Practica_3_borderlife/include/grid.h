@@ -72,12 +72,30 @@ class GridWithOpenBorder : public Grid {
   /// Operadores
   void PrintMatrix(std::ostream& os) override;
   friend std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid);
+};
 
-  // private: 
-  // Cell** matrix_; /// puntero que apunta a vector de vectores de cell
-  // int rows_{0}; /// número de filas 
-  // int cols_{0}; /// número de columnas
+/**
+ * @brief Clase para matriz normal
+ * 
+ */
+class GridWithPeriodicBorder : public Grid {
+ public:
 
+  /// Constructor
+  GridWithPeriodicBorder(){};
+  GridWithPeriodicBorder(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells);
+  ~GridWithPeriodicBorder();
+
+  /// Métodos
+  const int GetRows(){return rows_;};
+  const int GetCols(){return cols_;};
+
+  Cell& GetCell(int&, int&) override;
+  const Cell& GetCell(int&, int&) const override;
+
+  /// Operadores
+  void PrintMatrix(std::ostream& os) override;
+  friend std::ostream& operator<<(std::ostream& os, GridWithPeriodicBorder& grid);
 };
 
 #endif

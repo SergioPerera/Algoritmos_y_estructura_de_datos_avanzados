@@ -33,7 +33,7 @@
  * @param cols columnas de la matriz
  * @param living_cells posiciones de las células vivas
  */
-GridWithOpenBorder::GridWithOpenBorder(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells) {
+GridWithPeriodicBorder::GridWithPeriodicBorder(const int& rows, const int& cols, std::vector<std::tuple<int,int,char>>& living_cells) {
 
   /// Hacemos esto por lo descrito anteriormente
   rows_ = rows + 2;
@@ -83,7 +83,7 @@ GridWithOpenBorder::GridWithOpenBorder(const int& rows, const int& cols, std::ve
  * @brief Destroy the Grid:: Grid object. Liberamos el objeto grid de memoria
  * 
  */
-GridWithOpenBorder::~GridWithOpenBorder(){
+GridWithPeriodicBorder::~GridWithPeriodicBorder(){
   /// Liberamos la memoria ocupada por matrix_
   /*
   * Primero tendríamos que borrar los vectores que contienen vectores y, por 
@@ -102,11 +102,11 @@ GridWithOpenBorder::~GridWithOpenBorder(){
  * @param col Columnas
  * @return const Cell& 
  */
-const Cell& GridWithOpenBorder::GetCell(int& row, int& col) const {
+const Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) const {
   return(matrix_[row][col]);
 }
 
-Cell& GridWithOpenBorder::GetCell(int& row, int& col) {
+Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) {
   return(matrix_[row][col]);
 }
 
@@ -117,7 +117,7 @@ Cell& GridWithOpenBorder::GetCell(int& row, int& col) {
  * @param grid objeto grid para imprimir
  * @return std::ostream& 
  */
-std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid) {
+std::ostream& operator<<(std::ostream& os, GridWithPeriodicBorder& grid) {
 
   grid.PrintMatrix(os);
   return(os); 
@@ -130,7 +130,7 @@ std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid) {
  * 
  * @param os 
  */
-void GridWithOpenBorder::PrintMatrix (std::ostream& os) {
+void GridWithPeriodicBorder::PrintMatrix (std::ostream& os) {
   os << std::endl;
   for (int i{1}; i < GetRows() - 1; i++) {
     for(int j{1}; j < GetCols() - 1; j++) {

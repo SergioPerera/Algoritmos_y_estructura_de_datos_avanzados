@@ -17,8 +17,15 @@
 
 #include <iostream>
 
+/**
+ * @brief Función encargada de mirar los vecinos
+ * 
+ * @param grid Matriz de células
+ * @param x Posición x de la matriz
+ * @param y POsición y de la matriz
+ * @return int 
+ */
 int State_alive::neighbors(const Grid& grid, int x, int y) {
-
 
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {

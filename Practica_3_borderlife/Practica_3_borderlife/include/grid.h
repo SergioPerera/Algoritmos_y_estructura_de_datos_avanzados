@@ -31,21 +31,18 @@ class Grid {
  public:
   /// Métodos
   void NextGeneration();
-
-  // const int GetRows(){return rows_;};
-  // const int GetCols(){return cols_;};
+  virtual Cell& GetCell(int&, int&) =0;
+  virtual const Cell& GetCell(int&, int&) const =0;
   virtual void PrintMatrix(std::ostream& os) =0;
 
   /// Operadores
-  friend std::ostream& operator<<(std::ostream& os, Grid& grid) {
+  friend std::ostream& operator<<(std::ostream& os, Grid& grid) { 
     grid.PrintMatrix(os);
     return(os);
   }
 
   /// Destructor
   // virtual ~Grid();
-  virtual Cell& GetCell(int&, int&) =0;
-  virtual const Cell& GetCell(int&, int&) const =0;
  protected: 
   Cell** matrix_; /// puntero que apunta a vector de vectores de cell
   int rows_{0}; /// número de filas 

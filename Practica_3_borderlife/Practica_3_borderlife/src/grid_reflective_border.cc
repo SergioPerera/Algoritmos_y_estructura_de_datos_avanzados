@@ -21,7 +21,7 @@
 #include <tuple>
 
 #include <bits/stdc++.h> /// std::count
-#define EXTRA_SIZE  2
+#define EXTRA_SIZE  0
 /**
  * @brief Construct a new Grid:: Grid object. Vamos a crear un objeto grid con 
  * memoria dinámica haciendo uso de new y punteros. Tanto a las filas como a las
@@ -38,6 +38,8 @@ GridWithReflectiveBorder::GridWithReflectiveBorder(const int& rows, const int& c
   /// Hacemos esto por lo descrito anteriormente
   rows_ = rows + EXTRA_SIZE;
   cols_ = cols + EXTRA_SIZE;
+  rows_less = rows;
+  cols_less = cols;
   /*
   * Creamos un vector y dentro de cada una de las posiciones creamos otro vector
   * y lo rellenamos a medida que las creamos con células muertas
@@ -68,11 +70,11 @@ GridWithReflectiveBorder::GridWithReflectiveBorder(const int& rows, const int& c
     int j = std::get<1>(living_cells[k]);
     switch(std::get<2>(living_cells[k])) {
       case ' ' : {
-        matrix_[i][j].SetState(new State_dead);
+        matrix_[i - 1][j - 1].SetState(new State_dead);
       }
       break;
       case 'A' : {
-        matrix_[i][j].SetState(new State_alive);
+        matrix_[i - 1][j - 1].SetState(new State_alive);
       }
       break;
     }
@@ -104,34 +106,28 @@ GridWithReflectiveBorder::~GridWithReflectiveBorder(){
  * @return const Cell& 
  */
 const Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) const {
-  int real_rows = rows_ - 1;
-  int real_cols = cols_ - 1;
-  int reflective_row{row};
-  int reflective_col{col};
-                                                                                            int debugrow = row;
-                                                                                            int debugcol = col;
+
+  int real_rows = rows_ - EXTRA_SIZE;
+  int real_cols = cols_ - EXTRA_SIZE;
+  int periodic_row{row};
+  int periodic_col{col}; 
+                                              int debugrow = row;
+                                              int debugcol = col;
   /**
-   * Al ser la matriz de n+2,m+2 (filas y columnas respectiamente) al estar en 
-   * las posiciones 0,x | x,0 o m,x | x,m nos encontraríamos fuera de la matriz
-   * por lo tanto hacemos row -1 y col -1 para que al sumarle las dimensiones 
-   * "reales" de la matriz, estemos dentro de esta y al ser un borde reflectivo, 
-   * calculamos el periódico del periódico y tenemos la célula relfejada
+   *   Al sumar a la posición fuera de la matriz obtenemos una coordenada que al
+   * hacer la divisón entera es la coordenada en el otro lado de la matriz 
    */
-  if (row > rows_ - EXTRA_SIZE|| row <= 0 || col > cols_ - EXTRA_SIZE|| col <= 0) {
-    row = row - 1 + real_rows;
-    col = col - 1 + real_cols;
-    reflective_row = (row%real_rows) + 1;
-    reflective_col = (col%real_cols) + 1;
+  if (row > rows_ - 1|| row <= 0 || col > cols_ - 1|| col <= 0) {
+    row += rows_;
+    col += cols_; 
 
-    row = row - 1 + real_rows;
-    col = col - 1 + real_cols;
-    reflective_row = (row%real_rows) + 1;
-    reflective_col = (col%real_cols) + 1;
+    periodic_row = row%rows_;
+    periodic_col = col%cols_;
 
-    std::cout << "Estoy fuera de la matriz, la mirror de " << debugrow  << ", " << debugcol << " es " << reflective_row <<", " << reflective_col << std::endl;
-
+    std::cout << "Estoy en la célula " << debugrow << " " << debugcol << " Y la periódica es: " << periodic_row << " " << periodic_col << std::endl;
   }
-  return(matrix_[row][col]);
+
+  return(matrix_[periodic_row][periodic_col]);
 }
 
 Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) {
@@ -160,8 +156,8 @@ std::ostream& operator<<(std::ostream& os, GridWithReflectiveBorder& grid) {
  */
 void GridWithReflectiveBorder::PrintMatrix (std::ostream& os) {
   os << std::endl;
-  for (int i{0}; i < GetRows() - 0; i++) {
-    for(int j{0}; j < GetCols() - 0; j++) {
+  for (int i{0}; i < GetRows() ; i++) {
+    for(int j{0}; j < GetCols() ; j++) {
       os << GetCell(i,j).GetState()->getState() << " ";
     }
     os << std::endl;

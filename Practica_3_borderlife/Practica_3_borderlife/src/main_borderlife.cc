@@ -36,7 +36,7 @@ int main (int argc, char *argv[]){
   /// Haremos las turn iteraciones 
   for(int k{0}; k < arguments.turns; k++) {
 
-    // grid->NextGeneration();
+    grid->NextGeneration();
 
     std::cout << "Turno: "<< k + 1 << *grid << std::endl;
 

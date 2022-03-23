@@ -42,15 +42,14 @@ class Grid {
     return(os);
   }
 
-
   /// Destructor
   // virtual ~Grid();
   virtual Cell& GetCell(int&, int&) =0;
   virtual const Cell& GetCell(int&, int&) const =0;
  protected: 
-//   Cell** matrix_; /// puntero que apunta a vector de vectores de cell
-//   int rows_{0}; /// número de filas 
-//   int cols_{0}; /// número de columnas
+  Cell** matrix_; /// puntero que apunta a vector de vectores de cell
+  int rows_{0}; /// número de filas 
+  int cols_{0}; /// número de columnas
 };
 
 
@@ -77,10 +76,10 @@ class GridWithOpenBorder : public Grid {
   void PrintMatrix(std::ostream& os) override;
   friend std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid);
 
-  private: 
-  Cell** matrix_; /// puntero que apunta a vector de vectores de cell
-  int rows_{0}; /// número de filas 
-  int cols_{0}; /// número de columnas
+  // private: 
+  // Cell** matrix_; /// puntero que apunta a vector de vectores de cell
+  // int rows_{0}; /// número de filas 
+  // int cols_{0}; /// número de columnas
 
 };
 

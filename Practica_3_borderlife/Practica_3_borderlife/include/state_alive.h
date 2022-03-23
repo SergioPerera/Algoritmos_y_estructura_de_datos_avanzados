@@ -19,7 +19,7 @@ class State_alive : public State {
  public:
   int neighbors(const Grid& grid, int i, int j) override;
   State* nextState() override;
-  char getState() const override {return (' ');};
+  char getState() const override {return ('A');};
  private:
   int alive_cells_{0};
 };

@@ -74,9 +74,7 @@ class GridWithOpenBorder : public Grid {
   const Cell& GetCell(int&, int&) const override;
 
   /// Operadores
-  void PrintMatrix(std::ostream& os) override {
-
-  }
+  void PrintMatrix(std::ostream& os) override;
   friend std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid);
 
   private: 

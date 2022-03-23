@@ -126,7 +126,7 @@ std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid) {
   //   os << std::endl;
   // }
   grid.PrintMatrix(os);
-  return(os);
+  return(os); 
 }
 
 void GridWithOpenBorder::PrintMatrix (std::ostream& os) {

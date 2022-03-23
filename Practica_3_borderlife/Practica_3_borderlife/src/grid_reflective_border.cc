@@ -104,10 +104,12 @@ GridWithReflectiveBorder::~GridWithReflectiveBorder(){
  * @return const Cell& 
  */
 const Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) const {
-  int real_rows = rows_ - EXTRA_SIZE;
-  int real_cols = cols_ - EXTRA_SIZE;
-  int periodic_row{row};
-  int periodic_col{col};
+  int real_rows = rows_ - 1;
+  int real_cols = cols_ - 1;
+  int reflective_row{row};
+  int reflective_col{col};
+                                                                                            int debugrow = row;
+                                                                                            int debugcol = col;
   /**
    * Al ser la matriz de n+2,m+2 (filas y columnas respectiamente) al estar en 
    * las posiciones 0,x | x,0 o m,x | x,m nos encontraríamos fuera de la matriz
@@ -116,14 +118,18 @@ const Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) const {
    * calculamos el periódico del periódico y tenemos la célula relfejada
    */
   if (row > rows_ - EXTRA_SIZE|| row <= 0 || col > cols_ - EXTRA_SIZE|| col <= 0) {
-                                                            std::cout << "Estoy fuera de la matri en la célula " << row << " " << col << std::endl;
+    row = row - 1 + real_rows;
+    col = col - 1 + real_cols;
+    reflective_row = (row%real_rows) + 1;
+    reflective_col = (col%real_cols) + 1;
 
-    for (int i{0}; i < 1; i++) {
-      row = row - 1 + real_rows;
-      col = col - 1 + real_cols;
-      periodic_row = (row%real_rows) + 1;
-      periodic_col = (col%real_cols) + 1;
-    }
+    row = row - 1 + real_rows;
+    col = col - 1 + real_cols;
+    reflective_row = (row%real_rows) + 1;
+    reflective_col = (col%real_cols) + 1;
+
+    std::cout << "Estoy fuera de la matriz, la mirror de " << debugrow  << ", " << debugcol << " es " << reflective_row <<", " << reflective_col << std::endl;
+
   }
   return(matrix_[row][col]);
 }

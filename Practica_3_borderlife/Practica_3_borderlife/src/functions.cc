@@ -119,7 +119,7 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
   if (argc > 8) {
     throw std::invalid_argument("Demasiados argumentos, pruebe ./lifegame -h");
   }
-  else if( argc < 7 && help == false) {
+  else if( argc < 8 && help == false) {
     throw std::invalid_argument("Faltan argumentos, pruebe ./lifegame -h");
   }
 
@@ -168,7 +168,6 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
       /// Solicitamos al usuario el estado de la célula
       std::cout << "\tIntroduzca el estado de la célula " << i << " [A]: ";
       std::cin >> state_str;
-      // state_str = state;
       state = state_str[0];
   
       /// Comprobamos que el estado de la céĺula esté correcto
@@ -191,7 +190,6 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
     std::regex_search(coordinates, m, regexp);
     alive_row = std::stoi(m[0]);
     alive_col = std::stoi(m[2]);
-
     /// Comprobamos que las coordenadas estén dentro de la matriz
     if (alive_col > arguments.cols || alive_row > arguments.rows){
       std::cout << RED 
@@ -202,7 +200,7 @@ AliveCellsCoordinates (const CommandLineArguments& arguments) {
       i--;
     }
     else{
-      std::tuple<int,int,char> alive_position{ alive_row, alive_col, state};
+      std::tuple<int,int,char> alive_position{alive_row, alive_col, state};
       alive_cells_positions.emplace_back(alive_position);
     }
     

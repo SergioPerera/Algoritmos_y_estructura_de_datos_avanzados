@@ -26,7 +26,7 @@
  * @return int 
  */
 int State_alive::neighbors(const Grid& grid, int x, int y) {
-
+std::cout << "--------------------------------------------Mirando la vecindad de la célula " << x << " " << y << std::endl;
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {
       if ((x != x + i) || (y != y + j)) {
@@ -38,6 +38,7 @@ int State_alive::neighbors(const Grid& grid, int x, int y) {
       }
     }
   }
+std::cout << "Tengo estas vecinas -> " << alive_cells_ << std::endl;
   return (0);
 }
 

@@ -17,6 +17,7 @@
 #include <iostream>
 
 int State_dead::neighbors(const Grid& grid, int x, int y) {
+std::cout << "--------------------------------------------Mirando la vecindad de la célula " << x << " " << y << std::endl;
 
 
   for (int i : {-1, 0, 1}) {

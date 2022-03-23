@@ -12,7 +12,7 @@
 */
 
 #include "../include/grid.h"
-#define PLUS_SIZE 0
+#define PLUS_SIZE 1
 /**
  * @brief Método encargado de hacer que las propias células se actualicen
  * 

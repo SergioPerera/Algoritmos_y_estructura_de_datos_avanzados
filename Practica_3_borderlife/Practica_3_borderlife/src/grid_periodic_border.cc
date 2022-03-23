@@ -21,7 +21,7 @@
 #include <tuple>
 
 #include <bits/stdc++.h> /// std::count
-#define EXTRA_SIZE  0
+#define EXTRA_SIZE  2
 /**
  * @brief Construct a new Grid:: Grid object. Vamos a crear un objeto grid con 
  * memoria dinámica haciendo uso de new y punteros. Tanto a las filas como a las
@@ -64,8 +64,8 @@ GridWithPeriodicBorder::GridWithPeriodicBorder(const int& rows, const int& cols,
   ///Introducimos las células de distinto tipo que ha especificado el usuario
   for (long unsigned int k{0}; k < living_cells.size(); k++) {
 
-    int i = std::get<0>(living_cells[k]) - 1;
-    int j = std::get<1>(living_cells[k]) - 1;
+    int i = std::get<0>(living_cells[k]);
+    int j = std::get<1>(living_cells[k]);
     switch(std::get<2>(living_cells[k])) {
       case ' ' : {
         matrix_[i][j].SetState(new State_dead);
@@ -79,7 +79,7 @@ GridWithPeriodicBorder::GridWithPeriodicBorder(const int& rows, const int& cols,
   }
 }
 
-/**UPLOAD
+/**
  * @brief Destroy the Grid:: Grid object. Liberamos el objeto grid de memoria
  * 
  */
@@ -96,18 +96,31 @@ GridWithPeriodicBorder::~GridWithPeriodicBorder(){
 }
 
 /**
- * @brief Función que devuelve la célula en modo lectura
+ * @brief Función que devuelve la célula en modo lectura, de manera que cuando
+ * se acceda a l borde, GetCell lo de vuele como si fuera periódico
  * 
  * @param row Filas
  * @param col Columnas
  * @return const Cell& 
  */
 const Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) const {
-    if (row > rows_ || row < 0 || col > cols_ || col < 0) {
-      std::cout << "Estoy fuera de la matriz " << row << ", " << col << std::endl;
-
-    }
-  return(matrix_[row][col]);
+  int real_rows = rows_ - EXTRA_SIZE;
+  int real_cols = cols_ - EXTRA_SIZE;
+  int periodic_row{row};
+  int periodic_col{col};
+  /**
+   * Al ser la matriz de n+2,m+2 (filas y columnas respectiamente) al estar en 
+   * las posiciones 0,x | x,0 o m,x | x,m nos encontraríamos fuera de la matriz
+   * por lo tanto hacemos row -1 y col -1
+   */
+  if (row > rows_ - EXTRA_SIZE|| row <= 0 || col > cols_ - EXTRA_SIZE|| col <= 0) {
+    row = row - 1 + real_rows;
+    col = col - 1 + real_cols;
+    periodic_row = (row%real_rows) + 1;
+    periodic_col = (col%real_cols) + 1;
+    std::cout << "Estoy fuera de la matriz, la periódica de " << row + 1 - real_rows  << ", " << col + 1 - real_cols<< " es " << periodic_row <<", " << periodic_col << std::endl;
+  }
+  return(matrix_[periodic_row][periodic_col]);
 }
 
 Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) {

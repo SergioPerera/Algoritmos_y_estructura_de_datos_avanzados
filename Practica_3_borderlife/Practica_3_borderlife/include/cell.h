@@ -14,7 +14,7 @@
 #ifndef _CELL_H_
 #define _CELL_H_
 
-#include "grid_open_border.h"
+#include "grid.h"
 #include "state.h"
 #include <fstream> /// ofstream
 

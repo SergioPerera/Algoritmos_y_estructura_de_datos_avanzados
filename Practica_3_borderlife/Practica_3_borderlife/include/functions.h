@@ -34,6 +34,7 @@ struct CommandLineArguments {
   int turns{0}; /// Número de iteraciones o turnos del juego
   bool periodic = false;
   bool mirror = false;
+  bool normal = false;
 
   /// Función encargada de recoger y comprobar los argumentos
   CommandLineArguments(int argc, char* argv[]); 

@@ -48,7 +48,7 @@ void manual() {
 CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
   bool help = false; /// Flag que determina si han puesto -h
   int c; /// Salida de la función getopt
-  while ( (c = getopt(argc, argv, "hd:a:t:pr")) != -1) {
+  while ( (c = getopt(argc, argv, "hd:a:t:prn")) != -1) {
   
     switch (c) {
       case 'h': 
@@ -89,17 +89,24 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
       }
       break;
       case 'p': {
-        if (periodic || mirror) {
+        if (periodic || mirror || normal) {
           throw std::invalid_argument("Solo se puede especificar un tipo de matriz");
         } 
         periodic = true;
       }
       break;
       case 'r': {
-        if (periodic || mirror) {
+        if (periodic || mirror || normal) {
           throw std::invalid_argument("Solo se puede especificar un tipo de matriz");
         } 
         mirror = true;
+      }
+      break;
+      case 'n': {
+        if (periodic || mirror || normal) {
+          throw std::invalid_argument("Solo se puede especificar un tipo de matriz");
+        } 
+        normal = true;
       }
       break;
       case '?':

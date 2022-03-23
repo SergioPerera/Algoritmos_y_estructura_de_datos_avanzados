@@ -28,7 +28,12 @@ int main (int argc, char *argv[]){
 
   Grid* grid; 
 
-  if(arguments.mirror) {grid = new GridWithOpenBorder{arguments.rows, arguments.cols, alive_cells_positions};};
+  if(arguments.normal == true) {
+    std::cout << "Matriz normal\n" << std::endl;
+    grid = new GridWithOpenBorder{arguments.rows, arguments.cols, alive_cells_positions};};
+  if(arguments.mirror == true) {
+    std::cout << "Matriz reflectiva\n" << std::endl;
+    grid = new GridWithOpenBorder{arguments.rows, arguments.cols, alive_cells_positions};};
 
 
   std::cout << "Turno: 0" << *grid << std::endl;

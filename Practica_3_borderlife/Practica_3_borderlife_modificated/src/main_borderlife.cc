@@ -51,5 +51,17 @@ int main (int argc, char *argv[]){
 
   }
 
+    if(arguments.mirror == true) {
+    int x = 0;
+    int y = 0;
+    std::cout << "Introduzca la posición x de la célula: ";
+    std::cin >> x;
+       std::cout << "Introduzca la posición y de la célula: ";
+    std::cin >> y;
+    x = x -1;
+    y = y -1;
+
+    grid->ShowNeighbors(x,y);
+  };
   return(0);
 }

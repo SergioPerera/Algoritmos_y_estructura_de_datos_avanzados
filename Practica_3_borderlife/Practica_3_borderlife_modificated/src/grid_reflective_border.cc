@@ -134,13 +134,44 @@ const Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) const {
         row = x;
         col = y;
       }
-
     }
   }
   return(matrix_[row][col]);
 }
 
 Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) {
+  /**
+   * En caso de tener las esquinas es fácil saber su reflejo, por ello ponemos
+   * una opción para cada esquina fuera de la matriz
+   */
+  if (row == - 1 && col == -1) { return(matrix_[0][0]); };
+  if (row == rows_  && col == -1) { return (matrix_[rows_ - 1][0]); }
+  if (row == -1 && col == cols_) { return(matrix_[0][cols_ - 1]); }
+  if (row == rows_ && col == cols_) {return(matrix_[rows_ - 1][cols_ - 1]); }
+
+  /**
+   * Vamos a buscar la adyacencia en cruz de las células fuera de la matriz, al
+   * dar con una célula que esté dentro de la matriz esta será la que queremos 
+   * reflejar, por lo tanto le hacemos un return()
+   * 
+   */
+  int auxx = row;
+  int auxy = col;
+  if (row > rows_ - 1|| row < 0 || col > cols_ - 1|| col < 0) {
+
+    int croix_positions [] {-1,0,  0,-1,   0,+1,   +1,0};
+  
+    for (int i : {0, 2, 4, 6}) {
+      int x = auxx + croix_positions[i];
+      int y = auxy + croix_positions[i + 1];
+      if ((x >= 0 && x < rows_)  && (y >= 0 && y < cols_)) {
+        row = x;
+        col = y;
+      }
+    }
+  }
+  return(matrix_[row][col]);
+
   return(matrix_[row][col]);
 }
 
@@ -175,4 +206,25 @@ void GridWithReflectiveBorder::PrintMatrix (std::ostream& os) {
 }
 
 
+void GridWithReflectiveBorder::ShowNeighbors(int& row, int& col) {
+
+  std::cout << "Mostrando vecinas de la célula: " << row << " " << col << std::endl;
+  int auxx = row;
+  int auxy = col;
+  int croix_positions [] {-1,0,  0,-1,   0,+1,   +1,0};
+
+  for (int i : {0, 2, 4, 6}) {
+    int x = auxx + croix_positions[i];
+    int y = auxy + croix_positions[i + 1];
+
+    // std::cout << "Busco en la posición: " << x << " " << y;
+    
+    if ( croix_positions[i] == -1 &&  croix_positions[i + 1] == 0) {std::cout <<  "  " << GetCell(x,y).GetState()->getState() << std::endl;}
+    if ( croix_positions[i] == 0 &&  croix_positions[i + 1] == -1) {std::cout << GetCell(x,y).GetState()->getState();}
+    std::cout << "  ";
+    if ( croix_positions[i] == 0 &&  croix_positions[i + 1] == 1) {std::cout << GetCell(x,y).GetState()->getState() << std::endl;}
+    if ( croix_positions[i] == 1 &&  croix_positions[i + 1] == 0) {std::cout << GetCell(x,y).GetState()->getState() << std::endl;}
+  }
+  std::cout << std::endl;
+}
 

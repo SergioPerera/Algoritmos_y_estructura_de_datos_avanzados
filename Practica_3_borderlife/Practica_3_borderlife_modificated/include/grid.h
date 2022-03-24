@@ -41,6 +41,8 @@ class Grid {
     return(os);
   }
 
+  virtual void ShowNeighbors(int& x, int& j) =0;
+  /// Modificación
   /// Destructor
   // virtual ~Grid();
  protected: 
@@ -74,6 +76,9 @@ class GridWithOpenBorder : public Grid {
   /// Operadores
   void PrintMatrix(std::ostream& os) override;
   friend std::ostream& operator<<(std::ostream& os, GridWithOpenBorder& grid);
+
+  void ShowNeighbors(int& x, int& j) override {};
+
 };
 
 /**
@@ -98,6 +103,9 @@ class GridWithPeriodicBorder : public Grid {
   /// Operadores
   void PrintMatrix(std::ostream& os) override;
   friend std::ostream& operator<<(std::ostream& os, GridWithPeriodicBorder& grid);
+
+  void ShowNeighbors(int& x, int& j) override {};
+
 };
 
 /**
@@ -122,5 +130,7 @@ class GridWithReflectiveBorder : public Grid {
   /// Operadores
   void PrintMatrix(std::ostream& os) override;
   friend std::ostream& operator<<(std::ostream& os, GridWithReflectiveBorder& grid);
+
+  void ShowNeighbors(int& x, int& j) override;
 };
 #endif

@@ -21,14 +21,16 @@
  * 
  */
 void manual() {
-    std::cout << "Para ejecutar hacer uso de ./lifegame -d NumxNum -a Num -t Num -[p|r]\n"
+    std::cout << "Para ejecutar hacer uso de ./lifegame -d NumxNum -a Num -t Num -[p|r|n]\n"
               << "Opciones:\n" 
               << "-d: Dimensión de la matriz. Tiene que ser mayor que 0 y su formato ser FilasxColumnas\n"
               << "-a: Alive cells (células vivas). Tiene que ser un número mayor que 0\n"
               << "-t: Turnos. Tiene que ser un número mayor que 0\n"
               << "-p: Periódica. Crear una matriz periódica\n"
               << "-r: Reflectiva. Crear una matriz reflectiva\n"
+              << "-n: Normal. Crear una matriz normal\n"
               << "-h: Help. Muestra información del comando\n" << std::endl;
+  exit (EXIT_SUCCESS);
 }
 
 /**
@@ -46,12 +48,17 @@ void manual() {
  *   -h para saber como usar el programa y cual es su función
  */
 CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
+
+  if (argc > 8) {
+    throw std::invalid_argument("Demasiados argumentos, pruebe ./lifegame -h");
+  }
   bool help = false; /// Flag que determina si han puesto -h
   int c; /// Salida de la función getopt
   while ( (c = getopt(argc, argv, "hd:a:t:prn")) != -1) {
   
     switch (c) {
       case 'h': 
+          if (argc > 2) { throw std::invalid_argument("Demasiados argumentos, pruebe ./lifegame -h"); }
         manual();
         help = true;
       break;
@@ -116,13 +123,9 @@ CommandLineArguments::CommandLineArguments(int argc, char* argv[]) {
     }
   }
 
-  if (argc > 8) {
-    throw std::invalid_argument("Demasiados argumentos, pruebe ./lifegame -h");
-  }
-  else if( argc < 8 && help == false) {
+  if( argc < 8 && help == false ) {
     throw std::invalid_argument("Faltan argumentos, pruebe ./lifegame -h");
   }
-
   if (alive_cells > cols*rows) {
     throw std::invalid_argument("Número de células vivas mayor al permitido");
   }

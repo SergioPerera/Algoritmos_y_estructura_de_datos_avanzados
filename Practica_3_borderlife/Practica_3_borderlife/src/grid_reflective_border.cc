@@ -106,31 +106,74 @@ GridWithReflectiveBorder::~GridWithReflectiveBorder(){
  * @return const Cell& 
  */
 const Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) const {
-
-  int real_rows = rows_ - EXTRA_SIZE;
-  int real_cols = cols_ - EXTRA_SIZE;
-  int periodic_row{row};
-  int periodic_col{col}; 
-                                              int debugrow = row;
-                                              int debugcol = col;
   /**
-   *   Al sumar a la posición fuera de la matriz obtenemos una coordenada que al
-   * hacer la divisón entera es la coordenada en el otro lado de la matriz 
+   * En caso de tener las esquinas es fácil saber su reflejo, por ello ponemos
+   * una opción para cada esquina fuera de la matriz
+   * 
    */
-  if (row > rows_ - 1|| row <= 0 || col > cols_ - 1|| col <= 0) {
-    row += rows_;
-    col += cols_; 
-
-    periodic_row = row%rows_;
-    periodic_col = col%cols_;
-
-    std::cout << "Estoy en la célula " << debugrow + 1 << " " << debugcol + 1 << " Y la periódica es: " << periodic_row << " " << periodic_col << std::endl;
+  if (row == - 1 && col == -1) { std::cout << "OOOOOOOOOOOOOOOOOO ESQUINA SUP IZQ " << row << " " << col << " Retorno -> " << 0 << 0 << std::endl;
+    return(matrix_[0][0]);
+  };
+  if (row == rows_  && col == -1) { std::cout << "OOOOOOOOOOOOOOOOOO ESQUINA INF IZQ " << row << " " << col << " Retorno -> " << rows_ - 1 << 0 << std::endl;
+    return (matrix_[rows_ - 1][0]);
+  }
+  if (row == -1 && col == cols_) {std::cout << "OOOOOOOOOOOOOOOOOO ESQUINA SUP DCHA " << row << " " << col << " Retorno -> " << 0 << cols_ - 1 << std::endl;
+   return(matrix_[0][cols_ - 1]);
+   }
+  if (row == rows_ && col == cols_) { std::cout << "OOOOOOOOOOOOOOOOOO ESQUINA iNF DCHA " << row << " " << col << " Retorno -> " << rows_ - 1 << cols_ - 1 << std::endl;
+  return(matrix_[rows_ - 1][cols_ - 1]);
   }
 
-  return(matrix_[periodic_row][periodic_col]);
+  /**
+   * Vamos a buscar la adyacencia en cruz de las células fuera de la matriz, al
+   * dar con una célula que esté dentro de la matriz esta será la que queremos 
+   * reflejar, por lo tanto le hacemos un return()
+   * 
+   */
+  int croix_positions [] {-1,0,  0,-1,   0,+1,   +1,0};
+
+  for (int i : {0, 2, 4, 6}) {
+    int x = row + croix_positions[i];
+    int y = col + croix_positions[i + 1];
+
+    if (x >= 0 && x < rows_  && y >= 0 && y < cols_) {
+      // std::cout << "Estoy dentro de la matriz " << x << " " << y << std::endl;
+      row = x;
+      col = y;
+    }
+  }
+  // std::cout << "Le pido a la matriz esto " << row << " " << col <<  std::endl;
+  return(matrix_[row][col]);
+
+
+
+  // int real_rows = rows_ - EXTRA_SIZE;
+  // int real_cols = cols_ - EXTRA_SIZE;
+  // int periodic_row{row};
+  // int periodic_col{col}; 
+  //                                             int debugrow = row;
+  //                                             int debugcol = col;
+  // /**
+  //  *   Al sumar a la posición fuera de la matriz obtenemos una coordenada que al
+  //  * hacer la divisón entera es la coordenada en el otro lado de la matriz 
+  //  */
+  // if (row > rows_ - 1|| row <= 0 || col > cols_ - 1|| col <= 0) {
+  //   row += rows_;
+  //   col += cols_; 
+
+  //   periodic_row = row%rows_;
+  //   periodic_col = col%cols_;
+
+  //   std::cout << "Estoy en la célula " << debugrow << " " << debugcol << " Y la periódica es: " << periodic_row << " " << periodic_col << "-----> " << rows_ << std::endl;
+  // }
+
+
+  // return(matrix_[periodic_row][periodic_col]);
+
 }
 
 Cell& GridWithReflectiveBorder::GetCell(int& row, int& col) {
+  // std::cout << "LIBREEEE" << std::endl;
   return(matrix_[row][col]);
 }
 

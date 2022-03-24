@@ -107,11 +107,8 @@ GridWithPeriodicBorder::~GridWithPeriodicBorder(){
  */
 const Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) const {
 
-  // int real_rows = rows_ - EXTRA_SIZE;
-  // int real_cols = cols_ - EXTRA_SIZE;
   int periodic_row{row};
   int periodic_col{col}; 
-                                         
   /**
    *   Al sumar a la posición fuera de la matriz obtenemos una coordenada que al
    * hacer la divisón entera es la coordenada en el otro lado de la matriz 

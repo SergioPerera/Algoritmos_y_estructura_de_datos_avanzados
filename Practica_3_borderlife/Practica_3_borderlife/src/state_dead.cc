@@ -17,7 +17,6 @@
 #include <iostream>
 
 int State_dead::neighbors(const Grid& grid, int x, int y) {
-std::cout << "--------------------------------------------Mirando la vecindad de la célula " << x << " " << y << std::endl;
 
   for (int i : {-1, 0, 1}) {
     for (int j : {-1, 0, 1}) {
@@ -30,7 +29,6 @@ std::cout << "--------------------------------------------Mirando la vecindad de
       }
     }
   }
-std::cout << "Tengo estas vecinas -> " << alive_cells_ << std::endl;
 
   return (0);
 }

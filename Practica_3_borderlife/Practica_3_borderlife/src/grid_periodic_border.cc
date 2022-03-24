@@ -107,12 +107,11 @@ GridWithPeriodicBorder::~GridWithPeriodicBorder(){
  */
 const Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) const {
 
-  int real_rows = rows_ - EXTRA_SIZE;
-  int real_cols = cols_ - EXTRA_SIZE;
+  // int real_rows = rows_ - EXTRA_SIZE;
+  // int real_cols = cols_ - EXTRA_SIZE;
   int periodic_row{row};
   int periodic_col{col}; 
-                                              int debugrow = row;
-                                              int debugcol = col;
+                                         
   /**
    *   Al sumar a la posición fuera de la matriz obtenemos una coordenada que al
    * hacer la divisón entera es la coordenada en el otro lado de la matriz 
@@ -123,7 +122,6 @@ const Cell& GridWithPeriodicBorder::GetCell(int& row, int& col) const {
 
     periodic_row = row%rows_;
     periodic_col = col%cols_;
-    std::cout << "Estoy en la célula " << debugrow << " " << debugcol << " Y la periódica es: " << periodic_row << " " << periodic_col << std::endl;
   }
 
   return(matrix_[periodic_row][periodic_col]);

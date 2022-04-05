@@ -11,6 +11,15 @@
 * @file dispersion_function.cc
 */
 
+//##############################################################################
+//##################### Class DispersionFunction ################################
+//##############################################################################
+
+/**
+ * @brief Clase que guarda los métodos principales de las funciones de dispersión
+ * 
+ * @tparam Key 
+ */
 template<class Key>
 class DispersionFunction {
  public:
@@ -21,6 +30,12 @@ class DispersionFunction {
 //############################ Class fdModule ##################################
 //##############################################################################
 
+/**
+ * @brief Función de módulo, esta usa el módulo para obtener el valor 
+ * de dispersión
+ * 
+ * @tparam Key 
+ */
 template<class Key>
 class FdModule: public DispersionFunction<Key> {
  public:
@@ -35,6 +50,14 @@ class FdModule: public DispersionFunction<Key> {
 //########################### Class fdBasedOnSum ###############################
 //##############################################################################
 
+/**
+ * @brief Función basada en la suma, esta función coge la llav, suma todos sus
+ * valores y luego hace la división entera entre la suma de los valores y el 
+ * tamaño de la tabla. De esta manera el valor resultante es una posición dentro
+ * de la tabla
+ * 
+ * @tparam Key 
+ */
 template<class Key>
 class FdBasedOnSum : public DispersionFunction<Key> {
  public:
@@ -62,6 +85,13 @@ unsigned FdBasedOnSum<Key>::operator()(const Key& k) const {
 //######################### Class fdPseudoRamdom ###############################
 //##############################################################################
 
+/**
+ * @brief Función que hace uso de un número pseudoaleatorio que luego es
+ * sometido a una división entera entre el tamaño de la tabla para así conseguir
+ * un valor que coincide dentro del rago de posiciones de la tabla
+ * 
+ * @tparam Key 
+ */
 template<class Key>
 class FdPseudoRamdom : public DispersionFunction<Key> {
  public:

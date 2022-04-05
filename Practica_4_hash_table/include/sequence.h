@@ -19,7 +19,6 @@
 template<class Key>
 class Sequence {
  public:
- ~Secuence(){}
   /// Métodos
   /// Retorna true si el elemento está dentro
   virtual bool Search(const Key& key);
@@ -30,30 +29,20 @@ class Sequence {
 };
 
 
+//##############################################################################
+//#################################Clase List###################################
+//##############################################################################
+
 template<class Key>
-class List : public Sequence<key> {
+class List : public Sequence<Key> {
  public:
   List(){}
   bool Search(const Key& key) override;
   bool Insert(const Key& key) override;
-  bool IsFull() const override {return(false)};
+  bool IsFull() const override {return(false);};
 
  private:
   std::vector<Key> list_;
-};
-
-
-template<class Key>
-class Block : public Sequence<key> {
- public:
-  Block();
-  bool Search(const Key& key) override;
-  bool Insert(const Key& key) override;
-  bool IsFull() const override {return(false)};
-
- private:
-  unsigned block_size_{0};
-  std::vector<Key> block_;
 };
 
 
@@ -89,12 +78,32 @@ bool List<Key>::Search(const Key& key) {
 template<class Key>
 bool List<Key>::Insert(const Key& key) {  
   bool inserted = false;
-  if (Find(key) == false) {
+  if (Search(key) == false) {
     list_.emplace_back(key);
     inserted = true;
   }
   return (inserted);
 }
+
+
+//##############################################################################
+//################################Clase Block###################################
+//##############################################################################
+
+template<class Key>
+class Block : public Sequence<Key> {
+ public:
+  Block();
+  Block(int block_size) : block_size_(block_size) {};
+  bool Search(const Key& key) override;
+  bool Insert(const Key& key) override;
+  bool IsFull() const override {return((block_.size() == block_size_) ? true : false);};
+
+ private:
+  unsigned block_size_{0};
+  std::vector<Key> block_;
+};
+
 
 /**
  * @brief Primero se comprueba si el tamaño del bloque al introducir no sea mayor
@@ -109,8 +118,8 @@ template<class Key>
 bool Block<Key>::Insert(const Key& key) {  
   bool inserted = false;
   if (block_.size() != block_size_) {
-    if (Find(key) == false) {
-      list_.emplace_back(key);
+    if (Search(key) == false) {
+      block_.emplace_back(key);
       inserted = true;
     }
   }
@@ -127,13 +136,13 @@ bool Block<Key>::Insert(const Key& key) {
  */
 template<class Key>
 bool Block<Key>::Search(const Key& key) {  
-  bool inserted = false;
-  if (block_.size() != block_size_) {
-    if (Find(key) == false) {
-      list_.emplace_back(key);
-      inserted = true;
+  bool found = false;
+  for(int i{0}; i < block_.size(); i ++) {
+    if (block_[i] == key) {
+      found = true;
+      break;
     }
   }
-  return (inserted);
+  return (found);
 }
 #endif

@@ -25,9 +25,9 @@ template<class Key>
 class FdModule: public DispersionFunction<Key> {
  public:
   fdModule(const unsigned n): tableSize(n){}
-  unsigned operator()(const Key& k) const override { return k % tableSize; }
+  unsigned operator()(const Key& k) const override { return k % table_size_; }
  private:
-  unsigned tableSize;
+  unsigned table_size_;
 };
 
 
@@ -36,10 +36,24 @@ class FdModule: public DispersionFunction<Key> {
 //##############################################################################
 
 template<class Key>
-class FdBasedOnSum: public DispersionFunction<Key> {
+class FdBasedOnSum : public DispersionFunction<Key> {
  public:
   FdBasedOnSum(const unsigned n): tableSize(n){}
-  unsigned operator()(const Key& k) const { return k % tableSize; }
+  unsigned operator()(const Key& k) const;
  private:
-  unsigned tableSize;
+  unsigned table_size_;
 };
+
+
+template<class Key>
+unsigned FdBasedOnSum<Key>::operator()(const Key& k) const {
+  int num_sum{0};
+//   int number = k;
+  int aux {0};
+  while ( number > 0) {
+    aux = key;
+    num_sum += aux;
+    key /= 10;
+    
+  }
+}

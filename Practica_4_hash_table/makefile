@@ -5,7 +5,7 @@ CFLAGS = -I -Weffc++ -Wall -g
 
 
 #Variables
-EJECUTABLE = lifecycle
+EJECUTABLE = hashtable
 
 #En DEPSSRC va la dirección de los .h 
 DEPSSRC = include

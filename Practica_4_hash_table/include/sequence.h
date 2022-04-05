@@ -16,6 +16,11 @@
 
 #include<vector>
 
+/**
+ * @brief Clase abstracta que define los métodos comunes
+ * 
+ * @tparam Key 
+ */
 template<class Key>
 class Sequence {
  public:
@@ -30,9 +35,14 @@ class Sequence {
 
 
 //##############################################################################
-//#################################Clase List###################################
+//#################################Class List###################################
 //##############################################################################
 
+/**
+ * @brief Clase lista, esto implica que la sequence es de tamaño infinito
+ * 
+ * @tparam Key 
+ */
 template<class Key>
 class List : public Sequence<Key> {
  public:
@@ -87,7 +97,7 @@ bool List<Key>::Insert(const Key& key) {
 
 
 //##############################################################################
-//################################Clase Block###################################
+//################################Class Block###################################
 //##############################################################################
 
 template<class Key>

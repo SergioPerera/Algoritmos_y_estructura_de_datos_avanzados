@@ -18,13 +18,13 @@ class DispersionFunction {
 };
 
 //##############################################################################
-//##############################Class fdModule##################################
+//############################ Class fdModule ##################################
 //##############################################################################
 
 template<class Key>
 class FdModule: public DispersionFunction<Key> {
  public:
-  fdModule(const unsigned n): tableSize(n){}
+  FdModule(const unsigned n): table_size_(n){}
   unsigned operator()(const Key& k) const override { return k % table_size_; }
  private:
   unsigned table_size_;
@@ -32,13 +32,13 @@ class FdModule: public DispersionFunction<Key> {
 
 
 //##############################################################################
-//##############################Class fdModule##################################
+//########################### Class fdBasedOnSum ###############################
 //##############################################################################
 
 template<class Key>
 class FdBasedOnSum : public DispersionFunction<Key> {
  public:
-  FdBasedOnSum(const unsigned n): tableSize(n){}
+  FdBasedOnSum(const unsigned n): table_size_(n){}
   unsigned operator()(const Key& k) const;
  private:
   unsigned table_size_;
@@ -48,12 +48,32 @@ class FdBasedOnSum : public DispersionFunction<Key> {
 template<class Key>
 unsigned FdBasedOnSum<Key>::operator()(const Key& k) const {
   int num_sum{0};
-//   int number = k;
   int aux {0};
-  while ( number > 0) {
-    aux = key;
+  while ( k > 0) {
+    aux = k;
     num_sum += aux;
-    key /= 10;
-    
+    k /= 10;
   }
+  return (num_sum % table_size_);
+}
+
+
+//##############################################################################
+//######################### Class fdPseudoRamdom ###############################
+//##############################################################################
+
+template<class Key>
+class FdPseudoRamdom : public DispersionFunction<Key> {
+ public:
+  FdPseudoRamdom(const unsigned n): table_size_(n){}
+  unsigned operator()(const Key& k) const;
+ private:
+  unsigned table_size_;
+};
+
+
+template<class Key>
+unsigned FdPseudoRamdom<Key>::operator()(const Key& k) const {
+  srand(k);
+  return (rand() % table_size_);
 }

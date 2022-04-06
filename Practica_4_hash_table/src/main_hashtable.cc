@@ -128,7 +128,7 @@ int main () {
            fe_selection != 'D' && 
            fe_selection != 'R') {
 
-      std::cout << "\nSe tiene que elegir una de las opciones disponibles" << std::endl;
+      std::cout << RED << "\nSe tiene que elegir una de las opciones disponibles" << RESET << std::endl;
       std::cout << "Introduzca la función de exploración a utilizar:\n"
               << "[L]ineal"
               << "[C]uadrática"
@@ -175,7 +175,7 @@ int main () {
 
     /// Manejo de errores
     while (input != 'a' && input != 'b' && input != 'q') { 
-      std::cout << "Se tiene que elegir una de las opciones disponibles" << std::endl;
+      std::cout << RED << "Se tiene que elegir una de las opciones disponibles" << RESET<< std::endl;
       std::cout << "\nSeleccione la opción a realizar\n"
         << "[a]ñadir\n"
         << "[b]uscar\n"
@@ -193,14 +193,14 @@ int main () {
         bool inserted;
         inserted = table.Insert(in_value);
         if (inserted == true) {std::cout << "Valor insertado" << std::endl;}
-        else {std::cout << "El valor no pudo ser insertado" << std::endl;}
+        else {std::cout << RED << "El valor no pudo ser insertado" << RESET << std::endl;}
       }
       break;
       case 'b': {
         bool finded;
         finded = table.Search(in_value);
         if (finded) {std::cout << "Valor encontrado" << std::endl;}
-        else {std::cout << "El valor no pudo ser encontrado" << std::endl;}
+        else {std::cout << RED << "El valor no pudo ser encontrado" << RESET << std::endl;}
       }
       break;
     }

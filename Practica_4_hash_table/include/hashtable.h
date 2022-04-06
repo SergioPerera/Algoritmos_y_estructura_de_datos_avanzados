@@ -39,7 +39,6 @@ class HashTable {
   DispersionFunction<Key> *fd_;
   ExplorationFunction<Key> *fe_;
   std::vector<Sequence<Key>*> table_;
-  // Sequence<Key>** table_;
 };
 
 /**
@@ -58,7 +57,8 @@ HashTable<Key>::HashTable(int& table_size,
                           ExplorationFunction<Key>* fe) :
                           table_size_ (table_size),
                           block_size_ (block_size),
-                          fd_ (fd) {
+                          fd_ (fd),
+                          fe_ (fe){
   /// Rellenamos los atributos privados necesarios para la tabla Hash menos fe_
   table_.resize(table_size_);
 
@@ -102,7 +102,7 @@ bool HashTable<Key>::Search(const Key& k) const {
    */
   if (block_size_ !=0) {
     unsigned pos = fd_->operator()(k);
-    for(int i{1}; i < table_size_; i++) {
+    for(ulong i{1}; i < table_size_; i++) {
       if(table_[pos]->Search(k) == true){return true;}
       else {
         /**
@@ -118,6 +118,7 @@ bool HashTable<Key>::Search(const Key& k) const {
   else {
     return ((table_[fd_->operator()(k)]->Search(k) == true) ? true : false);
   }
+  return (false);
 };
 
 /**
@@ -130,7 +131,6 @@ bool HashTable<Key>::Search(const Key& k) const {
  */
 template<class Key>
 bool HashTable<Key>::Insert(const Key& k) {
-      std::cout << "--------------------------------------------------" << std::endl;
 
     /**
    * @brief Hacemos esta comparación para ver si estamos en el caso de que la 

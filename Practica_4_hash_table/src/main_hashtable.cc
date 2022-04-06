@@ -4,6 +4,9 @@
 #include "../include/exploration_function.h"
 #include "../include/hashtable.h"
 
+#define RED     "\033[31m"      /// red
+#define RESET   "\033[0m"       /// Reset 
+
 int main () {
   /**
    * @brief Solicitamos primero el tamaño de la tabla y luego comprobamos que el
@@ -15,7 +18,7 @@ int main () {
 
   /// Control de error
   while (table_size < 1) { 
-    std::cout << "La tabla tiene que tener mínimo tamaño 1 " << std::endl;
+    std::cout << RED <<"La tabla tiene que tener mínimo tamaño 1 " << RESET << std::endl;
     std::cout << "Introduzca tamaño de la tabla: ";
     std::cin >> table_size;
   }
@@ -34,7 +37,7 @@ int main () {
   std::cin >> fd_selection;
 
   while (fd_selection != 'M' && fd_selection != 'S' && fd_selection != 'P') {
-    std::cout << "Se tiene que elegir una de las opciones disponibles" << std::endl;
+    std::cout << RED << "Se tiene que elegir una de las opciones disponibles" << RESET<< std::endl;
     std::cout << "Selecciona la función de dispersión: \n"
               << "[M]ódulo\n"
               << "[S]uma\n"
@@ -76,7 +79,7 @@ int main () {
 
   /// Comprobamos errores
   while (fd_type_selection != 'A' && fd_type_selection != 'C') {
-    std::cout << "Tiene que seleccionar una de las opcciones disponibles" << std::endl;
+    std::cout << RED <<  "Tiene que seleccionar una de las opcciones disponibles" << RESET << std::endl;
     std::cout << "Seleccione el tipo de dispersión: \n"
           << "[A]bierta\n"
           << "[C]errada\n"
@@ -99,7 +102,7 @@ int main () {
     std::cin >> block_size;
 
     while (block_size < 1) { 
-      std::cout << "El bloque tiene que tener tamaño mínimo 1" << std::endl;
+      std::cout << RED << "El bloque tiene que tener tamaño mínimo 1" << RESET<< std::endl;
       std::cout << "Introduzca el tamaño del bloque: ";
       std::cin >> block_size;
     }
@@ -181,19 +184,21 @@ int main () {
       std::cin >> input;
     }
 
-    std::cout << "\nIntroduzca el valor a insertar: ";
+    std::cout << "\nIntroduzca el valor a insertar o buscar: ";
     ulong in_value{0};
     std::cin >> in_value;
 
     switch(input) {
       case 'a': {
-        bool inserted = table.Insert(in_value);
+        bool inserted;
+        inserted = table.Insert(in_value);
         if (inserted == true) {std::cout << "Valor insertado" << std::endl;}
         else {std::cout << "El valor no pudo ser insertado" << std::endl;}
       }
       break;
       case 'b': {
-        bool finded = table.Insert(in_value);
+        bool finded;
+        finded = table.Search(in_value);
         if (finded) {std::cout << "Valor encontrado" << std::endl;}
         else {std::cout << "El valor no pudo ser encontrado" << std::endl;}
       }

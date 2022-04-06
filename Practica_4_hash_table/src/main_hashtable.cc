@@ -175,6 +175,7 @@ int main () {
               << ">> ";
     std::cin >> input;
 
+    if (input == 'q') {break;};
     /// Manejo de errores
     while (input != 'a' && input != 'b' && input != 'q') { 
       std::cout << RED << "Se tiene que elegir una de las opciones disponibles" << RESET<< std::endl;

@@ -74,7 +74,7 @@ unsigned FdBasedOnSum<Key>::operator()(const Key& k) const {
   int num_sum{0};
   int aux {0};
   ulong k_cpy{k};
-  while ( k > 0) {
+  while ( k_cpy > 0) {
     aux = k_cpy;
     num_sum += aux;
     k_cpy /= 10;

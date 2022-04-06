@@ -107,6 +107,6 @@ template<class Key>
 unsigned FdPseudoRamdom<Key>::operator()(const Key& k) const {
   srand(k);
   return (rand() % table_size_);
-}
+};
 
 #endif

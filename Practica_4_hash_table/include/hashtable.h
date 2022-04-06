@@ -130,6 +130,7 @@ bool HashTable<Key>::Search(const Key& k) const {
  */
 template<class Key>
 bool HashTable<Key>::Insert(const Key& k) {
+      std::cout << "--------------------------------------------------" << std::endl;
 
     /**
    * @brief Hacemos esta comparación para ver si estamos en el caso de que la 

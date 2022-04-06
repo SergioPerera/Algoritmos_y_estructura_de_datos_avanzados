@@ -6,6 +6,8 @@
 
 #define RED     "\033[31m"      /// red
 #define RESET   "\033[0m"       /// Reset 
+#define GREEN   "\033[32m"       /// green
+
 
 int main () {
   /**
@@ -192,14 +194,14 @@ int main () {
       case 'a': {
         bool inserted;
         inserted = table.Insert(in_value);
-        if (inserted == true) {std::cout << "Valor insertado" << std::endl;}
+        if (inserted == true) {std::cout << GREEN << "Valor insertado" << RESET << std::endl;}
         else {std::cout << RED << "El valor no pudo ser insertado" << RESET << std::endl;}
       }
       break;
       case 'b': {
         bool finded;
         finded = table.Search(in_value);
-        if (finded) {std::cout << "Valor encontrado" << std::endl;}
+        if (finded) {std::cout << GREEN << "Valor encontrado" << RESET << std::endl;}
         else {std::cout << RED << "El valor no pudo ser encontrado" << RESET << std::endl;}
       }
       break;

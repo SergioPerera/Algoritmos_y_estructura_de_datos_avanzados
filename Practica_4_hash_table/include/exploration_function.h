@@ -95,20 +95,20 @@ class FeRedispersion: public ExplorationFunction<Key> {
 template<class Key>
 unsigned FeRedispersion<Key>::operator()(const Key& k, unsigned i) const {
   int result{0};
-  for(int j {0}; j < i; j++) {
-    if (i % 2 == 0) {
-      result += (i*4)%8;
-    }
-    else if (i % 3 == 0) {
-      result += i*i*i;
-    }
-    else if (i % 5 == 0 ) {
-      result += result + i;
-    }
-    else {
-      result += result*i;
-    }
+
+  if (i % 2 == 0) {
+    result += (i*4)%8;
   }
+  else if (i % 3 == 0) {
+    result += i*i*i;
+  }
+  else if (i % 5 == 0 ) {
+    result += result + i;
+  }
+  else {
+    result += result*i;
+  }
+
   return (result);
 }
 

@@ -73,10 +73,11 @@ template<class Key>
 unsigned FdBasedOnSum<Key>::operator()(const Key& k) const {
   int num_sum{0};
   int aux {0};
+  ulong k_cpy{k};
   while ( k > 0) {
-    aux = k;
+    aux = k_cpy;
     num_sum += aux;
-    k /= 10;
+    k_cpy /= 10;
   }
   return (num_sum % table_size_);
 }

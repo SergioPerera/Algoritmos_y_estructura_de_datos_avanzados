@@ -60,9 +60,6 @@ HashTable<Key>::HashTable(int& table_size,
                           block_size_ (block_size),
                           fd_ (fd) {
   /// Rellenamos los atributos privados necesarios para la tabla Hash menos fe_
-  // table_size_ = table_size;
-  // block_size_ = block_size;
-  // fd_ = fd;
   table_.resize(block_size_);
 
   /**
@@ -96,8 +93,31 @@ HashTable<Key>::HashTable(int& table_size,
  */
 template<class Key>
 bool HashTable<Key>::Search(const Key& k) const {
-
-}
+  /**
+   * @brief Hacemos esta comparación para ver si estamos en el caso de que la 
+   * tabla tenga bloques de tamaño fijo
+   * 
+   * Sino hacemos la búsqueda para las tablas de tamaño variable
+   */
+  if (block_size_ !=0) {
+    unsigned pos = fd_->operator()(k);
+    for(int i{1}; i < table_size_; i++) {
+      if(table_[pos]->Search(k) == true){return true;}
+      else {
+        /**
+         * @brief Necesitamos mirar la siguiente posición, que está en función 
+         * de la función de exploración, por ello hacemos uso de ella y le 
+         * hacemos el módulo para obtener posiciones dentro de la tabla
+         */
+        pos = (pos + fe_->operator()(k,i)) % table_size_;
+      }
+      return false;
+    }
+  }
+  else {
+    return ((table_[fd_->operator()(k)]->Search(k) == true) ? true : false);
+  }
+};
 
 /**
  * @brief Método encargado de que se introduzca un valor dentro de la tabla
@@ -108,8 +128,37 @@ bool HashTable<Key>::Search(const Key& k) const {
  * @return false si no ha sido insertada la key
  */
 template<class Key>
-bool HashTable<Key>::Insert(const Key& k){
-  
+bool HashTable<Key>::Insert(const Key& k) {
+    /**
+   * @brief Hacemos esta comparación para ver si estamos en el caso de que la 
+   * tabla tenga bloques de tamaño fijo
+   * 
+   * Sino hacemos la inserción para las tablas de tamaño variable
+   */
+  if (block_size_ !=0) {
+    auto pos = (*fd_)(k);
+    for (int i{1}; i < table_size_; i++) {
+      /**
+       * @brief En caso que insertemos algo y ya esté dentro retornamos false
+       * sino, comprobamos si se puede insertar, en caso afirmativo lo hacemos
+       * en caso negativo, buscamos otra posición
+       */
+      if (table_[pos]->Seach(k) == true) return false;
+      else if (table_[pos]->Insert(k) == true) {
+        std::cout << "Se ha introducido en el bloque n " << fd_ << std::endl;
+        return true;
+      }
+      else {
+        pos = (pos + fe_->operator()(k, i)) % table_size_;
+      }
+    }
+  }
+  else {
+    if (table_[fd_->operator()(k)]->Search(k) == true) return false;
+    if (table_[fd_->operator()(k)]->Insert(k) == true) return true;
+    return false;
+  }
+  return false;
 }
 
 

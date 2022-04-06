@@ -132,10 +132,10 @@ int main () {
 
       std::cout << RED << "\nSe tiene que elegir una de las opciones disponibles" << RESET << std::endl;
       std::cout << "Introduzca la función de exploración a utilizar:\n"
-              << "[L]ineal"
-              << "[C]uadrática"
-              << "[D]oble dispersión"
-              << "[R]edispersión"
+              << "[L]ineal\n"
+              << "[C]uadrática\n"
+              << "[D]oble dispersión\n"
+              << "[R]edispersión\n"
               << ">> ";
       std::cin >> fe_selection;
     }

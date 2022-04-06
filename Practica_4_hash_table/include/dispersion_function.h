@@ -10,7 +10,8 @@
 * @date 5/04/2022
 * @file dispersion_function.cc
 */
-
+#ifndef _DISPERSION_
+#define _DISPERSION_
 //##############################################################################
 //##################### Class DispersionFunction ################################
 //##############################################################################
@@ -107,3 +108,5 @@ unsigned FdPseudoRamdom<Key>::operator()(const Key& k) const {
   srand(k);
   return (rand() % table_size_);
 }
+
+#endif

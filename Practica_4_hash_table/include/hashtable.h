@@ -13,9 +13,20 @@
 
 #ifndef _HASHTABLE_
 #define _HASHTABLE_
+#include "../include/sequence.h"
+#include "../include/dispersion_function.h"
+#include "../include/exploration_function.h"
 
-
-
+template<class Key>
+class HashTable {
+ public:
+ private:
+  unsigned table_size_{0};
+  DispersionFunction<Key> *fd_;
+  ExplorationFunction<Key> *fe_;
+  unsigned block_size_{0};
+  Sequence<Key>** table_;
+};
 
 
 

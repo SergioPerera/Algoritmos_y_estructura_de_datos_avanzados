@@ -109,6 +109,9 @@ unsigned FeRedispersion<Key>::operator()(const Key& k, unsigned i) const {
     result += result*i;
   }
 
+  for(int j {0}; j < i; j++) {
+    result *= result;
+  }
   return (result);
 }
 

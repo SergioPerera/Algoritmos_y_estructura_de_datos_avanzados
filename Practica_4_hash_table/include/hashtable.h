@@ -148,7 +148,7 @@ bool HashTable<Key>::Insert(const Key& k) {
        */
       if (table_[pos]->Search(k) == true) {return false;}
       else if (table_[pos]->Insert(k) == true) {
-        std::cout << "Se ha introducido en el bloque n " << fd_ << std::endl;
+        std::cout << "Se ha introducido en el bloque n " << pos << std::endl;
         return true;
       }
       else {

@@ -116,10 +116,10 @@ int main () {
      */
     
     std::cout << "\nIntroduzca la función de exploración a utilizar:\n"
-              << "[L]ineal"
-              << "[C]uadrática"
-              << "[D]oble dispersión"
-              << "[R]edispersión"
+              << "[L]ineal\n"
+              << "[C]uadrática\n"
+              << "[D]oble dispersión\n"
+              << "[R]edispersión\n"
               << ">> ";
     char fe_selection;
     std::cin >> fe_selection;

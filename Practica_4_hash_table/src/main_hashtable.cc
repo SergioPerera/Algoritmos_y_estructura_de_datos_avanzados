@@ -1,13 +1,13 @@
 #include <iostream> 
 #include "../include/sequence.h"
 #include "../include/dispersion_function.h"
+#include "../include/exploration_function.h"
 #include "../include/hashtable.h"
 
 int main () {
   /**
    * @brief Solicitamos primero el tamaño de la tabla y luego comprobamos que el
    * número sea mayor que 0
-   * 
    */
   std::cout << "Introduzca tamaño de la tabla: ";
   int table_size{0};
@@ -67,7 +67,7 @@ int main () {
    * abierta o cerrada
    */
 
-  std::cout << "Seleccione el tipo de dispersión: \n"
+  std::cout << "\nSeleccione el tipo de dispersión: \n"
             << "[A]bierta\n"
             << "[C]errada\n"
             << ">> ";
@@ -83,7 +83,6 @@ int main () {
           << ">> ";
     std::cin >> fd_type_selection;
   }
-
   int block_size {0};
   ExplorationFunction<ulong>* fe = nullptr;
   /**
@@ -92,8 +91,6 @@ int main () {
    * de dispersión seleccionada anteriormente
    */
   if (fd_type_selection == 'C') {
-
-
     /**
      * @brief Solicitamos al usuario el tamaño de bloque y luego hacemos una 
      * comprobación para saber si es mayor que 0
@@ -113,7 +110,7 @@ int main () {
      * disponibles
      */
     
-    std::cout << "Introduzca la función de exploración a utilizar:\n"
+    std::cout << "\nIntroduzca la función de exploración a utilizar:\n"
               << "[L]ineal"
               << "[C]uadrática"
               << "[D]oble dispersión"
@@ -123,8 +120,12 @@ int main () {
     std::cin >> fe_selection;
 
     /// Manejo de errores
-    while (fe_selection != 'M' && fe_selection != 'S' && fe_selection != 'P') {
-      std::cout << "Se tiene que elegir una de las opciones disponibles" << std::endl;
+    while (fe_selection != 'L' && 
+           fe_selection != 'C' && 
+           fe_selection != 'D' && 
+           fe_selection != 'R') {
+
+      std::cout << "\nSe tiene que elegir una de las opciones disponibles" << std::endl;
       std::cout << "Introduzca la función de exploración a utilizar:\n"
               << "[L]ineal"
               << "[C]uadrática"
@@ -132,6 +133,71 @@ int main () {
               << "[R]edispersión"
               << ">> ";
       std::cin >> fe_selection;
+    }
+    switch(fe_selection) {
+      case 'L':
+        fe = new FeLineal<ulong>();
+      break;
+      case 'C':
+        fe = new FeQuadratic<ulong>();
+      break;
+      case 'D':
+        fe = new FeDoubleDispersion<ulong>();
+      break;
+      case 'R':
+        fe = new FeRedispersion<ulong>();
+      break;
+    }
+  }
+
+ /**
+  * @brief Ahora creamos el tablero y ya el usuario podrá interactual con él
+  * 
+  * @return HashTable<ulong> 
+  */
+  HashTable<ulong> table(table_size, fd, block_size, fe);
+  char input;
+
+  while (input != 'q') {
+    /**
+     * @brief Hacemos que el usuario elija una opción y en caso de que no sea
+     * una opción válida manejamos el error
+     */
+    std::cout << "\nSeleccione la opción a realizar\n"
+              << "[a]ñadir\n"
+              << "[b]uscar\n"
+              << "[q]uitar\n"
+              << ">> ";
+    std::cin >> input;
+
+    /// Manejo de errores
+    while (input != 'a' && input != 'b' && input != 'q') { 
+      std::cout << "Se tiene que elegir una de las opciones disponibles" << std::endl;
+      std::cout << "\nSeleccione la opción a realizar\n"
+        << "[a]ñadir\n"
+        << "[b]uscar\n"
+        << "[q]uitar\n"
+        << ">> ";
+      std::cin >> input;
+    }
+
+    std::cout << "\nIntroduzca el valor a insertar: ";
+    ulong in_value{0};
+    std::cin >> in_value;
+
+    switch(input) {
+      case 'a': {
+        bool inserted = table.Insert(in_value);
+        if (inserted == true) {std::cout << "Valor insertado" << std::endl;}
+        else {std::cout << "El valor no pudo ser insertado" << std::endl;}
+      }
+      break;
+      case 'b': {
+        bool finded = table.Insert(in_value);
+        if (finded) {std::cout << "Valor encontrado" << std::endl;}
+        else {std::cout << "El valor no pudo ser encontrado" << std::endl;}
+      }
+      break;
     }
   }
 

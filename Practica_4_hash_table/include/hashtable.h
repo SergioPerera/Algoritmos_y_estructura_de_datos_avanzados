@@ -60,7 +60,7 @@ HashTable<Key>::HashTable(int& table_size,
                           block_size_ (block_size),
                           fd_ (fd) {
   /// Rellenamos los atributos privados necesarios para la tabla Hash menos fe_
-  table_.resize(block_size_);
+  table_.resize(table_size_);
 
   /**
    * @brief Construimos un objeto List si fe_ es nulo, porque eso significa que
@@ -71,13 +71,14 @@ HashTable<Key>::HashTable(int& table_size,
    * tamaño fijo y asiganmos la función de exploración
    */
   if (fe_ == nullptr) {
-    for (int i{0}; i < table_size_; i++) {
+    for (ulong i{0}; i < table_size_; i++) {
       table_[i] = new List<Key>();
     }
+
   }
   else{
     fe_ = fe;
-    for (int i{0}; i < table_size_; i++) {
+    for (ulong i{0}; i < table_size_; i++) {
       table_[i] = new Block<Key>(block_size_);
     }
   }
@@ -129,6 +130,7 @@ bool HashTable<Key>::Search(const Key& k) const {
  */
 template<class Key>
 bool HashTable<Key>::Insert(const Key& k) {
+
     /**
    * @brief Hacemos esta comparación para ver si estamos en el caso de que la 
    * tabla tenga bloques de tamaño fijo
@@ -137,13 +139,13 @@ bool HashTable<Key>::Insert(const Key& k) {
    */
   if (block_size_ !=0) {
     auto pos = (*fd_)(k);
-    for (int i{1}; i < table_size_; i++) {
+    for (ulong i{1}; i < table_size_; i++) {
       /**
        * @brief En caso que insertemos algo y ya esté dentro retornamos false
        * sino, comprobamos si se puede insertar, en caso afirmativo lo hacemos
        * en caso negativo, buscamos otra posición
        */
-      if (table_[pos]->Seach(k) == true) return false;
+      if (table_[pos]->Search(k) == true) {return false;}
       else if (table_[pos]->Insert(k) == true) {
         std::cout << "Se ha introducido en el bloque n " << fd_ << std::endl;
         return true;
@@ -151,11 +153,12 @@ bool HashTable<Key>::Insert(const Key& k) {
       else {
         pos = (pos + fe_->operator()(k, i)) % table_size_;
       }
+
     }
   }
   else {
-    if (table_[fd_->operator()(k)]->Search(k) == true) return false;
-    if (table_[fd_->operator()(k)]->Insert(k) == true) return true;
+    if (table_[fd_->operator()(k)]->Search(k) == true) {return false;};
+    if (table_[fd_->operator()(k)]->Insert(k) == true) {return true;};
     return false;
   }
   return false;

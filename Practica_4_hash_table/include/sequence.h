@@ -26,11 +26,11 @@ class Sequence {
  public:
   /// Métodos
   /// Retorna true si el elemento está dentro
-  virtual bool Search(const Key& key);
+  virtual bool Search(const Key& key)=0;
   /// Retorna true si el valor es insertado, false si no
-  virtual bool Insert(const Key& key);
+  virtual bool Insert(const Key& key)=0;
   /// Retorna true si está llena, sino, false
-  virtual bool IsFull() const;
+  virtual bool IsFull() const=0;
 };
 
 
@@ -68,9 +68,9 @@ class List : public Sequence<Key> {
 template<class Key>
 bool List<Key>::Search(const Key& key) {
   bool found = false;
-  for(int i{0}; i < list_.size(); i ++) {
+  for(ulong i{0}; i < list_.size(); i ++) {
     if (list_[i] == key) {
-      found = true;
+      found = true;  
       break;
     }
   }
@@ -147,7 +147,7 @@ bool Block<Key>::Insert(const Key& key) {
 template<class Key>
 bool Block<Key>::Search(const Key& key) {  
   bool found = false;
-  for(int i{0}; i < block_.size(); i ++) {
+  for(ulong i{0}; i < block_.size(); i ++) {
     if (block_[i] == key) {
       found = true;
       break;

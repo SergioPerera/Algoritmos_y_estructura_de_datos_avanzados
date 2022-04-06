@@ -73,10 +73,11 @@ template<class Key>
 unsigned FeDoubleDispersion<Key>::operator()(const Key& k, unsigned i) const {
   int num_sum{0};
   int aux {0};
-  while ( k > 0) {
-    aux = k;
+  ulong key_cpy {k};
+  while ( key_cpy > 0) {
+    aux = key_cpy;
     num_sum += aux;
-    k /= 10;
+    key_cpy /= 10;
   }
   return (num_sum * i);
 }
@@ -109,7 +110,7 @@ unsigned FeRedispersion<Key>::operator()(const Key& k, unsigned i) const {
     result += result*i;
   }
 
-  for(int j {0}; j < i; j++) {
+  for(ulong j {0}; j < i; j++) {
     result *= result;
   }
   return (result);

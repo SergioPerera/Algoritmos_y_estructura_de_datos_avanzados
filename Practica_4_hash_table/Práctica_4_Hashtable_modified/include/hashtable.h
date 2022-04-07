@@ -16,6 +16,7 @@
 #include "../include/sequence.h"
 #include "../include/dispersion_function.h"
 #include "../include/exploration_function.h"
+#include "../include/vehicle.h"
 
 /**
  * @brief Clase encargada de generar la tabla hash y operar con ella
@@ -131,7 +132,6 @@ bool HashTable<Key>::Search(const Key& k) const {
  */
 template<class Key>
 bool HashTable<Key>::Insert(const Key& k) {
-
     /**
    * @brief Hacemos esta comparación para ver si estamos en el caso de que la 
    * tabla tenga bloques de tamaño fijo

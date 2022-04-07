@@ -3,6 +3,7 @@
 #include "../include/dispersion_function.h"
 #include "../include/exploration_function.h"
 #include "../include/hashtable.h"
+#include "../include/vehicle.h"
 
 #define RED     "\033[31m"      /// red
 #define RESET   "\033[0m"       /// Reset 
@@ -187,21 +188,47 @@ int main () {
       std::cin >> input;
     }
 
+    /**
+     * @brief Puesto que esto es la modificación, lo que vamos a hacer es recoger
+     * el número de matrícula y las letras. La operación que vamos a hacer es coger
+     * la maricula y la multiplicamos por 1000000 para dejar hueco a las 3 letras de
+     * la matrícula una vez convertidas de char a int y cada una separada en unidades
+     * centenas y decenas
+     * 
+     */
     std::cout << "\nIntroduzca el valor a insertar o buscar: ";
     ulong in_value{0};
     std::cin >> in_value;
 
+    std::cout << "\nIntroduzca las letras de la mátricula: ";
+
+    std::string matricule_lett;
+    std::cin >> matricule_lett;
+
+    Vehicle vehicle;
+    vehicle.SetMatNum(in_value);
+    vehicle.SetMatLet(matricule_lett);
+    
+    int letters_to_num{0};
+    for (ulong x{0}; x < matricule_lett.length(); x ++) {
+      letters_to_num += matricule_lett[x];
+      letters_to_num *= 10;
+      std::cout << letters_to_num << std::endl;
+    }
+
+    in_value = vehicle.GetMatNum() * 1000000 + letters_to_num;
+
     switch(input) {
       case 'a': {
         bool inserted;
-        inserted = table.Insert(in_value);
+        inserted = table.Insert(vehicle.GetMatNum());
         if (inserted == true) {std::cout << GREEN << "Valor insertado" << RESET << std::endl;}
         else {std::cout << RED << "El valor no pudo ser insertado" << RESET << std::endl;}
       }
       break;
       case 'b': {
         bool finded;
-        finded = table.Search(in_value);
+        finded = table.Search(vehicle.GetMatNum());
         if (finded) {std::cout << GREEN << "Valor encontrado" << RESET << std::endl;}
         else {std::cout << RED << "El valor no pudo ser encontrado" << RESET << std::endl;}
       }

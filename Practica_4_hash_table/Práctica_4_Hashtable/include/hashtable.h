@@ -159,7 +159,9 @@ bool HashTable<Key>::Insert(const Key& k) {
   }
   else {
     if (table_[fd_->operator()(k)]->Search(k) == true) {return false;};
-    if (table_[fd_->operator()(k)]->Insert(k) == true) {return true;};
+    if (table_[fd_->operator()(k)]->Insert(k) == true) {
+      std::cout << "Se ha introducido en el bloque n " << fd_->operator()(k)  << std::endl;
+      return true;};
     return false;
   }
   return false;

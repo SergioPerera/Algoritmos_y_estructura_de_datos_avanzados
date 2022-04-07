@@ -209,26 +209,25 @@ int main () {
     vehicle.SetMatNum(in_value);
     vehicle.SetMatLet(matricule_lett);
     
-    int letters_to_num{0};
+    long letters_to_num{0};
     for (ulong x{0}; x < matricule_lett.length(); x ++) {
       letters_to_num += matricule_lett[x];
-      letters_to_num *= 10;
-      std::cout << letters_to_num << std::endl;
+      letters_to_num *= 1000;
     }
 
-    in_value = vehicle.GetMatNum() * 1000000 + letters_to_num;
+    in_value = letters_to_num + vehicle.GetMatNum();
 
     switch(input) {
       case 'a': {
         bool inserted;
-        inserted = table.Insert(vehicle.GetMatNum());
+        inserted = table.Insert(in_value);
         if (inserted == true) {std::cout << GREEN << "Valor insertado" << RESET << std::endl;}
         else {std::cout << RED << "El valor no pudo ser insertado" << RESET << std::endl;}
       }
       break;
       case 'b': {
         bool finded;
-        finded = table.Search(vehicle.GetMatNum());
+        finded = table.Search(in_value);
         if (finded) {std::cout << GREEN << "Valor encontrado" << RESET << std::endl;}
         else {std::cout << RED << "El valor no pudo ser encontrado" << RESET << std::endl;}
       }

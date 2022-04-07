@@ -143,8 +143,8 @@ bool HashTable<Key>::Insert(const Key& k) {
     for (ulong i{1}; i < table_size_; i++) {
       /**
        * @brief En caso que insertemos algo y ya esté dentro retornamos false
-       * sino, comprobamos si se puede insertar, en caso afirmativo lo hacemos
-       * en caso negativo, buscamos otra posición
+       * sino, comprobamos si se puede insertar, en caso afirmativo lo hacemos.
+       * En caso negativo, buscamos otra posición
        */
       if (table_[pos]->Search(k) == true) {return false;}
       else if (table_[pos]->Insert(k) == true) {

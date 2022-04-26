@@ -8,5 +8,12 @@
 * @author Sergio Perera Márquez
 * Correo: alu0101394503@ull.edu.es
 * @date 26/04/2022
-* @file sort.h
+* @file sequence.cc
 */
+
+#include "../include/sequence.h"
+
+template <class Key>
+void Sequence<Key>::SetSort() {
+  
+}

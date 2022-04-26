@@ -46,5 +46,8 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "list": "cpp"
-    }
+    },
+    "winopacity.opacity": 254,
+    "glassit.alpha": 150,
+    "glassit.step": 20
 }

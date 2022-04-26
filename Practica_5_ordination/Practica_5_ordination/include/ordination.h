@@ -24,7 +24,7 @@ template<class Key>
 class Ordination {
   public:
   Ordination() {};
-  virtual void Sort(std::vector<Key>& v)=0;
+  virtual void Sort(std::vector<Key> v)=0;
 };
 
 
@@ -36,10 +36,10 @@ template<class Key>
 class SelectionSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key>& v) override {
-    for (int i{0}; i < v.size() - 1; i++) {
-      Selection<Key>(v);
-    }
+  void Sort(std::vector<Key> v) override {
+    // for (int i{0}; i < v.size() - 1; i++) {
+    //   Selection<Key>(v);
+    // }
   }
 };
 
@@ -47,28 +47,28 @@ template<class Key>
 class QuickSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key>& v) override {}
+  void Sort(std::vector<Key> v) override {}
 };
 
 template<class Key>
 class IncrementDecrement : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key>& v) override {}
+  void Sort(std::vector<Key> v) override {}
 };
 
 template<class Key>
 class HeapSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key>& v) override {}
+  void Sort(std::vector<Key> v) override {}
 };
 
 template<class Key>
 class RadixSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key>& v) override {}
+  void Sort(std::vector<Key> v) override {}
 };
 
 

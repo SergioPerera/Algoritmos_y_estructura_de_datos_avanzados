@@ -8,5 +8,5 @@
 * @author Sergio Perera Márquez
 * Correo: alu0101394503@ull.edu.es
 * @date 26/04/2022
-* @file sequence.h
+* @file function_templates.h
 */

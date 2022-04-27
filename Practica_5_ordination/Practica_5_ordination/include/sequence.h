@@ -25,7 +25,7 @@ class Sequence {
  public:
   /// Constructor
   Sequence() {};
-  Sequence(int sequence_length, std::vector<Key>& v) {
+  Sequence(int sequence_length, std::vector<Key>& v, std::string& algorithm) {
     sequence_length_ = sequence_length;
     sequence_ = v;
   }

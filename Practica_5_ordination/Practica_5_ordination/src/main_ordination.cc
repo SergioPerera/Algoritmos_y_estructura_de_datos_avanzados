@@ -18,7 +18,7 @@
 #define KEY int
 
 int main() {
-  
+
   int sequence_length{0};
   std::vector<KEY> sequence;
 
@@ -30,6 +30,7 @@ int main() {
    *  Hacemos un bucle para que el usuario introduzca el algoritmo y en caso de 
    * introducir un algoritmo incorrecto volver a solicitar la opción.
    */
+  std::string algorithm;
   while (true) {
     /// Solicitamos al usuario el algoritmo
     std::cout << "Seleccione el algoritmo a ejecutar: \n"
@@ -40,7 +41,6 @@ int main() {
               << "[R]adixSort \n"
               << ">> ";
   
-    std::string algorithm;
     std::cin >> algorithm;
   
     /// Comprobamos que se haya puesto bien el algoritmo
@@ -116,7 +116,7 @@ int main() {
   //############################################################################
 
   /// Creamos el objeto
-  Sequence<KEY> seq{sequence_length, sequence};
+  Sequence<KEY> seq{sequence_length, sequence, algorithm};
   std::cout << seq << std::endl;
   seq.Sort();
   std::cout << seq << std::endl;

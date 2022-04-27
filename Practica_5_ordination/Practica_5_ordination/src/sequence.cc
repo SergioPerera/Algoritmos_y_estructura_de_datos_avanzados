@@ -17,3 +17,9 @@ template <class Key>
 void Sequence<Key>::SetSort() {
   
 }
+
+template <class Key>
+Sequence<Key>::Sequence(int sequence_length, std::vector<Key>& v, std::string& algorithm) {
+  sequence_length_ = sequence_length;
+  sequence_ = v;
+}

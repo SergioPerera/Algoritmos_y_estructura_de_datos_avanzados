@@ -44,7 +44,7 @@ class SelectionSort : public Ordination<Key> {
     Selection<Key>(v, seq_length);
 
     /// Imprimimos el vector ordenado
-    std::cout << WHITE_BACKGROUND << BLUE << "\nVector copia ordenado: ";
+    std::cout << BLUE << "\nVector copia ordenado por selección: ";
     for (ulong i{0}; i < v.size(); i++) {
       std::cout << v[i] << " ";
     }
@@ -56,7 +56,13 @@ template<class Key>
 class QuickSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key> v, int seq_length) override {}
+  QuickSort(Key ini, Key fin) { ini_ = ini; fin_ = fin; };
+  void Sort(std::vector<Key> v, int seq_length) override { 
+    FunctionQuickSort(v, ini_, fin_);
+  }
+ private:
+  Key ini_;
+  Key fin_;
 };
 
 template<class Key>

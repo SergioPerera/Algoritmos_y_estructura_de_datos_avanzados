@@ -13,6 +13,7 @@
 bool traza = true;
 
 #include <iostream>
+
 template<typename T>
 void Selection(std::vector<T>& v, int x) {
   int min;
@@ -34,5 +35,42 @@ void Selection(std::vector<T>& v, int x) {
       std::cout << std::endl;
     }
   }
+}
+
+
+template<typename T>
+void FunctionQuickSort(std::vector<T>& v, T ini, T fin) {
+
+  T i = ini;
+  T f = fin;
+  T p = v[(i+f)/2];
+
+  while (i <= f) {
+    while (v[i] < p) 
+      i++;
+    while (v[f] > p)
+      f--;
+    if (i <= f) {
+      T aux = v[f];
+      v[f] = v[i];
+      v[i] = aux;
+      i++;
+      f--;
+    }
+  }
+  if (traza) {
+    /// mostramos el vector por pantalla tras hacer la iteracion del algoritmo
+    std::cout << "Iteración(" << i+1 << "): ";
+    for (auto j: v) std::cout << " " <<  j << " ";
+    std::cout << std::endl;
+  }
+  if (ini < f) {
+    QuickSort(v, ini, f);
+  }
+  if (i < fin) {
+    QuickSort(v, i, fin);
+  }
+
+  
 }
 

@@ -25,14 +25,11 @@ class Sequence {
  public:
   /// Constructor
   Sequence() {};
-  Sequence(int sequence_length, std::vector<Key>& v, std::string& algorithm) {
-    sequence_length_ = sequence_length;
-    sequence_ = v;
-  }
+  Sequence(int sequence_length, std::vector<Key>& v, std::string& algorithm) {}
 
   /// Operadores
   friend std::ostream& operator<<(std::ostream& os, const Sequence& sq) {
-    for (int i = 0; i < sq.sequence_.size(); i++) {
+    for (ulong i = 0; i < sq.sequence_.size(); i++) {
       os << sq.sequence_[i] << " ";
     }
     return(os);

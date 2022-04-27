@@ -13,13 +13,27 @@
 
 #include "../include/sequence.h"
 
-template <class Key>
-void Sequence<Key>::SetSort() {
-  
-}
 
-template <class Key>
-Sequence<Key>::Sequence(int sequence_length, std::vector<Key>& v, std::string& algorithm) {
-  sequence_length_ = sequence_length;
-  sequence_ = v;
-}
+// template <class Key>
+// Sequence<Key>::Sequence(int sequence_length, std::vector<Key>& v, 
+//                         std::string& algorithm) {
+//   sequence_length_ = sequence_length;
+//   sequence_ = v;
+//   switch(algorithm) {
+//     case "S":
+//       sort_ = new SelectionSort<Key>();
+//       break;
+//     case "Q":
+//       sort_ = new QuickSort<Key>();
+//       break;
+//     case "I":
+//       sort_ = new IncrementDecrement<Key>();
+//       break;
+//     case "H":
+//       sort_ = new HeapSort<Key>();
+//       break;
+//     case "R":
+//       sort_ = new RadixSort<Key>();
+//       break;
+//   }
+// }

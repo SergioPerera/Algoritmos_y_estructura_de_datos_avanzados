@@ -129,9 +129,11 @@ int main() {
               << "[I]ncrementos Decrecientes \n"
               << "[H]eapSort \n"
               << "[R]adixSort \n"
+              << "[q]uit \n"
               << ">> ";
   
     std::cin >> algorithm;
+    if (algorithm[0] == 'q') {break;}
   
     /// Comprobamos que se haya puesto bien el algoritmo
     if (!regex_match(algorithm, std::regex("^[SQIHR]$"))) {

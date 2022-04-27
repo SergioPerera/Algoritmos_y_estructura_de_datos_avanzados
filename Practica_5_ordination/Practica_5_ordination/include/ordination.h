@@ -78,7 +78,34 @@ template<class Key>
 class IncrementDecrement : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key> v, int seq_length) override {}
+  IncrementDecrement() {
+    while(true) {
+      std::cout << "Introduzca el valor de alfa (0 > α > 1): ";
+      std::string alfa_str;
+      std::cin >> alfa_str;
+      
+      if(!regex_match(alfa_str, std::regex("0\\.\\d+"))) {
+        std::cout << RED << "Número incorrecto, sintaxis: 0.XX" 
+                  << " tiene que haber un punto y no una coma"
+                  << RESET << std::endl;
+      } else {
+        alfa_ = std::stod(alfa_str);
+        break;
+      }
+    }
+  }
+  void Sort(std::vector<Key> v, int seq_length) override {
+    FunctionIncrementDecrement(v, seq_length, alfa_);
+
+    /// Imprimimos el vector ordenado
+    std::cout << BLUE << "\nVector copia ordenado por IncrementDecrement: ";
+    for (ulong i{0}; i < v.size(); i++) {
+      std::cout << v[i] << " ";
+    }
+    std::cout << RESET << "\n" << std::endl;
+  }
+ private:
+  double alfa_;
 };
 
 template<class Key>

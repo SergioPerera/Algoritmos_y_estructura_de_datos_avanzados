@@ -182,3 +182,35 @@ void FunctionRadixSort(std::vector<T>& v, int x) {
     }
   }
 }
+
+
+int iterator{0};
+template<class T>
+void Deltasort(int delta, std::vector<T>& v, int x) {
+  for (int i = delta; i < x; i++) {
+    T x = v[i];
+    T j = i;
+    while ((j >= delta) && (x < v[j - delta])) {
+      v[j] = v[j - delta];
+      j = j - delta;
+    }
+    v[j] = x;
+  }
+  if (traza) {
+    iterator++;
+    /// mostramos el vector por pantalla tras hacer la iteracion del algoritmo
+    std::cout << "Iteración(" << iterator << "): ";
+    for (auto j: v) std::cout << " " <<  j << " ";
+    std::cout << "\n" << std::endl;
+  }
+}
+
+template<class T>
+void FunctionIncrementDecrement(std::vector<T>& v, int x, double alfa) {
+  int delta = x * alfa;
+  while (delta > 0) {
+    std::cout << "Delta = " << delta << std::endl;
+    Deltasort(delta, v, x);
+    delta = delta * alfa;
+  }
+}

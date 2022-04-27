@@ -13,6 +13,7 @@
 bool traza = true;
 
 #include <iostream>
+#include <queue>
 
 template<typename T>
 void Selection(std::vector<T>& v, int x) {
@@ -120,6 +121,58 @@ void FunctionHeapSort(std::vector<T>& v, int x) {
     v[i] = v[0];
     v[0] = aux;
     Low(0, v, i-1);
+    if (traza) {
+      iterator++;
+      /// mostramos el vector por pantalla tras hacer la iteracion del algoritmo
+      std::cout << "Iteración(" << iterator << "): ";
+      for (auto j: v) std::cout << " " <<  j << " ";
+      std::cout << std::endl;
+    }
+  }
+}
+
+
+template<class T>
+int NumCount(T integer) {
+  int counter = 0;
+  while (integer > 0) {
+    integer /= 10;
+    counter++;
+  }
+  return counter;
+}
+
+template<typename T>
+void FunctionRadixSort(std::vector<T>& v, int x) {
+  int iterator{0};
+  int max_size = 0;
+  for (int i{0}; i < x; i++) {
+    if(NumCount(v[i]) > max_size) {
+      max_size = NumCount(v[i]);
+    }
+  }
+  std::queue<T> auxiliar[10];
+  for (int i{1}; i <= max_size; i++) {
+    for (int j{0}; j < x; j++) {
+      int copia = v[j];
+      int digito = 0;
+      for (int k{0}; k < i; k++) {
+        digito = copia % 10;
+        copia = copia / 10;
+      }
+      auxiliar[digito].push(v[j]);
+    }
+    int contador = 0;
+    T valor;
+    for (int k{0}; k < 10; k++) {
+      while (!auxiliar[k].empty()) {
+        valor = auxiliar[k].front();
+        v[contador] = valor;
+        auxiliar[k].pop();
+        contador++;
+      }
+    }
+
     if (traza) {
       iterator++;
       /// mostramos el vector por pantalla tras hacer la iteracion del algoritmo

@@ -120,4 +120,29 @@ int main() {
   std::cout << "\nVector original: " << seq << "\n" << std::endl;
   seq.Sort();
 
+  while(true) {
+    std::cout << "_______________________________________" << RESET << "\n" <<std::endl;
+    /// Solicitamos al usuario el algoritmo
+    std::cout << "Seleccione el algoritmo a ejecutar: \n"
+              << "[S]eleccción \n"
+              << "[Q]uickSort \n"
+              << "[I]ncrementos Decrecientes \n"
+              << "[H]eapSort \n"
+              << "[R]adixSort \n"
+              << ">> ";
+  
+    std::cin >> algorithm;
+  
+    /// Comprobamos que se haya puesto bien el algoritmo
+    if (!regex_match(algorithm, std::regex("^[SQIHR]$"))) {
+  
+      std::cout << RED << "Error, algoritmo no válido\n" << RESET 
+                << std::endl;
+    }else{
+      seq.SetSort(algorithm);
+      seq.Sort();
+
+    }
+  }
+
 }

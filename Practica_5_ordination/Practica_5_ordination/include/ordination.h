@@ -48,7 +48,8 @@ class SelectionSort : public Ordination<Key> {
     for (ulong i{0}; i < v.size(); i++) {
       std::cout << v[i] << " ";
     }
-    std::cout << RESET << std::endl;
+
+    std::cout << RESET << "\n" << std::endl;
   }
 };
 
@@ -65,7 +66,8 @@ class QuickSort : public Ordination<Key> {
     for (ulong i{0}; i < v.size(); i++) {
       std::cout << v[i] << " ";
     }
-    std::cout << RESET << std::endl;
+
+    std::cout << RESET << "\n" << std::endl;
   }
  private:
   Key ini_;
@@ -99,12 +101,16 @@ template<class Key>
 class RadixSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key> v, int seq_length) override {}
+  void Sort(std::vector<Key> v, int seq_length) override {
+    FunctionRadixSort(v, seq_length);
+
+        /// Imprimimos el vector ordenado
+    std::cout << BLUE << "\nVector copia ordenado por RadixSort: ";
+    for (ulong i{0}; i < v.size(); i++) {
+      std::cout << v[i] << " ";
+    }
+    std::cout << RESET << "\n" << std::endl;
+  }
 };
-
-
-
-
-
 
 #endif // _ORDINATION_H_

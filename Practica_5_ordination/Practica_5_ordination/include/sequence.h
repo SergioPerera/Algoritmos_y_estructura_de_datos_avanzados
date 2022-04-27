@@ -36,7 +36,7 @@ class Sequence {
   }
 
   /// Métodos
-  void SetSort();
+  void SetSort(std::string algorithm);
   void Sort() { sort_ -> Sort(sequence_, sequence_length_); };
  private:
   std::vector<Key> sequence_;
@@ -44,18 +44,14 @@ class Sequence {
   Ordination<Key>* sort_;
 };
 
-
 template <class Key>
-Sequence<Key>::Sequence(int sequence_length, std::vector<Key> v, 
-                        std::string& algorithm) {
-  sequence_length_ = sequence_length;
-  sequence_ = v;
+void Sequence<Key>::SetSort(std::string algorithm) {
   switch(algorithm[0]) {
     case 'S':
       sort_ = new SelectionSort<Key>();
       break;
     case 'Q':
-      sort_ = new QuickSort<Key>(0, sequence_length - 1);
+      sort_ = new QuickSort<Key>(0, sequence_length_ - 1);
       break;
     case 'I':
       sort_ = new IncrementDecrement<Key>();
@@ -67,5 +63,30 @@ Sequence<Key>::Sequence(int sequence_length, std::vector<Key> v,
       sort_ = new RadixSort<Key>();
       break;
   }
+}
+
+template <class Key>
+Sequence<Key>::Sequence(int sequence_length, std::vector<Key> v, 
+                        std::string& algorithm) {
+  sequence_length_ = sequence_length;
+  sequence_ = v;
+  SetSort(algorithm);
+  // switch(algorithm[0]) {
+  //   case 'S':
+  //     sort_ = new SelectionSort<Key>();
+  //     break;
+  //   case 'Q':
+  //     sort_ = new QuickSort<Key>(0, sequence_length - 1);
+  //     break;
+  //   case 'I':
+  //     sort_ = new IncrementDecrement<Key>();
+  //     break;
+  //   case 'H':
+  //     sort_ = new HeapSort<Key>();
+  //     break;
+  //   case 'R':
+  //     sort_ = new RadixSort<Key>();
+  //     break;
+  // }
 }
 #endif // _SEQUENCE_H_

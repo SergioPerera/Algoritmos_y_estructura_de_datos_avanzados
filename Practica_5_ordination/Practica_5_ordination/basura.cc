@@ -1,19 +1,29 @@
 #include <iostream>
-int main() {
-  /// Display ramdom numbers between 1000 y 9999
-
-  srand(time(NULL));
-  int max_number{1000};
-  int min_number{9999};
-  for (int i = 0; i < 100000000; i++) {
-    int number =  rand() %(9999-1000 + 1) + 1000;
-    if (number > max_number) {
-      max_number = number;
+class RamdomClass { 
+public:
+  RamdomClass() {};
+  bool operator==(const int& juisjuis) const {
+    if (pp_ == juisjuis) {
+      return true;
     }
-    if (number < min_number) {
-      min_number = number;
-    }
+    return false;
   }
-  std::cout << "min_number" << min_number << std::endl;
-  std::cout << "max_number" << max_number << std::endl;
+private:
+int pp_{69};
+};
+
+int main() {
+  int plol{69};
+  int nlol{0};
+
+  RamdomClass r;
+
+  if (r == nlol) {
+    std::cout << "igual" << std::endl;
+  }
+  else {
+    std::cout << "no igual" << std::endl;
+  }
+
+  
 }

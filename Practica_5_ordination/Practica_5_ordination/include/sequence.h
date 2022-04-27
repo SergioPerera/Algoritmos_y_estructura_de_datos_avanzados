@@ -4,7 +4,7 @@
 * Grado en Ingeniería Informática
 * Asignatura: Algoitmos y estructura de datos avanzadas
 * Curso: 2º
-* Práctica hashtable
+* Práctica sort algorithms
 * @author Sergio Perera Márquez
 * Correo: alu0101394503@ull.edu.es
 * @date 26/04/2022

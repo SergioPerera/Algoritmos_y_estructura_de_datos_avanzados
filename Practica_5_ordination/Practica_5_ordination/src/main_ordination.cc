@@ -4,7 +4,7 @@
 * Grado en Ingeniería Informática
 * Asignatura: Algoitmos y estructura de datos avanzadas
 * Curso: 2º
-* Práctica hashtable
+* Práctica sort algorithms
 * @author Sergio Perera Márquez
 * Correo: alu0101394503@ull.edu.es
 * @date 26/04/2022
@@ -58,16 +58,16 @@ int main() {
    */
   while (true) {
     /// Solicitamos al usuario el número de elementos
-    int num_elements{0};
+    std::string num_elements{0};
     std::cout << "Introduzca el número de elementos: ";
     std::cin >> num_elements;
   
     /// Comprobamos que se haya puesto bien el número de elementos
-    if (num_elements < 1) {
-      std::cout << RED << "El número de elementos debe ser mayor que 0\n" 
+    if (!regex_match(num_elements, std::regex("^[1-9]+$"))) {
+      std::cout << RED << "El número de elementos debe ser un número mayor que 0\n" 
                 << RESET << std::endl;
     }
-    else{ sequence_length = num_elements; break; }
+    else{ sequence_length = std::stoi(num_elements); break; }
   }
 
   /**
@@ -92,11 +92,24 @@ int main() {
     /**
      *  Solicitamos al usuario los elementos de la secuencia
      */
-    std::cout << "Introduzca los elementos de la secuencia: ";
     for (int i{0}; i < sequence_length; i++) {
-      int in_seq{0};
+      std::cout << "Introduzca los elementos de la secuencia: ";
+      std::string in_seq;
       std::cin >> in_seq;
-      sequence.emplace_back(in_seq);
+      int integer_seq = std::stoi(in_seq);
+      if (!regex_match(in_seq, std::regex("^[1-9]+[0-9]+$"))){
+        std::cout << RED << "Error, el elemento debe ser un número\n" 
+                  << RESET << std::endl;
+        i--;
+      }
+      else if (integer_seq < 1000 || integer_seq > 9999) {
+        std::cout << RED << "Error, el elemento debe estar entre 1000 y 9999\n" 
+                  << RESET << std::endl;
+        i--;
+      }
+      else {
+        sequence.emplace_back(std::stoi(in_seq));
+      }
     }
   }
   else if (fill_vector_option == "A") {

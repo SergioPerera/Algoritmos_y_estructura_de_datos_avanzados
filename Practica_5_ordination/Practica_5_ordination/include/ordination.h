@@ -13,6 +13,10 @@
 
 #ifndef _ORDINATION_H_
 #define _ORDINATION_H_
+#define RED     "\033[31m"      /// red
+#define RESET   "\033[0m"       /// Reset
+#define BLUE   "\033[34m"      /// blue
+#define WHITE_BACKGROUND   "\033[47m"      /// green
 
 #include <vector>
 #include "../include/function_templates.h"
@@ -40,11 +44,11 @@ class SelectionSort : public Ordination<Key> {
     Selection<Key>(v, seq_length);
 
     /// Imprimimos el vector ordenado
-    std::cout << "Vector copia ordenado: ";
+    std::cout << WHITE_BACKGROUND << BLUE << "\nVector copia ordenado: ";
     for (ulong i{0}; i < v.size(); i++) {
       std::cout << v[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout << RESET << std::endl;
   }
 };
 

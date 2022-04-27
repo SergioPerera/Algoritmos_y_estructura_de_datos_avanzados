@@ -15,26 +15,6 @@ bool traza = true;
 #include <iostream>
 template<typename T>
 void Selection(std::vector<T>& v, int x) {
-  // T aux; ///< Valor a poner en la parte ordenada en cada iteracion
-  // for (int i{0}; i < (x - 1); ++i) {
-  //   int min_pos{i};
-  //   for (int j{i + 1}; j < x; ++j) {
-  //     if (v[j] < v[min_pos]) {
-  //       min_pos = j;
-  //       aux = v[min_pos];
-  //     }
-  //   }
-
-  //   v[min_pos] = v[i];
-  //   v[i] = aux;
-
-  //   if (traza) {
-  //     /// mostramos el vtor por pantalla tras hacer la iteracion del algoritmo
-  //     for (auto j: v) std::cout << " " <<  j << " ";
-  //     std::cout << std::endl;
-  //   }
-  // }
-
   int min;
   for (int i = 0; i < x - 1; i++) {
     min = i;
@@ -46,10 +26,10 @@ void Selection(std::vector<T>& v, int x) {
     T x = v[min];
     v[min] = v[i];
     v[i] = x;
-    std::cout << "i=" << i+1 << " ";
     
     if (traza) {
-      /// mostramos el vtor por pantalla tras hacer la iteracion del algoritmo
+      /// mostramos el vector por pantalla tras hacer la iteracion del algoritmo
+      std::cout << "Iteración(" << i+1 << "): ";
       for (auto j: v) std::cout << " " <<  j << " ";
       std::cout << std::endl;
     }

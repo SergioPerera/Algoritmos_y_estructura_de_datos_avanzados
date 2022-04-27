@@ -59,6 +59,13 @@ class QuickSort : public Ordination<Key> {
   QuickSort(Key ini, Key fin) { ini_ = ini; fin_ = fin; };
   void Sort(std::vector<Key> v, int seq_length) override { 
     FunctionQuickSort(v, ini_, fin_);
+
+    /// Imprimimos el vector ordenado
+    std::cout << BLUE << "\nVector copia ordenado por QuickSort: ";
+    for (ulong i{0}; i < v.size(); i++) {
+      std::cout << v[i] << " ";
+    }
+    std::cout << RESET << std::endl;
   }
  private:
   Key ini_;
@@ -76,7 +83,16 @@ template<class Key>
 class HeapSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key> v, int seq_length) override {}
+  void Sort(std::vector<Key> v, int seq_length) override {
+    FunctionHeapSort(v, seq_length);
+  
+    /// Imprimimos el vector ordenado
+    std::cout << BLUE << "\nVector copia ordenado por HeapSort: ";
+    for (ulong i{0}; i < v.size(); i++) {
+      std::cout << v[i] << " ";
+    }
+    std::cout << RESET << "\n" << std::endl;
+  }
 };
 
 template<class Key>

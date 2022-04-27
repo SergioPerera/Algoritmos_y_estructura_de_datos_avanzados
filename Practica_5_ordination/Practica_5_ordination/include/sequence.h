@@ -55,7 +55,7 @@ Sequence<Key>::Sequence(int sequence_length, std::vector<Key> v,
       sort_ = new SelectionSort<Key>();
       break;
     case 'Q':
-      sort_ = new QuickSort<Key>(0, sequence_length_);
+      sort_ = new QuickSort<Key>(0, sequence_length - 1);
       break;
     case 'I':
       sort_ = new IncrementDecrement<Key>();

@@ -37,7 +37,7 @@ class SelectionSort : public Ordination<Key> {
 
  public:
   void Sort(std::vector<Key> v, int seq_length) override {
-    Selection<Key>(v, v.size());
+    Selection<Key>(v, seq_length);
 
     /// Imprimimos el vector ordenado
     std::cout << "Vector copia ordenado: ";

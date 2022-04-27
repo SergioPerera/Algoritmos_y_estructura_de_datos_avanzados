@@ -119,6 +119,5 @@ int main() {
   Sequence<KEY> seq{sequence_length, sequence, algorithm};
   std::cout << "Vector original: " << seq << std::endl;
   seq.Sort();
-  std::cout << "Vector original: " << seq << std::endl;
 
 }

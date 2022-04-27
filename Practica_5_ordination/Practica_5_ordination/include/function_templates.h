@@ -10,19 +10,28 @@
 * @date 26/04/2022
 * @file function_templates.h
 */
+bool traza = true;
 
+#include <iostream>
 template<typename T>
-T Selection(std::vector<T>& v) {
-  int min;
-  int x;
-  for (int i = 0; i < v.size()-1; i++){
-    min = i ;
-    for (int j = i+1; j < v.size(); j++) 
-    if (v[j] < v[min]) {
-      min = j ;
-      x = v[min] ;
+void Selection(std::vector<T>& v, int x) {
+  T aux; ///< Valor a poner en la parte ordenada en cada iteracion
+  for (int i{0}; i < (x - 1); ++i) {
+    int min_pos{i};
+    for (int j{i + 1}; j < x; ++j) {
+      if (v[j] < v[min_pos]) {
+        min_pos = j;
+        aux = v[min_pos];
+      }
     }
-    v[min] = v[i] ;
-    v[i] = x ;
+
+    v[min_pos] = v[i];
+    v[i] = aux;
+
+    if (traza) {
+      /// mostramos el vtor por pantalla tras hacer la iteracion del algoritmo
+      for (auto j: v) std::cout << j << " ";
+      std::cout << std::endl;
+    }
   }
 }

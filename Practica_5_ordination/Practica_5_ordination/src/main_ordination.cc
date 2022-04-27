@@ -117,8 +117,8 @@ int main() {
 
   /// Creamos el objeto
   Sequence<KEY> seq{sequence_length, sequence, algorithm};
-  std::cout << seq << std::endl;
+  std::cout << "Vector original: " << seq << std::endl;
   seq.Sort();
-  std::cout << seq << std::endl;
+  std::cout << "Vector original: " << seq << std::endl;
 
 }

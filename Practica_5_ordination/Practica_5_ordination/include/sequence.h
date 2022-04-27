@@ -25,7 +25,7 @@ class Sequence {
  public:
   /// Constructor
   Sequence() {};
-  Sequence(int sequence_length, std::vector<Key>& v, std::string& algorithm) {}
+  Sequence(int sequence_length, std::vector<Key> v, std::string& algorithm);
 
   /// Operadores
   friend std::ostream& operator<<(std::ostream& os, const Sequence& sq) {
@@ -37,11 +37,35 @@ class Sequence {
 
   /// Métodos
   void SetSort();
-  void Sort() { sort_ -> Sort(sequence_); };
+  void Sort() { sort_ -> Sort(sequence_, sequence_length_); };
  private:
   std::vector<Key> sequence_;
   int sequence_length_;
   Ordination<Key>* sort_;
 };
 
+
+template <class Key>
+Sequence<Key>::Sequence(int sequence_length, std::vector<Key> v, 
+                        std::string& algorithm) {
+  sequence_length_ = sequence_length;
+  sequence_ = v;
+  switch(algorithm[0]) {
+    case 'S':
+      sort_ = new SelectionSort<Key>();
+      break;
+    case 'Q':
+      sort_ = new QuickSort<Key>();
+      break;
+    case 'I':
+      sort_ = new IncrementDecrement<Key>();
+      break;
+    case 'H':
+      sort_ = new HeapSort<Key>();
+      break;
+    case 'R':
+      sort_ = new RadixSort<Key>();
+      break;
+  }
+}
 #endif // _SEQUENCE_H_

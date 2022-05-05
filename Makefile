@@ -71,7 +71,3 @@ upload:
 	git push
 pull:
 	git pull
-
-
-
-

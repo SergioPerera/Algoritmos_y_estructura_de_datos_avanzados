@@ -16,7 +16,7 @@
 #include "../include/clase.h"
 #define RED     "\033[31m"      /// red
 #define RESET   "\033[0m"       /// Reset
-#define KEY int
+#define KEY Libro
 
 int main() {
 
@@ -97,19 +97,14 @@ int main() {
       std::cout << "Introduzca los elementos de la secuencia: ";
       std::string in_seq;
       std::cin >> in_seq;
-      int integer_seq = std::stoi(in_seq);
+      KEY integer_seq = std::stoi(in_seq);
       if (!regex_match(in_seq, std::regex("^[1-9]+[0-9]+$"))){
         std::cout << RED << "Error, el elemento debe ser un número\n" 
                   << RESET << std::endl;
         i--;
       }
-      else if (integer_seq < 1000 || integer_seq > 9999) {
-        std::cout << RED << "Error, el elemento debe estar entre 1000 y 9999\n" 
-                  << RESET << std::endl;
-        i--;
-      }
       else {
-        sequence.emplace_back(std::stoi(in_seq));
+        sequence.emplace_back(integer_seq);
       }
     }
   }
@@ -119,7 +114,8 @@ int main() {
      */
     srand(time(NULL));
     for (int i{0}; i < sequence_length; i++) {
-      sequence.emplace_back(rand() %(9999-1000 + 1) + 1000);
+      KEY random = rand() %(9999-1000 + 1) + 1000;
+      sequence.emplace_back(random);
     }
   }
 

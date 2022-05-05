@@ -63,7 +63,7 @@ int main() {
     std::cin >> num_elements;
   
     /// Comprobamos que se haya puesto bien el número de elementos
-    if (!regex_match(num_elements, std::regex("^[1-9]+$"))) {
+    if (!regex_match(num_elements, std::regex("^[1-9]+[0-9]+$"))) {
       std::cout << RED << "El número de elementos debe ser un número mayor que 0\n" 
                 << RESET << std::endl;
     }

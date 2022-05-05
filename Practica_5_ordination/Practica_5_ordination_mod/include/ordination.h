@@ -28,7 +28,7 @@ template<class Key>
 class Ordination {
   public:
   Ordination() {};
-  virtual void Sort(std::vector<Key> v, int seq_length)=0;
+  virtual void Sort(std::vector<Key> v, Key seq_length)=0;
 };
 
 
@@ -40,7 +40,7 @@ template<class Key>
 class SelectionSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key> v, int seq_length) override {
+  void Sort(std::vector<Key> v, Key seq_length) override {
     Selection<Key>(v, seq_length);
 
     /// Imprimimos el vector ordenado
@@ -58,7 +58,7 @@ class QuickSort : public Ordination<Key> {
 
  public:
   QuickSort(Key ini, Key fin) { ini_ = ini; fin_ = fin; };
-  void Sort(std::vector<Key> v, int seq_length) override { 
+  void Sort(std::vector<Key> v, Key seq_length) override { 
     FunctionQuickSort(v, ini_, fin_);
 
     /// Imprimimos el vector ordenado
@@ -94,7 +94,7 @@ class IncrementDecrement : public Ordination<Key> {
       }
     }
   }
-  void Sort(std::vector<Key> v, int seq_length) override {
+  void Sort(std::vector<Key> v, Key seq_length) override {
     FunctionIncrementDecrement(v, seq_length, alfa_);
 
     /// Imprimimos el vector ordenado
@@ -112,7 +112,7 @@ template<class Key>
 class HeapSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key> v, int seq_length) override {
+  void Sort(std::vector<Key> v, Key seq_length) override {
     FunctionHeapSort(v, seq_length);
   
     /// Imprimimos el vector ordenado
@@ -128,7 +128,7 @@ template<class Key>
 class RadixSort : public Ordination<Key> {
 
  public:
-  void Sort(std::vector<Key> v, int seq_length) override {
+  void Sort(std::vector<Key> v, Key seq_length) override {
     FunctionRadixSort(v, seq_length);
 
         /// Imprimimos el vector ordenado

@@ -49,15 +49,15 @@ void FunctionQuickSort(std::vector<T>& v, T ini, T fin) {
 
   while (i <= f) {
     while (v[i] < p) 
-      i++;
+      i = i + 1;
     while (v[f] > p)
-      f--;
+      f = f - 1;
     if (i <= f) {
       T aux = v[f];
       v[f] = v[i];
       v[i] = aux;
-      i++;
-      f--;
+      i = i + 1;
+      f = f - 1;
     }
   }
   if (traza) {
@@ -103,11 +103,14 @@ void Low(T i, std::vector<T>& v, T n) {
 }
 
 template<typename T>
-void FunctionHeapSort(std::vector<T>& v, int x) {
+void FunctionHeapSort(std::vector<T>& v, T x) {
   int iterator{0};
+  T aux1 = 0;
   x = x - 1;
   for (int i = x / 2; i >= 0; i--) {
-    Low(i, v, x);
+    T aux2 = i;
+    T aux3 = x;
+    Low(aux2, v, aux3);
     if (traza) {
       iterator++;
       /// mostramos el vector por pantalla tras hacer la iteracion del algoritmo
@@ -120,7 +123,8 @@ void FunctionHeapSort(std::vector<T>& v, int x) {
     T aux = v[i];
     v[i] = v[0];
     v[0] = aux;
-    Low(0, v, i-1);
+    T aux4 = i - 1;
+    Low(aux1, v, aux4);
     if (traza) {
       iterator++;
       /// mostramos el vector por pantalla tras hacer la iteracion del algoritmo

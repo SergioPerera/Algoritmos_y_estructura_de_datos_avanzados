@@ -19,6 +19,7 @@
 #include <regex>
 #include <fstream>
 #include "../include/ordination.h"
+#include "../include/clase.h"
 
 template<class Key>
 class Sequence {
@@ -28,9 +29,9 @@ class Sequence {
   Sequence(int sequence_length, std::vector<Key> v, std::string& algorithm);
 
   /// Operadores
-  friend std::ostream& operator<<(std::ostream& os, const Sequence& sq) {
+  friend std::ostream& operator<<(std::ostream& os, Sequence& sq) {
     for (ulong i = 0; i < sq.sequence_.size(); i++) {
-      os << sq.sequence_[i] << " ";
+      os << sq.sequence_[i].GetISBN() << " ";
     }
     return(os);
   }

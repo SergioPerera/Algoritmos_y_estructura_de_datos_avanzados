@@ -23,11 +23,19 @@ class AB {
   /// Métodos
   virtual bool Insert(const Key& key) = 0;
   virtual bool Search(const Key& key) const = 0;
-  virtual bool Inorden() const = 0;
+  virtual void Inorden() const = 0;
   // operator>>(std::ostream& os) const;
  private:
  protected:
   NodeB<Key>* root_;
 };
+
+template<typename Key>
+void AB<Key>::Inorden() const {
+  if (root_ == NULL) return;
+  std::cout << Inorden(root_ -> left_) << " ";
+  std::cout << root_.GetData() << " ";
+  std::cout << Inorden(root_ -> right_) << "";
+}
 
 #endif // _AB_H_

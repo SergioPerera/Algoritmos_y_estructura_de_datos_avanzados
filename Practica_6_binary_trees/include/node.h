@@ -8,7 +8,7 @@
 * @author Sergio Perera Márquez
 * Correo: alu0101394503@ull.edu.es
 * @date 10/05/2022
-* @file node.cc
+* @file node.h
 */
 
 #ifndef _NODOB_H_

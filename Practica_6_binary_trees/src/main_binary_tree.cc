@@ -12,6 +12,7 @@
 */
 
 #include "../include/node.h"
+#include "../include/AB.h"
 
 int main () {
   return(0);

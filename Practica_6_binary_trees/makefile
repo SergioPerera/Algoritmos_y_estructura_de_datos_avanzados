@@ -5,7 +5,7 @@ CFLAGS = -I -Weffc++ -Wall -g
 
 
 #Variables
-EJECUTABLE = lifecycle
+EJECUTABLE = binary_tree
 
 #En DEPSSRC va la dirección de los .h 
 DEPSSRC = include
@@ -56,6 +56,7 @@ template:
 				mkdir build
 				mkdir include
 				mkdir src
+				touch README.md
 	@echo "Plantilla creada correctamente"
 show:
 	@echo $(AUX)

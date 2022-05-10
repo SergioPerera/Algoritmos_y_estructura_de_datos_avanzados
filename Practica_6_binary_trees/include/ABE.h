@@ -30,10 +30,23 @@ class ABE : public AB<Key> {
   bool Search(const Key& key) const override;
   void Inorden() const override {AB<Key>::Inorden();};
 
+  bool InsertEquilibratedBranch(const Key& key);
+
   template<typename T>
   friend std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node); /// posible fallo por poner key
 
 };
+
+template<typename Key>
+bool ABE<Key>::InsertEquilibratedBranch(const Key& data) {
+
+}
+
+
+template<typename Key>
+bool ABE<Key>::Insert(const Key& data) {
+  
+}
 
 
 template<typename T>

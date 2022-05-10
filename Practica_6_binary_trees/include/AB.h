@@ -28,14 +28,21 @@ class AB {
  private:
  protected:
   NodeB<Key>* root_;
+  int BranchSize(NodeB<Key>* node) const;
 };
 
 template<typename Key>
 void AB<Key>::Inorden() const {
   if (root_ == NULL) return;
-  std::cout << Inorden(root_ -> left_) << " ";
+  std::cout << Inorden(root_ -> GetLeftSon()) << " ";
   std::cout << root_.GetData() << " ";
-  std::cout << Inorden(root_ -> right_) << "";
+  std::cout << Inorden(root_.GetRightSon()) << "";
+}
+
+template<typename Key>
+int AB<Key>::BranchSize(NodeB<Key>* node) const {
+  if (node == NULL) return 0; 
+  return 1 + BranchSize(node->left_) + BranchSize(node->right_);
 }
 
 #endif // _AB_H_

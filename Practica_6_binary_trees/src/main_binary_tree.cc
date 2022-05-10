@@ -16,6 +16,7 @@
 #include "../include/ABE.h"
 #include "../include/main_functions.h"
 #include <regex>
+#define KEY int
 
 int main (int argc, char* argv[]) {
 
@@ -29,12 +30,16 @@ int main (int argc, char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
+  /// Creammos el arbol binario y luego pasa a ser un árbol binario equilibrado
+  AB<KEY>* binary_tree{NULL};  //// Posible fallo al usar NULL en vez de nullptr
+  binary_tree = new ABE<KEY>;
+
+  std::string option;
   while (true) {
     /// Imprimimos el menú
     PrintMenu();
   
     /// Solicitamos al usuario la opción del menú
-    std::string option;
     std::cin >> option;
   
     /// Comprobamos que el usuario ha escogido una opción válida
@@ -42,9 +47,46 @@ int main (int argc, char* argv[]) {
       std::cout << RED << "Error: Opción no válida\n\n" << RESET <<  std::endl;  
     }
     else {
-      break;
+      switch (std::stoi(option)) {
+        case 0:
+          exit(EXIT_SUCCESS);
+          break;
+        case 1: {
+          std::string key;
+          while (true) {
+            std::cout << "Introduzca la clave a insertar: ";
+            std::cin >> key;
+            if (!regex_match(key, std::regex("^[1-9]+[0-9]$"))) {
+              std::cout << RED << "Error: Clave no válida\n\n" << RESET << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
+            }
+            else { break; }
+          }
+          binary_tree->Insert(std::stoi(key));
+          break;
+        }
+        case 2: {
+          std::string key;
+          while (true) {
+            std::cout << "Introduzca la clave a buscar: ";
+            std::cin >> key;
+            if (!regex_match(key, std::regex("^[1-9]+[0-9]$"))) {
+              std::cout << RED << "Error: Clave no válida\n\n" << RESET << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
+            }
+            else { break; }
+          }
+          binary_tree->Search(std::stoi(key));
+          break;
+        }
+        case 3:
+          binary_tree->Inorden();
+          break;
+        default:
+          std::cout << RED << "Error: Opción no válida\n\n" << RESET << std::endl;
+          break;
+      }
     }
   }
+
 
 
   return(0);

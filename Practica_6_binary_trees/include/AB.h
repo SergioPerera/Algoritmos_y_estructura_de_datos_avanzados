@@ -15,6 +15,7 @@
 #define _AB_H_
 #include <queue>
 #include <iostream>
+#include "../include/main_functions.h"
 template<class Key>
 class AB {
  public:
@@ -62,14 +63,15 @@ std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node) {
       out << "\n";
     }
     if (aux.first == nullptr){ 
-      out << "[.]";
+      out << YELLOW << "[.]";
     }
     else {
-      out << "[" << aux.first->GetData() << "]";
+      out << YELLOW << "[" << aux.first->GetData() << "]";
       q.push(std::make_pair(aux.first->GetLeftSon(), aux.second + 1));
       q.push(std::make_pair(aux.first->GetRightSon(), aux.second + 1));
     }
   }
+  out << RESET;
   return out;
 
 }

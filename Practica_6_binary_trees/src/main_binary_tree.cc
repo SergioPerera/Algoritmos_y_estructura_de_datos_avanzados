@@ -26,7 +26,7 @@ int main (int argc, char* argv[]) {
    */
 
   if (argc > 1) { 
-    std::cout << "Error: No se puede pasar parámetros" << std::endl;
+    std::cout << RED <<  "Error: No se puede pasar parámetros" << RESET << std::endl;
     exit(EXIT_FAILURE);
   }
 
@@ -55,7 +55,7 @@ int main (int argc, char* argv[]) {
           while (true) {
             std::cout << "Introduzca la clave a insertar: ";
             std::cin >> key;
-            if (!regex_match(key, std::regex("^[1-9]+[0-9]$"))) {
+            if (!regex_match(key, std::regex("^[1-9]*[0-9]$"))) {
               std::cout << RED << "Error: Clave no válida\n\n" << RESET 
               << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
             }
@@ -75,7 +75,7 @@ int main (int argc, char* argv[]) {
           while (true) {
             std::cout << "Introduzca la clave a buscar: ";
             std::cin >> key;
-            if (!regex_match(key, std::regex("^[1-9]+[0-9]$"))) {
+            if (!regex_match(key, std::regex("^[1-9]*[0-9]$"))) {
               std::cout << RED << "Error: Clave no válida\n\n" << RESET 
                         << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
             }

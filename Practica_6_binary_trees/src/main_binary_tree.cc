@@ -78,7 +78,7 @@ int main (int argc, char* argv[]) {
           break;
         }
         case 3:
-          binary_tree->Inorden();
+          // binary_tree->Inorden(binary_tree.GetRoot());
           break;
         default:
           std::cout << RED << "Error: Opción no válida\n\n" << RESET << std::endl;

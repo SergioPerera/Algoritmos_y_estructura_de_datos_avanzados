@@ -23,26 +23,26 @@ class AB {
   /// Métodos
   virtual bool Insert(const Key& key) = 0;
   virtual bool Search(const Key& key) const = 0;
-  virtual void Inorden() const = 0;
+  // virtual void Inorden(const NodeB<Key>* nodo) const = 0;
+  void Inorden(const NodeB<Key>* nodo) const;
+
   // operator>>(std::ostream& os) const;
  private:
  protected:
   NodeB<Key>* root_;
-  int BranchSize(NodeB<Key>* node) const;
+  NodeB<Key>* GetRoot() { return root_; }  
+  // int BranchSize(NodeB<Key>* node) const;
 };
 
-template<typename Key>
-void AB<Key>::Inorden() const {
-  if (root_ == NULL) return;
-  std::cout << Inorden(root_ -> GetLeftSon()) << " ";
-  std::cout << root_.GetData() << " ";
-  std::cout << Inorden(root_.GetRightSon()) << "";
-}
+
 
 template<typename Key>
-int AB<Key>::BranchSize(NodeB<Key>* node) const {
-  if (node == NULL) return 0; 
-  return 1 + BranchSize(node->left_) + BranchSize(node->right_);
+void AB<Key>::Inorden(const NodeB<Key>* node) const {
+  if (node == NULL) return;
+  std::cout << Inorden(node->GetLeftSon()) << " ";
+  std::cout << node.GetData() << " ";
+  std::cout << Inorden(node->GetRightSon()) << "";
 }
+
 
 #endif // _AB_H_

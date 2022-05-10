@@ -25,8 +25,8 @@ class NodeB {
       data_(key), left_(left), right_(right) {};
 
   /// Getters
-  NodeB<Key> GetRightSon() { return right_; };
-  NodeB<Key> GetLeftSon() { return left_; };
+  NodeB<Key>* GetRightSon() { return right_; };
+  NodeB<Key>* GetLeftSon() { return left_; };
   Key GetData() { return data_; };
 
   /// Setters

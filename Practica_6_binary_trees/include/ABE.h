@@ -28,14 +28,27 @@ class ABE : public AB<Key> {
   /// Métodos
   bool Insert(const Key& key) override;
   bool Search(const Key& key) const override;
-  void Inorden() const override {AB<Key>::Inorden();};
+  // void Inorden(const NodeB<Key>* nodo) const override {AB<Key>::Inorden();};
+  // void Inorden(const NodeB<Key>* nodo) const override;
 
-  bool InsertEquilibratedBranch(const Key& key, NodeB<Key>* node);  
+
+  bool InsertEquilibratedBranch(const Key& key, NodeB<Key>* node);
+  int BranchSize(NodeB<Key>* node) const;  
 
   template<typename T>
   friend std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node); /// posible fallo por poner key
 
+  // template<typename Key>
+  bool SearchDataPreorder(NodeB<Key>* nodo, const Key& data) const;
 };
+
+
+
+template<typename Key>
+int ABE<Key>::BranchSize(NodeB<Key>* node) const {
+  if (node == NULL) return 0; 
+  return 1 + BranchSize(node->GetLeftSon()) + BranchSize(node->GetRightSon());
+}
 
 template<typename Key>
 bool ABE<Key>::Insert(const Key& data) {
@@ -52,34 +65,25 @@ bool ABE<Key>::Insert(const Key& data) {
 
 template<typename Key>
 bool ABE<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
-  //  if (TamRama(nodo->izdo) <= TamRama(nodo->dcho)) {
-  //   if (nodo->izdo != NULL)
-  //     InsertaEquilRama(dato, nodo->izdo);
-  //   else
-  //     nodo->izdo = new nodoB(dato, NULL, NULL);
-  // }
-  // else {
-  //   if (nodo->dcho != NULL) 
-  //     InsertaEquilRama(dato, nodo->dcho);
-  //   else
-  //     nodo->dcho = new nodoB(dato, NULL, NULL);
-  // }
   bool inserted{false};
-  if (BranchSize(node->left_) <= BranchSize(node->right_)) {
-    if (node->left_ != NULL) {
-      InsertEquilibratedBranch(data, node->left_);
+  if (BranchSize(node->GetLeftSon()) <= BranchSize(node->GetRightSon())) {
+    if (node->GetLeftSon() != NULL) {
+      InsertEquilibratedBranch(data, node->GetLeftSon());
     }
-    else { // node->left_ == NULL
-      node->left_ = new NodeB<Key>(data, NULL, NULL);
+    else { // node->GetLeftSon() == NULL
+      // node->GetLeftSon() = new NodeB<Key>(data, NULL, NULL);
+      node->SetLeftSon(new NodeB<Key>(data, NULL, NULL));
+
       inserted = true;
     }
   }
   else {
-    if (node->right_ != NULL) {
-      InsertEquilibratedBranch(data, node->right_); 
+    if (node->GetRightSon() != NULL) {
+      InsertEquilibratedBranch(data, node->GetRightSon()); 
     }
     else{
-      node->right_ = new NodeB<Key>(data, NULL, NULL);
+      // node->GetRightSon() = new NodeB<Key>(data, NULL, NULL);
+      node->SetRightSon(new NodeB<Key>(data, NULL, NULL));
       inserted = true;
     }
   }
@@ -114,4 +118,23 @@ std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node) {
   return out;
 }
 
+template<typename Key>
+bool ABE<Key>::SearchDataPreorder(NodeB<Key>* node, const Key& data) const {
+  bool result{false};
+  if (node != nullptr) {
+    if (data == node->GetData()) result = true;
+    else {
+      result = this->SearchDataPreorder(node->GetLeftSon(), data);
+      if (!result) result = this->SearchDataPreorder(node->GetRightSon(), data);
+    }
+  }
+  return result;
+}
+
+template<typename Key>
+bool ABE<Key>::Search(const Key& data) const {
+  bool result{false};
+  result = this->SearchDataPreorder(this->root_, data);
+  return result;
+}
 #endif // _ABE_H_

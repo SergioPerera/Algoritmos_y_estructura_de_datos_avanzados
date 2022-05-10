@@ -13,7 +13,8 @@
 
 #ifndef _AB_H_
 #define _AB_H_
-
+#include <queue>
+#include <iostream>
 template<class Key>
 class AB {
  public:
@@ -24,25 +25,53 @@ class AB {
   virtual bool Insert(const Key& key) = 0;
   virtual bool Search(const Key& key) const = 0;
   // virtual void Inorden(const NodeB<Key>* nodo) const = 0;
-  void Inorden(const NodeB<Key>* nodo) const;
-
-  // operator>>(std::ostream& os) const;
+  void Inorden() const { this->Inorden_I(this->root_);};
+  void Inorden_I(const NodeB<Key>* node) const;
+  NodeB<Key>* GetRootAB() { return root_; }
+  template<typename T>
+  friend std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node); /// posible fallo por poner key
  private:
  protected:
   NodeB<Key>* root_;
-  NodeB<Key>* GetRoot() { return root_; }  
-  // int BranchSize(NodeB<Key>* node) const;
+  NodeB<Key>* GetRoot() { return root_; }
 };
 
 
 
 template<typename Key>
-void AB<Key>::Inorden(const NodeB<Key>* node) const {
+void AB<Key>::Inorden_I(const NodeB<Key>* node) const {
   if (node == NULL) return;
-  std::cout << Inorden(node->GetLeftSon()) << " ";
-  std::cout << node.GetData() << " ";
-  std::cout << Inorden(node->GetRightSon()) << "";
+  this->Inorden_I(node->GetLeftSon());
+  std::cout << node->GetData() << " ";
+  this->Inorden_I(node->GetRightSon());
 }
 
+
+template<typename T>
+std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node) {
+  std::queue<std::pair<NodeB<T>*, T>> q; /// Posible fallo por poner T en vez de int
+  std::pair<NodeB<T>*, T> aux {in_node->root_, 0};/// Posible fallo por poner T en vez de int
+  T current_level{0};
+  q.push(aux);
+  while (!q.empty()) {
+    aux = q.front();
+    q.pop();
+
+    if (aux.second > current_level) {
+      current_level = aux.second;
+      out << "\n";
+    }
+    if (aux.first == nullptr){ 
+      out << "[.]";
+    }
+    else {
+      out << "[" << aux.first->GetData() << "]";
+      q.push(std::make_pair(aux.first->GetLeftSon(), aux.second + 1));
+      q.push(std::make_pair(aux.first->GetRightSon(), aux.second + 1));
+    }
+  }
+  return out;
+
+}
 
 #endif // _AB_H_

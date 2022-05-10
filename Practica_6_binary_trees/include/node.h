@@ -25,9 +25,9 @@ class NodeB {
       data_(key), left_(left), right_(right) {};
 
   /// Getters
-  NodeB<Key>* GetRightSon() { return right_; };
-  NodeB<Key>* GetLeftSon() { return left_; };
-  Key GetData() { return data_; };
+  NodeB<Key>* GetRightSon()const { return right_; } ;
+  NodeB<Key>* GetLeftSon() const{ return left_; };
+  Key GetData() const { return data_; };
 
   /// Setters
   void SetRightSon(NodeB<Key>* right) { right_ = right; };

@@ -38,13 +38,12 @@ int main (int argc, char* argv[]) {
   while (true) {
     /// Imprimimos el menú
     PrintMenu();
-  
     /// Solicitamos al usuario la opción del menú
     std::cin >> option;
-  
+    std::cout << RESET;
     /// Comprobamos que el usuario ha escogido una opción válida
     if(!regex_match(option, std::regex("[0-3]"))) {
-      std::cout << RED << "Error: Opción no válida\n\n" << RESET <<  std::endl;  
+      std::cout << RED << "Error: Opción no válida\n\n" << RESET << std::endl;  
     }
     else {
       switch (std::stoi(option)) {
@@ -57,11 +56,18 @@ int main (int argc, char* argv[]) {
             std::cout << "Introduzca la clave a insertar: ";
             std::cin >> key;
             if (!regex_match(key, std::regex("^[1-9]+[0-9]$"))) {
-              std::cout << RED << "Error: Clave no válida\n\n" << RESET << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
+              std::cout << RED << "Error: Clave no válida\n\n" << RESET 
+              << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
             }
             else { break; }
           }
-          binary_tree->Insert(std::stoi(key));
+          if (binary_tree->Insert(std::stoi(key))) {
+            std::cout << GREEN << "Clave insertada correctamente\n" << RESET << std::endl;
+          }
+          else {
+            std::cout << RED << "Error: Clave ya existente\n" << RESET << std::endl;
+          }
+          std::cout << binary_tree << std::endl;
           break;
         }
         case 2: {
@@ -70,15 +76,25 @@ int main (int argc, char* argv[]) {
             std::cout << "Introduzca la clave a buscar: ";
             std::cin >> key;
             if (!regex_match(key, std::regex("^[1-9]+[0-9]$"))) {
-              std::cout << RED << "Error: Clave no válida\n\n" << RESET << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
+              std::cout << RED << "Error: Clave no válida\n\n" << RESET 
+                        << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
             }
             else { break; }
           }
-          binary_tree->Search(std::stoi(key));
+          if (binary_tree->Search(std::stoi(key))) {
+            std::cout << GREEN << "La clave " << key 
+                      << " se encuentra en el árbol"
+                      << RESET << std::endl;
+          }
+          else {
+            std::cout << RED << "La clave " << key 
+                      << " no se encuentra en el árbol"
+                      << RESET << std::endl;
+          }
           break;
         }
         case 3:
-          // binary_tree->Inorden(binary_tree.GetRoot());
+          binary_tree->Inorden();
           break;
         default:
           std::cout << RED << "Error: Opción no válida\n\n" << RESET << std::endl;

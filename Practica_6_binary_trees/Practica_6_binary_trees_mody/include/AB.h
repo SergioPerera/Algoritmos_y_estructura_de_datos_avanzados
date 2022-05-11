@@ -16,6 +16,8 @@
 #include <queue>
 #include <iostream>
 #include "../include/main_functions.h"
+#include "../include/clase_mod.h"
+
 
 /**
  * @brief Clase abstracta Árbol Binario (AB), que sirve para generar un objeto
@@ -41,7 +43,7 @@ class AB {
   friend std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node);                   /// posible fallo por poner key
 
   Key& operator[](const Key& pos) {
-    return this->SearchDataDummy(this->root_, pos);
+    return SearchDataDummy(this->root_, pos);
   };
 
  private:
@@ -53,16 +55,27 @@ class AB {
 
 template<typename Key>
 Key& AB<Key>::SearchDataDummy(NodeB<Key>* nodo, const Key& data) const {
-  Key *result;
-  Key aux = nodo->GetData();
+  bool result{false};
   if (nodo != nullptr) {
-    if (data == nodo->GetData()) nodo->GetData();
+    if (data == nodo->GetData()){
+      result = true;
+      return nodo->GetData();
+    }
     else {
-      *result = this->SearchDataDummy(nodo->GetLeftSon(), data);
-      if (result == nullptr) *result = this->SearchDataDummy(nodo->GetRightSon(), data);
+      SearchDataDummy(nodo->GetLeftSon(), data);
+      if (!result == false) SearchDataDummy(nodo->GetRightSon(), data);
     }
   }
-  return *result;
+  // return *result;
+  // Key result;
+  // if (node != nullptr) {
+  //   if (data == node->GetData()) result = true;
+  //   else {
+  //     result = this->SearchDataPreorder(node->GetLeftSon(), data);
+  //     if (!result) result = this->SearchDataPreorder(node->GetRightSon(), data);
+  //   }
+  // }
+  // return result;
 }
 
 /**
@@ -91,9 +104,9 @@ void AB<Key>::Inorden_I(const NodeB<Key>* node) const {
  */
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node) {
-  std::queue<std::pair<NodeB<T>*, int>> q; /// Posible fallo por poner T en vez de int
-  std::pair<NodeB<T>*, int> aux {in_node->root_, 0};/// Posible fallo por poner T en vez de int
-  int current_level{0};
+  std::queue<std::pair<NodeB<T>*, T>> q; /// Posible fallo por poner T en vez de T
+  std::pair<NodeB<T>*, T> aux {in_node->root_, 0};/// Posible fallo por poner T en vez de T
+  T current_level{0};
   q.push(aux);
   while (!q.empty()) {
     aux = q.front();

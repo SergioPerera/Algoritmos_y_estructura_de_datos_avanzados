@@ -17,7 +17,7 @@
 #include "../include/main_functions.h"
 #include "../include/clase_mod.h"
 #include <regex>
-#define KEY int
+#define KEY Mod
 
 /**
  * @brief Función main que se encarga de ejecutra la estructura base del 
@@ -61,9 +61,10 @@ int main (int argc, char* argv[]) {
        * 
        */
       switch (std::stoi(option)) {
-        case 0:
+        case 0: {
           exit(EXIT_SUCCESS);
           break;
+        }
         case 1: {
           std::string key;
           while (true) {
@@ -75,7 +76,8 @@ int main (int argc, char* argv[]) {
             }
             else { break; }
           }
-          if (binary_tree->Insert(std::stoi(key))) {
+          Mod a{std::stoi(key), ""};
+          if (binary_tree->Insert(a)) {
             std::cout << GREEN << "Clave insertada correctamente\n" << RESET 
                       << std::endl;
           }
@@ -96,10 +98,13 @@ int main (int argc, char* argv[]) {
             }
             else { break; }
           }
-          if (binary_tree->Search(std::stoi(key))) {
+          Mod a{std::stoi(key), ""};
+          
+          if (binary_tree->Search(a)) {
             std::cout << GREEN << "La clave " << key 
                       << " se encuentra en el árbol"
                       << RESET << std::endl;
+            binary_tree->operator[](a).name = "X";
           }
           else {
             std::cout << RED << "La clave " << key 
@@ -118,16 +123,7 @@ int main (int argc, char* argv[]) {
     }
   }
 
-  AB<Mod>* mod_tree{NULL};                                                        /// Posible fallo al usar NULL en vez de nullptr
-  mod_tree = new ABE<Mod>;
-    Mod d{3, ""};
-    mod_tree->Insert(d);
 
-    if (mod_tree->Search(d)) {
-      std::cout << mod_tree << "\n\n";
-      mod_tree->operator[](d).name = "X";
-      std::cout << mod_tree << "\n";
-    }
 
   return(0);
 }

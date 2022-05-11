@@ -70,7 +70,7 @@ bool ABE<Key>::Insert(const Key& data) {
   if (Search(data) == false) {
     if (this->root_ == NULL) {
       this->root_ = new NodeB<Key>(data);
-      inserted = true; // Insertado
+      inserted = true;
     }
     else {
       inserted = InsertEquilibratedBranch(data, this->root_);

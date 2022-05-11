@@ -23,6 +23,10 @@
 #define MAGENTA "\033[35m"      /// magenta
 #define CYAN    "\033[36m"      /// cyan
 
+/**
+ * @brief Función encargada de mostrar por pantalla el menú de selección
+ * 
+ */
 void PrintMenu();
 
 #endif // _MAIN_FUNCTIONS_H_

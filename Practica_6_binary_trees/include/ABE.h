@@ -18,7 +18,12 @@
 #include "../include/node.h"
 
 #include <queue>
-
+/**
+ * @brief Clase Árbol Binario Equilibrado (ABE), que sirve para generar un objeto
+ * árbol binario equilibrado, heredando métodos de la clase AB
+ * 
+ * @tparam Key 
+ */
 template<class Key>
 class ABE : public AB<Key> {
  public:
@@ -37,13 +42,28 @@ class ABE : public AB<Key> {
 };
 
 
-
+/**
+ * @brief Función que se encarga de medir la longitud de la rama
+ * 
+ * @tparam Key 
+ * @param node Nodo a insetar
+ * @return int 
+ */
 template<typename Key>
 int ABE<Key>::BranchSize(NodeB<Key>* node) const {
   if (node == NULL) return 0; 
   return 1 + BranchSize(node->GetLeftSon()) + BranchSize(node->GetRightSon());
 }
 
+/**
+ * @brief Función encargada de insertar un nodo nuevo, comprobando que no esté 
+ * insetado ya
+ * 
+ * @tparam Key 
+ * @param data Es el nodo que se quiere introducir
+ * @return true 
+ * @return false 
+ */
 template<typename Key>
 bool ABE<Key>::Insert(const Key& data) {
   bool inserted = false;
@@ -59,7 +79,16 @@ bool ABE<Key>::Insert(const Key& data) {
   return inserted;
 }
 
-
+/**
+ * @brief Función que inserta un nodo de manera que mantenga el equilibrio de 
+ * las ramas
+ * 
+ * @tparam Key 
+ * @param data dato a insertar
+ * @param node nodo a insertar
+ * @return true 
+ * @return false 
+ */
 template<typename Key>
 bool ABE<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
   bool inserted{false};
@@ -86,7 +115,15 @@ bool ABE<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
 }
 
 
-
+/**
+ * @brief Buscar datos siguiendo el algoritmo de preorden
+ * 
+ * @tparam Key 
+ * @param node nodo raíz
+ * @param data dato que se buscac
+ * @return true 
+ * @return false 
+ */
 template<typename Key>
 bool ABE<Key>::SearchDataPreorder(NodeB<Key>* node, const Key& data) const {
   bool result{false};
@@ -100,6 +137,14 @@ bool ABE<Key>::SearchDataPreorder(NodeB<Key>* node, const Key& data) const {
   return result;
 }
 
+/**
+ * @brief Función encargada de buscar un dato, llamando a la función de preorden
+ * 
+ * @tparam Key 
+ * @param data dato que se pretende buscar
+ * @return true si se ha encontrado el dato
+ * @return false si no se ha encontrado el dato
+ */
 template<typename Key>
 bool ABE<Key>::Search(const Key& data) const {
   bool result{false};

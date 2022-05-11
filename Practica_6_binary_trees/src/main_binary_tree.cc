@@ -18,6 +18,14 @@
 #include <regex>
 #define KEY int
 
+/**
+ * @brief Función main que se encarga de ejecutra la estructura base del 
+ * programa
+ * 
+ * @param argc Número de argumentos
+ * @param argv Vector de argumentos
+ * @return int 
+ */
 int main (int argc, char* argv[]) {
 
   /**
@@ -26,12 +34,13 @@ int main (int argc, char* argv[]) {
    */
 
   if (argc > 1) { 
-    std::cout << RED <<  "Error: No se puede pasar parámetros" << RESET << std::endl;
+    std::cout << RED <<  "Error: No se puede pasar parámetros" << RESET 
+              << std::endl;
     exit(EXIT_FAILURE);
   }
 
   /// Creammos el arbol binario y luego pasa a ser un árbol binario equilibrado
-  AB<KEY>* binary_tree{NULL};  //// Posible fallo al usar NULL en vez de nullptr
+  AB<KEY>* binary_tree{NULL};                                                        /// Posible fallo al usar NULL en vez de nullptr
   binary_tree = new ABE<KEY>;
 
   std::string option;
@@ -46,6 +55,10 @@ int main (int argc, char* argv[]) {
       std::cout << RED << "Error: Opción no válida\n\n" << RESET << std::endl;  
     }
     else {
+      /**
+       * @brief Construct a new switch object para ejecutar la opción
+       * 
+       */
       switch (std::stoi(option)) {
         case 0:
           exit(EXIT_SUCCESS);
@@ -57,12 +70,13 @@ int main (int argc, char* argv[]) {
             std::cin >> key;
             if (!regex_match(key, std::regex("^[1-9]*[0-9]$"))) {
               std::cout << RED << "Error: Clave no válida\n\n" << RESET 
-              << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
+              << std::endl;                                                            /// Posible fallo si se cambia la key por algo que no sean números enteros
             }
             else { break; }
           }
           if (binary_tree->Insert(std::stoi(key))) {
-            std::cout << GREEN << "Clave insertada correctamente\n" << RESET << std::endl;
+            std::cout << GREEN << "Clave insertada correctamente\n" << RESET 
+                      << std::endl;
           }
           else {
             std::cout << RED << "Error: Clave ya existente\n" << RESET << std::endl;
@@ -77,7 +91,7 @@ int main (int argc, char* argv[]) {
             std::cin >> key;
             if (!regex_match(key, std::regex("^[1-9]*[0-9]$"))) {
               std::cout << RED << "Error: Clave no válida\n\n" << RESET 
-                        << std::endl;  /// Posible fallo si se cambia la key por algo que no sean números enteros
+                        << std::endl;                                                 /// Posible fallo si se cambia la key por algo que no sean números enteros
             }
             else { break; }
           }

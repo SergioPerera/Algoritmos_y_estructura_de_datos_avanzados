@@ -12,8 +12,11 @@
 */
 
 #include "../include/main_functions.h"
-
 #include <iostream>
+/**
+ * @brief Función encargada de mostrar por pantalla el menú de selección
+ * 
+ */
 void PrintMenu() {
   std::cout << "\n[0] Salir" 
             << "\n[1] Insertar"

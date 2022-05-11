@@ -16,6 +16,13 @@
 #include <queue>
 #include <iostream>
 #include "../include/main_functions.h"
+
+/**
+ * @brief Clase abstracta Árbol Binario (AB), que sirve para generar un objeto
+ * árbol binario
+ * 
+ * @tparam Key 
+ */
 template<class Key>
 class AB {
  public:
@@ -38,7 +45,13 @@ class AB {
 };
 
 
-
+/**
+ * @brief Función que se encarga de imprimir los datos del árbol 
+ * siguiendo el algoritmo de inorden
+ * 
+ * @tparam Key 
+ * @param node 
+ */
 template<typename Key>
 void AB<Key>::Inorden_I(const NodeB<Key>* node) const {
   if (node == NULL) return;
@@ -47,7 +60,15 @@ void AB<Key>::Inorden_I(const NodeB<Key>* node) const {
   this->Inorden_I(node->GetRightSon());
 }
 
-
+/**
+ * @brief Operador de salida para imprimir los datos del árbol haciendo un 
+ * recorrido por niveles
+ * 
+ * @tparam T 
+ * @param out variable que contiene el árbol listo para ser impeso por pantalla
+ * @param in_node Nodo raíz del árbol
+ * @return std::ostream& 
+ */
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node) {
   std::queue<std::pair<NodeB<T>*, T>> q; /// Posible fallo por poner T en vez de int

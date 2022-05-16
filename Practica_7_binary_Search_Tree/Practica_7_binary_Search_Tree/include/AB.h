@@ -71,30 +71,55 @@ void AB<Key>::Inorden_I(const NodeB<Key>* node) const {
  */
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node) {
-  std::queue<std::pair<NodeB<T>*, T>> q; /// Posible fallo por poner T en vez de int
-  std::pair<NodeB<T>*, T> aux {in_node->root_, 0};/// Posible fallo por poner T en vez de int
-  T current_level{0};
-  q.push(aux);
-  while (!q.empty()) {
-    aux = q.front();
-    q.pop();
+  // std::queue<std::pair<NodeB<T>*, T>> q; /// Posible fallo por poner T en vez de int
+  // std::pair<NodeB<T>*, T> aux {in_node->root_, 0};/// Posible fallo por poner T en vez de int
+  // T current_level{0};
+  // q.push(aux);
+  // while (!q.empty()) {
+  //   aux = q.front();
+  //   q.pop();
 
-    if (aux.second > current_level) {
-      current_level = aux.second;
+  //   if (aux.second > current_level) {
+  //     current_level = aux.second;
+  //     out << "\n";
+  //   }
+  //   if (aux.first == nullptr){ 
+  //     out << YELLOW << "[.]";   
+  //   }
+  //   else {
+  //     out << YELLOW << "[" << aux.first->GetData() << "]";
+  //     q.push(std::make_pair(aux.first->GetLeftSon(), aux.second + 1));
+  //     q.push(std::make_pair(aux.first->GetRightSon(), aux.second + 1));
+  //   }
+  // }
+  // out << RESET;
+  // return out;
+
+  std::queue<std::pair<NodeB<T>*, int>> aux_queue;
+  std::pair<NodeB<T>*, int> aux_pair{in_node->root_, 0};
+  int current_level{0};
+  aux_queue.push(aux_pair);
+  while (!aux_queue.empty()) {
+    aux_pair = aux_queue.front(); ///< Guardamos la parte inicial de la cola, luego la borramos
+    aux_queue.pop();
+    if (aux_pair.second > current_level) {
+      current_level = aux_pair.second;
       out << "\n";
     }
-    if (aux.first == nullptr){ 
-      out << YELLOW << "[.]";
+    if(aux_pair.first != nullptr) {
+      out << "[" << aux_pair.first->GetData() << "]";
+      aux_queue.push(std::make_pair(aux_pair.first->GetLeftSon(), aux_pair.second + 1));
+      aux_queue.push(std::make_pair(aux_pair.first->GetRightSon(), aux_pair.second + 1));
     }
-    else {
-      out << YELLOW << "[" << aux.first->GetData() << "]";
-      q.push(std::make_pair(aux.first->GetLeftSon(), aux.second + 1));
-      q.push(std::make_pair(aux.first->GetRightSon(), aux.second + 1));
-    }
+    else out << "[.]";
+    // if (aux_pair.first == nullptr) out << "[.]";
+    // else {
+    //   out << "[" << aux_pair.first->GetData() << "]";
+    //   aux_queue.push(std::make_pair(aux_pair.first->GetLeftSon(), aux_pair.second + 1));
+    //   aux_queue.push(std::make_pair(aux_pair.first->GetRightSon(), aux_pair.second + 1));
+    // }
   }
-  out << RESET;
   return out;
-
 }
 
 #endif // _AB_H_

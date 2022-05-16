@@ -25,10 +25,14 @@ class NodeB {
       data_(key), left_(left), right_(right) {};
 
   /// Getters
-  NodeB<Key>* GetRightSon()const { return right_; } ;
-  NodeB<Key>* GetLeftSon() const{ return left_; };
-  Key GetData() const { return data_; };
+  NodeB<Key>* GetRightSon() const { return right_; };
+  NodeB<Key>* GetLeftSon() const { return left_; };
 
+  NodeB<Key>*& GetRightSonReferenced() { return right_; };
+  NodeB<Key>*& GetLeftSonReferenced() { return left_; };
+
+  Key GetData() const { return data_; };
+  
   /// Setters
   void SetRightSon(NodeB<Key>* right) { right_ = right; };
   void SetLeftSon(NodeB<Key>* left) { left_ = left; };

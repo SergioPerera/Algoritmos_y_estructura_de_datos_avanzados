@@ -39,6 +39,7 @@ class ABB : public AB<Key> {
   
   // template<typename Key>
   bool SearchDataPreorder(NodeB<Key>* nodo, const Key& data) const;
+  bool InsertBranch(NodeB<Key>* &node, const Key& data) const;
 };
 
 
@@ -73,12 +74,27 @@ bool ABB<Key>::Insert(const Key& data) {
       inserted = true;
     }
     else {
-      inserted = InsertEquilibratedBranch(data, this->root_);
+      inserted = InsertBranch(this->root_, data);
     }
   }
   return inserted;
 }
 
+template<typename Key>
+bool ABB<Key>::InsertBranch(NodeB<Key>* &node, const Key& data) const {
+  bool inserted {false};
+  if (node == NULL) {
+    node = new NodeB<Key>(data, NULL, NULL);
+    inserted = true;
+  }
+  else if (data < node->GetData()) {
+    inserted = InsertBranch(node->GetLeftSonReferenced(), data);
+  }
+  else {
+    inserted = InsertBranch(node->GetRightSonReferenced(), data);
+  } 
+  return (inserted);
+}
 /**
  * @brief Función que inserta un nodo de manera que mantenga el equilibrio de 
  * las ramas

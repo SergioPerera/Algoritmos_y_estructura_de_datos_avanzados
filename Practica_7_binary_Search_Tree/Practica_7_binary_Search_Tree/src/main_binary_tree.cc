@@ -14,6 +14,7 @@
 #include "../include/node.h"
 #include "../include/AB.h"
 #include "../include/ABE.h"
+#include "../include/ABB.h"
 #include "../include/main_functions.h"
 #include <regex>
 #define KEY int
@@ -40,8 +41,37 @@ int main (int argc, char* argv[]) {
   }
 
   /// Creammos el arbol binario y luego pasa a ser un árbol binario equilibrado
-  AB<KEY>* binary_tree{NULL};                                                        /// Posible fallo al usar NULL en vez de nullptr
-  binary_tree = new ABE<KEY>;
+  AB<KEY>* binary_tree{NULL};
+
+  while (true) {
+    std::cout << "Seleccione una opción: "
+              << "\n[0] Salir"
+              << "\n[1] Árbol binario equilibrado"
+              << "\n[2] Árbol binario de búsqueda"
+              << GREEN << "\n>>>>> ";
+    int option{0};
+    std::cin >> option;
+    std::cout << RESET << std::endl;
+    if (std::regex_match(std::to_string(option), std::regex("[0-2]"))) {
+      switch (option) {
+        case 0:
+          exit(EXIT_SUCCESS);
+          break;
+        case 1:
+          binary_tree = new ABE<KEY>();
+          break;
+        case 2:
+          binary_tree = new ABB<KEY>();
+          break;
+        default:
+          break;
+      }
+      break; /// Break encargado de parar el bucle
+    } else {
+      std::cout << RED << "Error: Opción incorrecta" << RESET << std::endl;
+      continue;
+    }
+  }
 
   std::string option;
   while (true) {

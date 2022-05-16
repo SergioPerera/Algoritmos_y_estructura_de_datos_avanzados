@@ -23,7 +23,7 @@
  * árbol binario equilibrado, heredando métodos de la clase AB
  * 
  * @tparam Key 
- */
+ */ 
 template<class Key>
 class ABB : public AB<Key> {
  public:
@@ -98,13 +98,13 @@ bool ABB<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
     }
     else { 
       node->SetLeftSon(new NodeB<Key>(data, NULL, NULL));
-
       inserted = true;
     }
   }
   else {
     if (node->GetRightSon() != NULL) {
       InsertEquilibratedBranch(data, node->GetRightSon()); 
+      inserted = true;
     }
     else{
       node->SetRightSon(new NodeB<Key>(data, NULL, NULL));

@@ -37,9 +37,9 @@ class ABE : public AB<Key> {
   bool InsertEquilibratedBranch(const Key& key, NodeB<Key>* node);
   int BranchSize(NodeB<Key>* node) const;  
   
-  // template<typename Key>
   bool SearchDataPreorder(NodeB<Key>* nodo, const Key& data) const;
 };
+
 
 
 /**
@@ -98,13 +98,13 @@ bool ABE<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
     }
     else { 
       node->SetLeftSon(new NodeB<Key>(data, NULL, NULL));
-
       inserted = true;
     }
   }
   else {
     if (node->GetRightSon() != NULL) {
       InsertEquilibratedBranch(data, node->GetRightSon()); 
+      inserted = true;
     }
     else{
       node->SetRightSon(new NodeB<Key>(data, NULL, NULL));
@@ -147,8 +147,8 @@ bool ABE<Key>::SearchDataPreorder(NodeB<Key>* node, const Key& data) const {
  */
 template<typename Key>
 bool ABE<Key>::Search(const Key& data) const {
-  bool result{false};
-  result = this->SearchDataPreorder(this->root_, data);
-  return result;
+  return SearchDataPreorder(this->root_, data);
 }
+
+
 #endif // _ABE_H_

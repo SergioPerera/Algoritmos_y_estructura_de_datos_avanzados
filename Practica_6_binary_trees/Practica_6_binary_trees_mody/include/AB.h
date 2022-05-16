@@ -34,7 +34,6 @@ class AB {
   /// Métodos
   virtual bool Insert(const Key& key) = 0;
   virtual bool Search(const Key& key) const = 0;
-  // virtual void Inorden(const NodeB<Key>* nodo) const = 0;
   void Inorden() const { this->Inorden_I(this->root_);};
   void Inorden_I(const NodeB<Key>* node) const;
   NodeB<Key>* GetRootAB() { return root_; }
@@ -66,16 +65,6 @@ Key& AB<Key>::SearchDataDummy(NodeB<Key>* nodo, const Key& data) const {
       if (!result == false) SearchDataDummy(nodo->GetRightSon(), data);
     }
   }
-  // return *result;
-  // Key result;
-  // if (node != nullptr) {
-  //   if (data == node->GetData()) result = true;
-  //   else {
-  //     result = this->SearchDataPreorder(node->GetLeftSon(), data);
-  //     if (!result) result = this->SearchDataPreorder(node->GetRightSon(), data);
-  //   }
-  // }
-  // return result;
 }
 
 /**

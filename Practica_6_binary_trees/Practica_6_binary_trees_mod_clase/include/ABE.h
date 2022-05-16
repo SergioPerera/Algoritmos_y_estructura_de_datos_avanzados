@@ -36,11 +36,11 @@ class ABE : public AB<Key> {
 
   bool InsertEquilibratedBranch(const Key& key, NodeB<Key>* node);
   int BranchSize(NodeB<Key>* node) const;  
-  
-  // template<typename Key>
   bool SearchDataPreorder(NodeB<Key>* nodo, const Key& data) const;
+  int Peso(NodeB<Key>* nodo) const;
 };
 
+  int weight;
 
 /**
  * @brief Función que se encarga de medir la longitud de la rama
@@ -49,10 +49,17 @@ class ABE : public AB<Key> {
  * @param node Nodo a insetar
  * @return int 
  */
+// template<typename Key>
+// int ABE<Key>::BranchSize(NodeB<Key>* node) const {
+//   if (node == NULL) return 0; 
+//   return 1 + BranchSize(node->GetLeftSon()) + BranchSize(node->GetRightSon());
+// }
+
 template<typename Key>
-int ABE<Key>::BranchSize(NodeB<Key>* node) const {
+int ABE<Key>::Peso(NodeB<Key>* node) const {
   if (node == NULL) return 0; 
-  return 1 + BranchSize(node->GetLeftSon()) + BranchSize(node->GetRightSon());
+  weight = node->GetData() + Peso(node->GetLeftSon()) + Peso(node->GetRightSon());
+  return weight;
 }
 
 /**
@@ -89,10 +96,35 @@ bool ABE<Key>::Insert(const Key& data) {
  * @return true 
  * @return false 
  */
+// template<typename Key>
+// bool ABE<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
+//   bool inserted{false};
+//   if (this->BranchSize(node->GetLeftSon()) <= this->BranchSize(node->GetRightSon())) {
+//     if (node->GetLeftSon() != NULL) {
+//       inserted = this->InsertEquilibratedBranch(data, node->GetLeftSon());
+//     }
+//     else { 
+//       node->SetLeftSon(new NodeB<Key>(data, NULL, NULL));
+
+//       inserted = true;
+//     }
+//   }
+//   else {
+//     if (node->GetRightSon() != NULL) {
+//       InsertEquilibratedBranch(data, node->GetRightSon()); 
+//     }
+//     else{
+//       node->SetRightSon(new NodeB<Key>(data, NULL, NULL));
+//       inserted = true;
+//     }
+//   }
+//   return inserted;
+// }
+
 template<typename Key>
 bool ABE<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
   bool inserted{false};
-  if (this->BranchSize(node->GetLeftSon()) <= this->BranchSize(node->GetRightSon())) {
+  if (this->Peso(node->GetLeftSon()) <= this->Peso(node->GetRightSon())) {
     if (node->GetLeftSon() != NULL) {
       inserted = this->InsertEquilibratedBranch(data, node->GetLeftSon());
     }
@@ -113,6 +145,7 @@ bool ABE<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
   }
   return inserted;
 }
+
 
 
 /**

@@ -31,6 +31,7 @@ class NodeB {
   NodeB<Key>*& GetRightSonReferenced() { return right_; };
   NodeB<Key>*& GetLeftSonReferenced() { return left_; };
 
+
   Key GetData() const { return data_; };
   
   /// Setters

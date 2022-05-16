@@ -19,8 +19,8 @@
 
 #include <queue>
 /**
- * @brief Clase Árbol Binario Equilibrado (ABB), que sirve para generar un objeto
- * árbol binario equilibrado, heredando métodos de la clase AB
+ * @brief Clase Árbol Binario Equilibrado (ABB), que sirve para generar un 
+ * objeto árbol binario equilibrado, heredando métodos de la clase AB
  * 
  * @tparam Key 
  */ 
@@ -40,7 +40,76 @@ class ABB : public AB<Key> {
   // template<typename Key>
   bool SearchDataPreorder(NodeB<Key>* nodo, const Key& data) const;
   bool InsertBranch(NodeB<Key>* &node, const Key& data) const;
+
+  bool Delete(const Key& data) override;
+  bool DeleteData(NodeB<Key>* &node, const Key& data) const;
+  void ReplaceDeleted(NodeB<Key>* &deleted, NodeB<Key>* &node) const;
+
 };
+template<typename Key>
+void ABB<Key>::ReplaceDeleted(NodeB<Key>* &deleted, NodeB<Key>* &node) const { 
+  if (node->GetRightSon() != NULL) 
+    ReplaceDeleted(deleted, node->GetRightSonReferenced());
+  else {
+    deleted->SetData(node->GetData());
+    deleted = node;
+    node = node->GetLeftSon();  
+  }
+}
+
+
+template<typename Key>
+bool ABB<Key>::Delete(const Key& data) { 
+  bool deleted{false};
+  if (Search(data)) {
+    deleted = DeleteData(this->root_, data);
+  }
+  return deleted;
+}
+
+template<typename Key>
+bool ABB<Key>::DeleteData(NodeB<Key>* &node, const Key& data) const { 
+  // if (nodo == NULL) return NULL ;
+  // if (clave_dada < nodo->clave) EliminarRama(nodo->izdo, clave_dada);
+  // else if (clave_dada > nodo->clave) EliminarRama(nodo->dcho, clave_dada);
+  // else {  //clave_dada == nodo->clave
+  //   nodoBB* Eliminado = nodo;
+  //   if (nodo->dcho == NULL) nodo = nodo->izdo;
+  //   else if (nodo->izdo == NULL) nodo = nodo->dcho;
+  //   else 
+  //     sustituye(Eliminado, nodo->izdo);
+
+  //   delete (Eliminado);
+  // }
+
+  // if (sust->dcho != NULL) 
+  //   sustituye(eliminado, sust->dcho);
+  // else {
+  //    eliminado->Info = sust->Info ;
+  //    eliminado->Clave = sust->Clave ;
+  //    eliminado = sust ;
+  //    sust = sust->izdo ;
+  bool deleted_flag{false};
+  if (node == NULL) return false;
+  if (data < node->GetData()) DeleteData(node->GetLeftSonReferenced(), data);
+  else if (data < node->GetData()) {
+    DeleteData(node->GetRightSonReferenced(), data);
+    deleted_flag = true;
+  } 
+  else {
+    NodeB<Key>* deleted = node;
+    if (node->GetRightSonReferenced() == NULL) 
+      node = node->GetLeftSonReferenced();
+    else if (node->GetLeftSonReferenced() == NULL) 
+      node = node->GetRightSonReferenced();
+    else {
+      ReplaceDeleted(deleted, node->GetLeftSonReferenced());
+      deleted_flag = true;
+    }
+    delete deleted;
+  }
+  return(deleted_flag);
+}
 
 
 /**

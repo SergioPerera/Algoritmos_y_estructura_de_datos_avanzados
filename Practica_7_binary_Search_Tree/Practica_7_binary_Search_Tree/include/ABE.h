@@ -33,6 +33,10 @@ class ABE : public AB<Key> {
   /// Métodos
   bool Insert(const Key& key) override;
   bool Search(const Key& key) const override;
+  bool Delete(const Key& data) override {
+    return false;
+  }
+
 
   bool InsertEquilibratedBranch(const Key& key, NodeB<Key>* node);
   int BranchSize(NodeB<Key>* node) const;  

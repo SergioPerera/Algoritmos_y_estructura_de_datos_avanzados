@@ -42,7 +42,7 @@ int main (int argc, char* argv[]) {
 
   /// Creammos el arbol binario y luego pasa a ser un árbol binario equilibrado
   AB<KEY>* binary_tree{NULL};
-
+  bool ABB_selected = false;
   while (true) {
     std::cout << "Seleccione una opción: "
               << "\n[0] Salir"
@@ -62,6 +62,7 @@ int main (int argc, char* argv[]) {
           break;
         case 2:
           binary_tree = new ABB<KEY>();
+          ABB_selected = true;
           break;
         default:
           break;
@@ -76,13 +77,16 @@ int main (int argc, char* argv[]) {
   std::string option;
   while (true) {
     /// Imprimimos el menú
-    PrintMenu();
+    PrintMenu(ABB_selected);
     /// Solicitamos al usuario la opción del menú
     std::cin >> option;
     std::cout << RESET;
     /// Comprobamos que el usuario ha escogido una opción válida
-    if(!regex_match(option, std::regex("[0-3]"))) {
-      std::cout << RED << "Error: Opción no válida\n\n" << RESET << std::endl;  
+    if ((ABB_selected == true) && (!regex_match(option, std::regex("[0-4]")))){
+      std::cout << RED << "Error: Opción no válida1\n\n" << RESET << std::endl;  
+    }
+    else if((ABB_selected == false) && (!regex_match(option, std::regex("[0-3]")))) {
+      std::cout << RED << "Error: Opción no válida2\n\n" << RESET << std::endl;  
     }
     else {
       /**
@@ -140,8 +144,32 @@ int main (int argc, char* argv[]) {
         case 3:
           binary_tree->Inorden();
           break;
+        case 4: {
+          std::string key;
+          while (true) {
+            std::cout << "Introduzca la clave a eliminar: ";
+            std::cin >> key;
+            if (!regex_match(key, std::regex("^[1-9]*[0-9]$"))) {
+              std::cout << RED << "Error: Clave no válida\n\n" << RESET 
+                        << std::endl;                                                 /// Posible fallo si se cambia la key por algo que no sean números enteros
+            }
+            else { break; }
+          }
+          if (binary_tree->Delete(std::stoi(key)) ) {
+            std::cout << GREEN << "La clave " << key 
+                               << " ha sido eliminada árbol"
+                               << RESET << std::endl;
+          }
+          else {
+            std::cout << RED << "Error: Clave no encontrada\n" << RESET 
+                      << std::endl;
+          }
+          std::cout << binary_tree << std::endl;
+          break;
+        }
         default:
-          std::cout << RED << "Error: Opción no válida\n\n" << RESET << std::endl;
+          std::cout << RED << "Error_default: Opción no válida\n\n" 
+                    << RESET << std::endl;
           break;
       }
     }

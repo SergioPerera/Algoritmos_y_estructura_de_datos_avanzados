@@ -27,6 +27,6 @@
  * @brief Función encargada de mostrar por pantalla el menú de selección
  * 
  */
-void PrintMenu();
+void PrintMenu(bool ABB_selected);
 
 #endif // _MAIN_FUNCTIONS_H_

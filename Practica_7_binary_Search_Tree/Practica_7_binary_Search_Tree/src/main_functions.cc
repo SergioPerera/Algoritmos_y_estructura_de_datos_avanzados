@@ -17,10 +17,19 @@
  * @brief Función encargada de mostrar por pantalla el menú de selección
  * 
  */
-void PrintMenu() {
-  std::cout << "\n[0] Salir" 
+void PrintMenu(bool ABB_selected) {
+  if (ABB_selected) { 
+    std::cout << "\n[0] Salir" 
             << "\n[1] Insertar"
             << "\n[2] Buscar clave"
             << "\n[3] Mostrar árbol inorden"
+            << "\n[4] Eliminar nodo"
             << GREEN << "\n>>>>> ";
+  }else {
+    std::cout << "\n[0] Salir" 
+               << "\n[1] Insertar"
+               << "\n[2] Buscar clave"
+               << "\n[3] Mostrar árbol inorden"
+               << GREEN << "\n>>>>> ";
+  }
 }

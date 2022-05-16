@@ -46,6 +46,16 @@ class ABB : public AB<Key> {
   void ReplaceDeleted(NodeB<Key>* &deleted, NodeB<Key>* &node) const;
 
 };
+
+/**
+ * @brief Método que se encarga de sustituir el nodo eliminado por el nodo 
+ * sustuto adecuado, de manera que se siga cumpliendo la condición de árbol 
+ * binario de búsqueda
+ * 
+ * @tparam Key 
+ * @param deleted noodo que queremos eliminar
+ * @param node nodo sustituto
+ */
 template<typename Key>
 void ABB<Key>::ReplaceDeleted(NodeB<Key>* &deleted, NodeB<Key>* &node) const { 
   if (node->GetRightSon() != NULL) 
@@ -57,7 +67,14 @@ void ABB<Key>::ReplaceDeleted(NodeB<Key>* &deleted, NodeB<Key>* &node) const {
   }
 }
 
-
+/**
+ * @brief Método encargado de eliminar el dato
+ * 
+ * @tparam Key 
+ * @param data dato del nodo que queremos eliminar
+ * @return true si se ha eliminado
+ * @return false si no
+ */
 template<typename Key>
 bool ABB<Key>::Delete(const Key& data) { 
   bool deleted{false};
@@ -67,28 +84,17 @@ bool ABB<Key>::Delete(const Key& data) {
   return deleted;
 }
 
+/**
+ * @brief Método encargado de eliminar el dato
+ * 
+ * @tparam Key 
+ * @param node nodo que queremos eliminar
+ * @param data dato del nodo que queremos eliminar
+ * @return true si se ha eliminado
+ * @return false si no
+ */
 template<typename Key>
 bool ABB<Key>::DeleteData(NodeB<Key>* &node, const Key& data) const { 
-  // if (nodo == NULL) return NULL ;
-  // if (clave_dada < nodo->clave) EliminarRama(nodo->izdo, clave_dada);
-  // else if (clave_dada > nodo->clave) EliminarRama(nodo->dcho, clave_dada);
-  // else {  //clave_dada == nodo->clave
-  //   nodoBB* Eliminado = nodo;
-  //   if (nodo->dcho == NULL) nodo = nodo->izdo;
-  //   else if (nodo->izdo == NULL) nodo = nodo->dcho;
-  //   else 
-  //     sustituye(Eliminado, nodo->izdo);
-
-  //   delete (Eliminado);
-  // }
-
-  // if (sust->dcho != NULL) 
-  //   sustituye(eliminado, sust->dcho);
-  // else {
-  //    eliminado->Info = sust->Info ;
-  //    eliminado->Clave = sust->Clave ;
-  //    eliminado = sust ;
-  //    sust = sust->izdo ;
   bool deleted_flag{false};
   if (node == NULL) return false;
   if (data < node->GetData()) DeleteData(node->GetLeftSonReferenced(), data);

@@ -76,30 +76,54 @@ void AB<Key>::Inorden_I(const NodeB<Key>* node) const {
  */
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node) {
-  std::queue<std::pair<NodeB<T>*, T>> q; /// Posible fallo por poner T en vez de int
-  std::pair<NodeB<T>*, T> aux {in_node->root_, 0};/// Posible fallo por poner T en vez de int
-  T current_level{0};
-  q.push(aux);
-  out << YELLOW << "\nNivel " << current_level << ": ";
-  while (!q.empty()) {
-    aux = q.front();
-    q.pop();
+  // std::queue<std::pair<NodeB<T>*, T>> q;
+  // std::pair<NodeB<T>*, T> aux {in_node->root_, 0};
+  // T current_level{0};
+  // q.push(aux);
+  // out << YELLOW << "\nNivel " << current_level << ": ";
+  // while (!q.empty()) {
+  //   aux = q.front();
+  //   q.pop();
 
-    if (aux.second > current_level) {
-      current_level = aux.second;
-      out << YELLOW << "\nNivel " << current_level << ": ";  
+  //   if (aux.second > current_level) {
+  //     current_level = aux.second;
+  //     out << YELLOW << "\nNivel " << current_level << ": ";  
+  //   }
+  //   if (aux.first == nullptr){ 
+  //     out << YELLOW << "[.]";   
+  //   }
+  //   else {
+  //     out << YELLOW << "[" << aux.first->GetData() << "]";
+  //     q.push(std::make_pair(aux.first->GetLeftSon(), aux.second + 1));
+  //     q.push(std::make_pair(aux.first->GetRightSon(), aux.second + 1));
+  //   }
+  // }
+  // out << RESET;
+  // return out;
+  
+  std::queue<NodeB<T>*> q;
+  q.push(in_node->root_);
+  int level = 0;
+  while (!q.empty()) {
+    int size = q.size();
+    out << YELLOW << "Nivel " << level << ": ";
+    for (int i = 0; i < size; i++) {
+      NodeB<T>* node = q.front();
+      q.pop();
+      if (node != nullptr) {
+        out << YELLOW << "[" << node->GetData() << "]";
+        q.push(node->GetLeftSon());
+        q.push(node->GetRightSon());
+      } else {
+        out << YELLOW << "[.]";
+      }
     }
-    if (aux.first == nullptr){ 
-      out << YELLOW << "[.]";   
-    }
-    else {
-      out << YELLOW << "[" << aux.first->GetData() << "]";
-      q.push(std::make_pair(aux.first->GetLeftSon(), aux.second + 1));
-      q.push(std::make_pair(aux.first->GetRightSon(), aux.second + 1));
-    }
+    out << std::endl;
+    level++;
   }
   out << RESET;
   return out;
+
 }
 
 #endif // _AB_H_

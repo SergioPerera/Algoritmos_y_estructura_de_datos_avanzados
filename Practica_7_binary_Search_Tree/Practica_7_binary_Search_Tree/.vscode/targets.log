@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon May 16 19:13:42 2022
+# Make data base, printed on Tue May 17 18:56:29 2022
 
 # Variables
 
@@ -18,6 +18,8 @@ OBJ = $(shell echo $(AUX) | sed -r 's/.cc/.o/g' | sed -r 's/$(OBJSRC)/$(OBJDIR)/
 GDK_BACKEND = x11
 # environment
 LC_ALL = C
+# environment
+NO_AT_BRIDGE = 1
 # makefile (from 'makefile', line 17)
 OBJDIR = build
 # makefile (from 'makefile', line 14)
@@ -25,7 +27,7 @@ OBJSRC = src
 # makefile (from 'makefile', line 20)
 BINDIR = bin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e81f15e5-fd42-4991-ac16-bd7f0fd307d9.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-67b29e4c-cf00-4d36-be8f-68aa0a4312c4.sock
 # environment
 VSCODE_CWD = /home/sergio
 # environment
@@ -79,7 +81,7 @@ CURDIR := /home/sergio/Documentos/Algoritmos_y_estructura_de_datos_avanzados/Pra
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # automatic
@@ -103,13 +105,13 @@ MAKEFILE_LIST := makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 9918
+VSCODE_PID = 3586
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Sergdertx-VirtualBox:@/tmp/.ICE-unix/882,unix/Sergdertx-VirtualBox:/tmp/.ICE-unix/882
+SESSION_MANAGER = local/Sergdertx-VirtualBox:@/tmp/.ICE-unix/930,unix/Sergdertx-VirtualBox:/tmp/.ICE-unix/930
 # makefile (from 'makefile', line 8)
 EJECUTABLE = binary_search_tree
 # automatic
@@ -187,7 +189,7 @@ MAKE_VERSION := 4.3
 # 'override' directive
 .SHELLSTATUS := 0
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 9918
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3586
 # environment
 _ = /usr/share/code/code
 # environment
@@ -229,7 +231,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = budgie-desktop
 # variable set hash-table stats:
-# Load=108/1024=11%, Rehash=0, Collisions=8/151=5%
+# Load=109/1024=11%, Rehash=0, Collisions=8/152=5%
 
 # Pattern-specific Variable Values
 
@@ -237,15 +239,15 @@ GDMSESSION = budgie-desktop
 
 # Directories
 
-# include (device 2051, inode 16222): 6 files, no impossibilities.
+# include (device 2051, inode 16222): 7 files, no impossibilities.
 # src (device 2051, inode 279821): No files, no impossibilities so far.
 # . (device 2051, inode 16218): 8 files, no impossibilities.
 
-# 14 files, no impossibilities in 3 directories.
+# 15 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
-build/%.o: src/%.cc include/AB.h include/ABE.h include/main_functions.h include/node.h
+build/%.o: src/%.cc include/AB.h include/ABB.h include/ABE.h include/main_functions.h include/node.h
 #  recipe to execute (from 'makefile', line 39):
 				$(CC) $(CFLAGS) -c -o $@ $<
 
@@ -279,9 +281,9 @@ template:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 #  recipe to execute (from 'makefile', line 55):
 				mkdir bin
- 
 				mkdir build
 				mkdir include
 				mkdir src
@@ -364,12 +366,12 @@ build/main_binary_tree.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 33 / storage = 336 B / avg = 10 B
-# current buf: size = 8162 B / used = 336 B / count = 33 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 356 B / avg = 10 B
+# current buf: size = 8162 B / used = 356 B / count = 35 / avg = 10 B
 
-# strcache performance: lookups = 49 / hit rate = 32%
+# strcache performance: lookups = 51 / hit rate = 31%
 # hash-table stats:
-# Load=33/8192=0%, Rehash=0, Collisions=0/49=0%
-# Finished Make data base on Mon May 16 19:13:42 2022
+# Load=35/8192=0%, Rehash=0, Collisions=0/51=0%
+# Finished Make data base on Tue May 17 18:56:29 2022
 
  

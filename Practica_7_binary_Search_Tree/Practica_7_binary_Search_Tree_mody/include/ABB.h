@@ -80,6 +80,7 @@ bool ABB<Key>::Delete(const Key& data) {
   bool deleted{false};
   if (Search(data)) {
     deleted = DeleteData(this->root_, data);
+    std::cout << "Entrro" << std::endl;
   }
   return deleted;
 }

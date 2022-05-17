@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 17 18:12:37 2022
+# Make data base, printed on Tue May 17 18:46:12 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ OBJSRC = src
 # makefile (from 'makefile', line 20)
 BINDIR = bin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-2dd80363-211e-4f60-bd0d-4be0a7d80ce3.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-415366b9-a891-4e94-9adf-a2ef13959359.sock
 # environment
 VSCODE_CWD = /home/sergio
 # environment
@@ -237,15 +237,15 @@ GDMSESSION = budgie-desktop
 
 # Directories
 
-# include (device 2051, inode 49348): 7 files, no impossibilities.
+# include (device 2051, inode 49348): 8 files, no impossibilities.
 # src (device 2051, inode 49352): No files, no impossibilities so far.
 # . (device 2051, inode 49347): 8 files, no impossibilities.
 
-# 15 files, no impossibilities in 3 directories.
+# 16 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
-build/%.o: src/%.cc include/AB.h include/ABB.h include/ABE.h include/main_functions.h include/node.h
+build/%.o: src/%.cc include/AB.h include/ABB.h include/ABE.h include/dummy.h include/main_functions.h include/node.h
 #  recipe to execute (from 'makefile', line 39):
 				$(CC) $(CFLAGS) -c -o $@ $<
 
@@ -364,12 +364,12 @@ build/main_binary_tree.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 35 / storage = 356 B / avg = 10 B
-# current buf: size = 8162 B / used = 356 B / count = 35 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 37 / storage = 380 B / avg = 10 B
+# current buf: size = 8162 B / used = 380 B / count = 37 / avg = 10 B
 
-# strcache performance: lookups = 51 / hit rate = 31%
+# strcache performance: lookups = 53 / hit rate = 30%
 # hash-table stats:
-# Load=35/8192=0%, Rehash=0, Collisions=0/51=0%
-# Finished Make data base on Tue May 17 18:12:37 2022
+# Load=37/8192=0%, Rehash=0, Collisions=0/53=0%
+# Finished Make data base on Tue May 17 18:46:12 2022
 
  

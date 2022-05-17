@@ -16,6 +16,7 @@
 #include <queue>
 #include <iostream>
 #include "../include/main_functions.h"
+#include "../include/dummy.h"
 
 /**
  * @brief Clase abstracta Árbol Binario (AB), que sirve para generar un objeto
@@ -79,13 +80,14 @@ std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node) {
   std::pair<NodeB<T>*, T> aux {in_node->root_, 0};/// Posible fallo por poner T en vez de int
   T current_level{0};
   q.push(aux);
+  out << YELLOW << "\nNivel " << current_level << ": ";
   while (!q.empty()) {
     aux = q.front();
     q.pop();
 
     if (aux.second > current_level) {
       current_level = aux.second;
-      out << "\n";
+      out << YELLOW << "\nNivel " << current_level << ": ";  
     }
     if (aux.first == nullptr){ 
       out << YELLOW << "[.]";   

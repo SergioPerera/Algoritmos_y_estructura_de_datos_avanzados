@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 17 18:56:29 2022
+# Make data base, printed on Tue May 17 19:23:09 2022
 
 # Variables
 
@@ -27,7 +27,7 @@ OBJSRC = src
 # makefile (from 'makefile', line 20)
 BINDIR = bin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-67b29e4c-cf00-4d36-be8f-68aa0a4312c4.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-30af24c4-e74e-4da0-975d-76b308dda9c7.sock
 # environment
 VSCODE_CWD = /home/sergio
 # environment
@@ -372,6 +372,6 @@ build/main_binary_tree.o:
 # strcache performance: lookups = 51 / hit rate = 31%
 # hash-table stats:
 # Load=35/8192=0%, Rehash=0, Collisions=0/51=0%
-# Finished Make data base on Tue May 17 18:56:29 2022
+# Finished Make data base on Tue May 17 19:23:09 2022
 
  

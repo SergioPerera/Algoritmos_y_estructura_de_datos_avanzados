@@ -1,6 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/sergio/Documentos/Algoritmos_y_estructura_de_datos_avanzados/Practica_7_binary_Search_Tree/Practica_7_binary_Search_Tree_mody'
- 
 g++ -I -Weffc++ -Wall -g -c -o build/main_binary_tree.o src/main_binary_tree.cc
 g++ -I -Weffc++ -Wall -g -c -o build/main_functions.o src/main_functions.cc
 g++ -o bin/binary_search_tree build/main_binary_tree.o build/main_functions.o -I -Weffc++ -Wall -g

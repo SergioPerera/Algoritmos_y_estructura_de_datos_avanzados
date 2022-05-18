@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 17 19:10:25 2022
+# Make data base, printed on Wed May 18 22:59:46 2022
 
 # Variables
 
@@ -16,8 +18,6 @@ OBJ = $(shell echo $(AUX) | sed -r 's/.cc/.o/g' | sed -r 's/$(OBJSRC)/$(OBJDIR)/
 GDK_BACKEND = x11
 # environment
 LC_ALL = C
-# environment
-NO_AT_BRIDGE = 1
 # makefile (from 'makefile', line 17)
 OBJDIR = build
 # makefile (from 'makefile', line 14)
@@ -25,7 +25,7 @@ OBJSRC = src
 # makefile (from 'makefile', line 20)
 BINDIR = bin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-185f34b9-a24a-4771-ba5f-f68fc00c5b67.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-209bf033-59fe-4d0e-8db9-3fdb3f83801a.sock
 # environment
 VSCODE_CWD = /home/sergio
 # environment
@@ -103,13 +103,13 @@ MAKEFILE_LIST := makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 3586
+VSCODE_PID = 1495
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Sergdertx-VirtualBox:@/tmp/.ICE-unix/930,unix/Sergdertx-VirtualBox:/tmp/.ICE-unix/930
+SESSION_MANAGER = local/Sergdertx-VirtualBox:@/tmp/.ICE-unix/903,unix/Sergdertx-VirtualBox:/tmp/.ICE-unix/903
 # makefile (from 'makefile', line 8)
 EJECUTABLE = binary_search_tree
 # automatic
@@ -187,7 +187,7 @@ MAKE_VERSION := 4.3
 # 'override' directive
 .SHELLSTATUS := 0
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3586
+GIO_LAUNCHED_DESKTOP_FILE_PID = 1495
 # environment
 _ = /usr/share/code/code
 # environment
@@ -229,7 +229,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = budgie-desktop
 # variable set hash-table stats:
-# Load=109/1024=11%, Rehash=0, Collisions=8/152=5%
+# Load=108/1024=11%, Rehash=0, Collisions=8/151=5%
 
 # Pattern-specific Variable Values
 
@@ -281,14 +281,12 @@ template:
 #  File has not been updated.
 #  recipe to execute (from 'makefile', line 55):
 				mkdir bin
+ 
 				mkdir build
 				mkdir include
 				mkdir src
 				touch README.md
 	@echo "Plantilla creada correctamente"
-
- 
-make: *** No rule to make target 'all'.  Stop.
 
 # Not a target:
 build/main_functions.o:
@@ -372,6 +370,6 @@ build/main_binary_tree.o:
 # strcache performance: lookups = 53 / hit rate = 30%
 # hash-table stats:
 # Load=37/8192=0%, Rehash=0, Collisions=0/53=0%
-# Finished Make data base on Tue May 17 19:10:25 2022
+# Finished Make data base on Wed May 18 22:59:46 2022
 
  

@@ -97,8 +97,11 @@ template<typename Key>
 bool ABB<Key>::DeleteData(NodeB<Key>* &node, const Key& data) const { 
   bool deleted_flag{false};
   if (node == NULL) return false;
-  if (data < node->GetData()) DeleteData(node->GetLeftSonReferenced(), data);
-  else if (data < node->GetData()) {
+  if (data < node->GetData()) {
+    DeleteData(node->GetLeftSonReferenced(), data);
+    deleted_flag = true;
+  }
+  else if (data > node->GetData()) {
     DeleteData(node->GetRightSonReferenced(), data);
     deleted_flag = true;
   } 

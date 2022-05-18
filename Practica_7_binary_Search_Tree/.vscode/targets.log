@@ -8,30 +8,20 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed May 18 22:53:29 2022
+# Make data base, printed on Wed May 18 23:00:06 2022
 
 # Variables
 
-# makefile (from 'makefile', line 34)
-OBJ = $(shell echo $(AUX) | sed -r 's/.cc/.o/g' | sed -r 's/$(OBJSRC)/$(OBJDIR)/g')
 # environment
 GDK_BACKEND = x11
 # environment
 LC_ALL = C
-# makefile (from 'makefile', line 17)
-OBJDIR = build
-# makefile (from 'makefile', line 14)
-OBJSRC = src
-# makefile (from 'makefile', line 20)
-BINDIR = bin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d7a68fbf-0755-4c09-bb1a-897e3faf53e7.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-8c1e528d-5b79-411f-be81-e6e92697ce1a.sock
 # environment
 VSCODE_CWD = /home/sergio
 # environment
 UBUNTU_MENUPROXY = 1
-# makefile (from 'makefile', line 33)
-AUX = $(OBJSRC)/*.cc
 # environment
 GDM_LANG = es_ES
 # default
@@ -40,8 +30,6 @@ MAKE_COMMAND := make
 GTK3_MODULES = xapp-gtk3-module
 # environment
 QT_ACCESSIBILITY = 1
-# makefile (from 'makefile', line 11)
-DEPSSRC = include
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -49,7 +37,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
 .VARIABLES := 
 # environment
-PWD = /home/sergio/Documentos/Algoritmos_y_estructura_de_datos_avanzados/Practica_7_binary_Search_Tree/Practica_7_binary_Search_Tree
+PWD = /home/sergio/Documentos/Algoritmos_y_estructura_de_datos_avanzados/Practica_7_binary_Search_Tree
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -75,7 +63,7 @@ XAUTHORITY = /home/sergio/.Xauthority
 # makefile
 MAKEFLAGS = pqrR
 # makefile
-CURDIR := /home/sergio/Documentos/Algoritmos_y_estructura_de_datos_avanzados/Practica_7_binary_Search_Tree/Practica_7_binary_Search_Tree
+CURDIR := /home/sergio/Documentos/Algoritmos_y_estructura_de_datos_avanzados/Practica_7_binary_Search_Tree
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -96,8 +84,8 @@ XDG_CONFIG_DIRS = /etc/xdg/xdg-budgie-desktop:/etc/xdg
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 XDG_SESSION_DESKTOP = budgie-desktop
-# makefile (from 'makefile', line 1)
-MAKEFILE_LIST := makefile
+# makefile
+MAKEFILE_LIST := 
 # automatic
 @F = $(notdir $@)
 # environment
@@ -110,8 +98,6 @@ XDG_SESSION_TYPE = x11
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
 SESSION_MANAGER = local/Sergdertx-VirtualBox:@/tmp/.ICE-unix/903,unix/Sergdertx-VirtualBox:/tmp/.ICE-unix/903
-# makefile (from 'makefile', line 8)
-EJECUTABLE = binary_search_tree
 # automatic
 *F = $(notdir $*)
 # environment
@@ -134,8 +120,6 @@ SHELL = /bin/sh
 MAKECMDGOALS := all
 # environment
 XMODIFIERS = @im=ibus
-# makefile (from 'makefile', line 30)
-DEPSCPY = $(DEPS)
 # environment
 SHLVL = 0
 # environment
@@ -175,7 +159,7 @@ LOGNAME = sergio
 # environment
 GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
-.DEFAULT_GOAL := bin/binary_search_tree
+.DEFAULT_GOAL := 
 # environment
 DISPLAY = :0
 # environment
@@ -184,16 +168,12 @@ USER = sergio
 GTK_MODULES = appmenu-gtk-module:gail:atk-bridge:appmenu-gtk-module
 # default
 MAKE_VERSION := 4.3
-# 'override' directive
-.SHELLSTATUS := 0
 # environment
 GIO_LAUNCHED_DESKTOP_FILE_PID = 1495
 # environment
 _ = /usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from 'makefile', line 4)
-CFLAGS = -I -Weffc++ -Wall -g
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
@@ -214,22 +194,18 @@ GSETTINGS_SCHEMA_DIR = /home/sergio/data
 .RECIPEPREFIX := 
 # automatic
 <F = $(notdir $<)
-# makefile (from 'makefile', line 28)
-DEPS = $(DEPSSRC)/*.h
 # default
 SUFFIXES := 
 # environment
 XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/sergio
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
-# makefile (from 'makefile', line 2)
-CC = g++
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = budgie-desktop
 # variable set hash-table stats:
-# Load=108/1024=11%, Rehash=0, Collisions=8/151=5%
+# Load=96/1024=9%, Rehash=0, Collisions=4/123=3%
 
 # Pattern-specific Variable Values
 
@@ -237,69 +213,22 @@ GDMSESSION = budgie-desktop
 
 # Directories
 
-# include (device 2051, inode 16222): 7 files, no impossibilities.
-# src (device 2051, inode 279821): No files, no impossibilities so far.
-# . (device 2051, inode 16218): 8 files, no impossibilities.
+# . (device 2051, inode 15391): 5 files, no impossibilities.
 
-# 15 files, no impossibilities in 3 directories.
+# 5 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
-build/%.o: src/%.cc include/AB.h include/ABB.h include/ABE.h include/main_functions.h include/node.h
-#  recipe to execute (from 'makefile', line 39):
-				$(CC) $(CFLAGS) -c -o $@ $<
+# No implicit rules.
 
-# 1 implicit rules, 0 (0.0%) terminal.
 # Files
 
-pull:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 74):
-	git pull
-
-upload:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 70):
-	git add .
-	git commit -m "BackUp"
-	git push
-
-clean:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 51):
-				rm -rf $(OBJDIR)/*.o
-
-template:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 55):
-				mkdir bin
-				mkdir build
-				mkdir include
-				mkdir src
-				touch README.md
-	@echo "Plantilla creada correctamente"
-
 # Not a target:
-build/main_functions.o:
- 
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-cleaner:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 53):
-				rm -rf bin/*
+Makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
 
 # Not a target:
 .DEFAULT:
@@ -314,62 +243,34 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
-show:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 62):
-	@echo $(AUX)
-	@echo $(OBJ)
-	@echo $(DEPSCPY)
-
-bin/binary_search_tree: build/main_binary_tree.o build/main_functions.o
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 42):
-				$(CC) -o $@ $^ $(CFLAGS)
-	@echo ""
-	@echo ARCHIVOS .o: $(OBJ)
-	@echo ARCHIVOS .h: $(DEPSCPY)
-	@echo ""
-
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-16 19:12:41.809525351
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
-
-move:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 66):
-	mv *.o $(OBJDIR)/
-	mv *.h $(DEPSSRC)/
-	mv *.cc $(OBJSRC)/
+#  Failed to be updated.
 
 # Not a target:
-build/main_binary_tree.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+GNUmakefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
 
 # files hash-table stats:
-# Load=14/1024=1%, Rehash=0, Collisions=0/26=0%
+# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 35 / storage = 356 B / avg = 10 B
-# current buf: size = 8162 B / used = 356 B / count = 35 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 13 / storage = 163 B / avg = 12 B
+# current buf: size = 8162 B / used = 163 B / count = 13 / avg = 12 B
 
-# strcache performance: lookups = 51 / hit rate = 31%
+# strcache performance: lookups = 16 / hit rate = 18%
 # hash-table stats:
-# Load=35/8192=0%, Rehash=0, Collisions=0/51=0%
-# Finished Make data base on Wed May 18 22:53:29 2022
+# Load=13/8192=0%, Rehash=0, Collisions=0/16=0%
+# Finished Make data base on Wed May 18 23:00:06 2022
 
  

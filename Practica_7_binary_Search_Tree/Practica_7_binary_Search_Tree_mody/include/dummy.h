@@ -1,8 +1,8 @@
 #include <fstream>
 #include <iostream>
 #include <time.h>
-#ifndef DUMMY_H
-#define DUMMY_H
+#ifndef _DUMMY_H_
+#define _DUMMY_H_
 class Dummy {
  public:
   static unsigned counter;
@@ -33,4 +33,4 @@ class Dummy {
   int key;
 };
 
-#endif 
+#endif // _DUMMY_H_

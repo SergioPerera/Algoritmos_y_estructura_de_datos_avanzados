@@ -39,25 +39,25 @@ int main (int argc, char* argv[]) {
               << std::endl;
     exit(EXIT_FAILURE);
   }
-  AB<Dummy>* arbol = new ABE<Dummy>();                                                                                                                                                                                                                                                   
-  AB<Dummy>* arbol1 = new ABB<Dummy>();                                                                                                                                                                                                                                                  
-  for(int i=0; i < 100; i++) {                                                                                                                                                                                                                                                           
-    Dummy k (rand()%1000);                                                                                                                                                                                                                                                               
-    arbol->Insert(k);                                                                                                                                                                                                                                                                  
-    arbol1->Insert(k);                                                                                                                                                                                                                                                                 
-  }                                                                                                                                                                                                                                                                                      
-  for(int i= 0; i < 10; i++) {                                                                                                                                                                                                                                                           
-    Dummy::counter = 0;                                                                                                                                                                                                                                                                 
-    Dummy k (rand()%1000);                                                                                                                                                                                                                                                               
-    arbol->Search(k);                                                                                                                                                                                                                                                                    
-    std::cout << "Se te esta buscando la clave " << k << std::endl;                                                                                                                                                                                                                      
-    std::cout << "Equilibrado " << Dummy::counter << " " << std::endl;                                                                                                                                                                                                                  
-    Dummy::counter = 0;                                                                                                                                                                                                                                                                 
-    arbol1->Search(k);                                                                                                                                                                                                                                                                   
-    std::cout << "Binario de Busqueda " << Dummy::counter << " " << std::endl << std::endl;                                                                                                                                                                                             
+  AB<Dummy>* abe = new ABE<Dummy>();
+  AB<Dummy>* abb = new ABB<Dummy>();
+  for(int i=0; i < 10000; i++) {
+    Dummy k (rand()%1000);
+    abe->Insert(k);
+    abb->Insert(k);
   }
-  std::cout << arbol << std::endl;
-  std::cout << arbol1 << std::endl;
+  for(int i= 0; i < 20; i++) {
+    Dummy::counter = 0;
+    Dummy k (rand()%1000);
+    abe->Search(k);
+    std::cout <<  "Clave: " << k << std::endl;
+    std::cout << GREEN << "Árbol binario Equilibrado " << RESET << Dummy::counter << " " << std::endl;
+    Dummy::counter = 0;
+    abb->Search(k);
+    std::cout << GREEN << "Árbol binario de Busqueda " << RESET << Dummy::counter << " " << std::endl;
+    
+    std::cout << "\n" << std::endl;
+  }
 
 //   /// Creammos el arbol binario y luego pasa a ser un árbol binario equilibrado
 //   AB<KEY>* binary_tree{NULL};

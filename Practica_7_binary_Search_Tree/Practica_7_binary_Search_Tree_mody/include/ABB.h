@@ -38,7 +38,7 @@ class ABB : public AB<Key> {
   int BranchSize(NodeB<Key>* node) const;  
   
   // template<typename Key>
-  bool SearchDataPreorder(NodeB<Key>* nodo, const Key& data) const;
+  bool SearchDataBinary(NodeB<Key>* nodo, const Key& data) const;
   bool InsertBranch(NodeB<Key>* &node, const Key& data) const;
 
   bool Delete(const Key& data) override;
@@ -96,15 +96,15 @@ bool ABB<Key>::Delete(const Key& data) {
  */
 template<typename Key>
 bool ABB<Key>::DeleteData(NodeB<Key>* &node, const Key& data) const { 
-    bool deleted_flag{false};
+    // bool deleted_flag{false};
   if (node == NULL) return false;
   if (data < node->GetData()) {
     DeleteData(node->GetLeftSonReferenced(), data);
-    deleted_flag = true;
+    // deleted_flag = true;
   }
   else if (data > node->GetData()) {
     DeleteData(node->GetRightSonReferenced(), data);
-    deleted_flag = true;
+    // deleted_flag = true;
   } 
   else {
     NodeB<Key>* deleted = node;
@@ -114,11 +114,12 @@ bool ABB<Key>::DeleteData(NodeB<Key>* &node, const Key& data) const {
       node = node->GetRightSonReferenced();
     else {
       ReplaceDeleted(deleted, node->GetLeftSonReferenced());
-      deleted_flag = true;
+      // deleted_flag = true;
     }
     delete deleted;
   }
-  return(deleted_flag);
+  // return(deleted_flag);
+  return true;
 }
 
 
@@ -220,19 +221,19 @@ bool ABB<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
  * @return false 
  */
 template<typename Key>
-bool ABB<Key>::SearchDataPreorder(NodeB<Key>* node, const Key& data) const {
+bool ABB<Key>::SearchDataBinary(NodeB<Key>* node, const Key& data) const {
   bool result{false};
   // if (node != nullptr) {
   //   if (data == node->GetData()) result = true;
   //   else {
-  //     result = this->SearchDataPreorder(node->GetLeftSon(), data);
-  //     if (!result) result = this->SearchDataPreorder(node->GetRightSon(), data);
+  //     result = this->SearchDataBinary(node->GetLeftSon(), data);
+  //     if (!result) result = this->SearchDataBinary(node->GetRightSon(), data);
   //   }
   // }
   if (node == nullptr) return false;
   if (data == node->GetData()) return true;
-  if (data < node->GetData()) return this->SearchDataPreorder(node->GetLeftSonReferenced(), data );
-  return this->SearchDataPreorder(node->GetRightSonReferenced(), data );
+  if (data < node->GetData()) return this->SearchDataBinary(node->GetLeftSonReferenced(), data );
+  return this->SearchDataBinary(node->GetRightSonReferenced(), data );
   return result;
 }
 
@@ -247,7 +248,7 @@ bool ABB<Key>::SearchDataPreorder(NodeB<Key>* node, const Key& data) const {
 template<typename Key>
 bool ABB<Key>::Search(const Key& data) const {
   bool result{false};
-  result = this->SearchDataPreorder(this->root_, data);
+  result = this->SearchDataBinary(this->root_, data);
   return result;
 }
 #endif // _ABB_H_

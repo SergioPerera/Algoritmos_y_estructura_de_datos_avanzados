@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu May 19 09:10:21 2022
+# Make data base, printed on Thu May 19 09:29:18 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ OBJSRC = src
 # makefile (from 'makefile', line 20)
 BINDIR = bin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c042bab3-9943-47df-944e-020fc6f2aa07.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b3733a59-c55a-4abd-a015-cf3d4d5e00dc.sock
 # environment
 VSCODE_CWD = /home/sergio
 # environment
@@ -103,7 +103,7 @@ MAKEFILE_LIST := makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1526
+VSCODE_PID = 15009
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -187,7 +187,7 @@ MAKE_VERSION := 4.3
 # 'override' directive
 .SHELLSTATUS := 0
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1526
+GIO_LAUNCHED_DESKTOP_FILE_PID = 15009
 # environment
 _ = /usr/share/code/code
 # environment
@@ -290,6 +290,7 @@ template:
 # Not a target:
 build/main_functions.o:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -297,7 +298,6 @@ cleaner:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 #  recipe to execute (from 'makefile', line 53):
 				rm -rf bin/*
 
@@ -370,6 +370,6 @@ build/main_binary_tree.o:
 # strcache performance: lookups = 53 / hit rate = 30%
 # hash-table stats:
 # Load=37/8192=0%, Rehash=0, Collisions=0/53=0%
-# Finished Make data base on Thu May 19 09:10:21 2022
+# Finished Make data base on Thu May 19 09:29:18 2022
 
  

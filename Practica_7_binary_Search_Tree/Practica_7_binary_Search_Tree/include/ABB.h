@@ -117,7 +117,8 @@ bool ABB<Key>::DeleteData(NodeB<Key>* &node, const Key& data) const {
     }
     delete deleted;
   }
-  return(deleted_flag);
+  // return(deleted_flag);
+  return true;
 }
 
 
@@ -221,13 +222,18 @@ bool ABB<Key>::InsertEquilibratedBranch(const Key& data, NodeB<Key>* node) {
 template<typename Key>
 bool ABB<Key>::SearchDataPreorder(NodeB<Key>* node, const Key& data) const {
   bool result{false};
-  if (node != nullptr) {
-    if (data == node->GetData()) result = true;
-    else {
-      result = this->SearchDataPreorder(node->GetLeftSon(), data);
-      if (!result) result = this->SearchDataPreorder(node->GetRightSon(), data);
-    }
-  }
+  // if (node != nullptr) {
+  //   if (data == node->GetData()) result = true;
+  //   else {
+  //     result = this->SearchDataPreorder(node->GetLeftSon(), data);
+  //     if (!result) result = this->SearchDataPreorder(node->GetRightSon(), data);
+  //   }
+  // }
+  // return result;
+  if (node == nullptr) return false;
+  if (data == node->GetData()) return true;
+  if (data < node->GetData()) return this->SearchDataPreorder(node->GetLeftSonReferenced(), data );
+  return this->SearchDataPreorder(node->GetRightSonReferenced(), data );
   return result;
 }
 

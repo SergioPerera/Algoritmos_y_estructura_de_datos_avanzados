@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed May 18 22:53:29 2022
+# Make data base, printed on Thu May 19 09:20:57 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ OBJSRC = src
 # makefile (from 'makefile', line 20)
 BINDIR = bin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d7a68fbf-0755-4c09-bb1a-897e3faf53e7.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7968ed13-f5de-432e-ba19-3c4592ec651b.sock
 # environment
 VSCODE_CWD = /home/sergio
 # environment
@@ -103,13 +103,13 @@ MAKEFILE_LIST := makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1495
+VSCODE_PID = 1526
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/Sergdertx-VirtualBox:@/tmp/.ICE-unix/903,unix/Sergdertx-VirtualBox:/tmp/.ICE-unix/903
+SESSION_MANAGER = local/Sergdertx-VirtualBox:@/tmp/.ICE-unix/923,unix/Sergdertx-VirtualBox:/tmp/.ICE-unix/923
 # makefile (from 'makefile', line 8)
 EJECUTABLE = binary_search_tree
 # automatic
@@ -187,7 +187,7 @@ MAKE_VERSION := 4.3
 # 'override' directive
 .SHELLSTATUS := 0
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1495
+GIO_LAUNCHED_DESKTOP_FILE_PID = 1526
 # environment
 _ = /usr/share/code/code
 # environment
@@ -289,11 +289,11 @@ template:
 
 # Not a target:
 build/main_functions.o:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 cleaner:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -370,6 +370,6 @@ build/main_binary_tree.o:
 # strcache performance: lookups = 51 / hit rate = 31%
 # hash-table stats:
 # Load=35/8192=0%, Rehash=0, Collisions=0/51=0%
-# Finished Make data base on Wed May 18 22:53:29 2022
+# Finished Make data base on Thu May 19 09:20:57 2022
 
  

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu May 19 09:20:57 2022
+# Make data base, printed on Thu May 19 09:27:58 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ OBJSRC = src
 # makefile (from 'makefile', line 20)
 BINDIR = bin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7968ed13-f5de-432e-ba19-3c4592ec651b.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ce0813fc-5622-4125-ba29-7accf1edae9f.sock
 # environment
 VSCODE_CWD = /home/sergio
 # environment
@@ -103,7 +103,7 @@ MAKEFILE_LIST := makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1526
+VSCODE_PID = 15009
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -127,6 +127,7 @@ VSCODE_NLS_CONFIG = {"locale":"es","availableLanguages":{},"_languagePackSupport
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
+ 
 GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 # makefile
 SHELL = /bin/sh
@@ -187,7 +188,7 @@ MAKE_VERSION := 4.3
 # 'override' directive
 .SHELLSTATUS := 0
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1526
+GIO_LAUNCHED_DESKTOP_FILE_PID = 15009
 # environment
 _ = /usr/share/code/code
 # environment
@@ -230,6 +231,7 @@ XDG_MENU_PREFIX = gnome-
 GDMSESSION = budgie-desktop
 # variable set hash-table stats:
 # Load=108/1024=11%, Rehash=0, Collisions=8/151=5%
+ 
 
 # Pattern-specific Variable Values
 
@@ -293,7 +295,6 @@ build/main_functions.o:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 cleaner:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -313,6 +314,7 @@ all:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
+ 
 
 show:
 #  Implicit rule search has not been done.
@@ -370,6 +372,6 @@ build/main_binary_tree.o:
 # strcache performance: lookups = 51 / hit rate = 31%
 # hash-table stats:
 # Load=35/8192=0%, Rehash=0, Collisions=0/51=0%
-# Finished Make data base on Thu May 19 09:20:57 2022
+# Finished Make data base on Thu May 19 09:27:58 2022
 
  

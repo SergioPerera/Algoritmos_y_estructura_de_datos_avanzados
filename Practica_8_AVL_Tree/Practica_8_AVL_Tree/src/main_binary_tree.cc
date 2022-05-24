@@ -12,6 +12,7 @@
 */
 
 #include "../include/node.h"
+#include "../include/nodeAVL.h"
 #include "../include/AB.h"
 #include "../include/ABE.h"
 #include "../include/ABB.h"

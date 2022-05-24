@@ -38,13 +38,17 @@ class AB {
   void Inorden() const { this->Inorden_I(this->root_);};
   void Inorden_I(const NodeB<Key>* node) const;
   NodeB<Key>* GetRootAB() { return root_; }
+
+  void SetRoot(NodeB<Key>* root) { root_ = root; };
+  
+
   template<typename T>
   friend std::ostream& operator<<(std::ostream& out, const AB<T>* const in_node); /// posible fallo por poner key
  private:
  protected:
   NodeB<Key>* root_;
   NodeB<Key>* GetRoot() { return root_; }
-  NodeB<Key>*& GetRootReferenced() const { return root_; };
+  NodeB<Key>*& GetRootReferenced() { return root_; };
 
 };
 

@@ -74,8 +74,12 @@ int main (int argc, char* argv[]) {
             std::cout << "¿Traza? (s/n): ";
             std::string s;
             std::cin >> s;
-            if (s == "s") { AVL_selected = true; break;}
-            else {
+            if (s == "s") { 
+              AVL_selected = true;
+              traza = true;
+              break;
+            }
+            else if (s != "n"){
               std::cout << RED << "Opción incorrecta" << RESET << std::endl;
             }
           }

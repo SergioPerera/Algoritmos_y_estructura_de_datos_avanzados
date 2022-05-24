@@ -16,6 +16,7 @@
 #include "../include/AB.h"
 #include "../include/ABE.h"
 #include "../include/ABB.h"
+#include "../include/AVL.h"
 #include "../include/main_functions.h"
 #include <regex>
 #define KEY int
@@ -79,7 +80,6 @@ int main (int argc, char* argv[]) {
             }
           }
           binary_tree = new AVL<KEY>(traza);
-
         }
         default:
           break;

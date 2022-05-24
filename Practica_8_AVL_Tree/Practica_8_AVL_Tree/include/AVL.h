@@ -17,32 +17,6 @@
 #include "../include/nodeAVL.h"
 
 
-// template<class Key>
-// class AVL : public ABB<Key> {
-//  public:
-//   AVL(bool traza = false, NodeAVL<Key>* nodo = nullptr);
-//   bool Insert(const Key& data) override;
-//   bool Delete(const Key& data) override;
-
-//   void SetRoot(NodeAVL<Key>* root);
-//   NodeAVL<Key>*& GetRoot(void);
-//   NodeAVL<Key>* GetRoot(void) const;
-  
-//  private:
-//   bool traza_{false};
-//   // void Rotation_II(NodeAVL<Key>* &nodo);
-//   // void Rotation_DD(NodeAVL<Key>* &nodo);
-//   // void Rotation_ID(NodeAVL<Key>* &nodo);
-//   // void Rotation_DI(NodeAVL<Key>* &nodo);
-//   // void InsertBalance(NodeAVL<Key>* &root, NodeAVL<Key>* &nuevo, bool& crece);
-//   // void InsertBalanceLeft(NodeAVL<Key>* &nodo);
-//   // void InsertBlanceRight(NodeAVL<Key>* &nodo);
-//   // void DeleteBranch(NodeAVL<Key>* &nodo, const Key& data, bool& decrece);
-//   // void Replace(NodeAVL<Key>* &eliminado, NodeAVL<Key>* &sust, bool& decrece);
-//   // void DeleteReBalanceaIzda(NodeAVL<Key>* &nodo);
-//   // void DeleteReBalanceaDcha(NodeAVL<Key>* &nodo);
-// };
-
 template<class Key>
 class AVL : public ABB<Key> {
  public:

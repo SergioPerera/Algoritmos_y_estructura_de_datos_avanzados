@@ -75,7 +75,8 @@ int main (int argc, char* argv[]) {
             std::string s;
             std::cin >> s;
             if (s == "s") { 
-              AVL_selected = true;
+              /// Como necesitamos usar el menú de ABB, hacemos lo siguiente
+              ABB_selected = true;
               traza = true;
               break;
             }
@@ -146,7 +147,7 @@ int main (int argc, char* argv[]) {
             std::cin >> key;
             if (!regex_match(key, std::regex("^[1-9]*[0-9]$"))) {
               std::cout << RED << "Error: Clave no válida\n\n" << RESET 
-                        << std::endl;                                                 /// Posible fallo si se cambia la key por algo que no sean números enteros
+                        << std::endl;
             }
             else { break; }
           }
@@ -172,7 +173,7 @@ int main (int argc, char* argv[]) {
             std::cin >> key;
             if (!regex_match(key, std::regex("^[1-9]*[0-9]$"))) {
               std::cout << RED << "Error: Clave no válida\n\n" << RESET 
-                        << std::endl;                                                 /// Posible fallo si se cambia la key por algo que no sean números enteros
+                        << std::endl;
             }
             else { break; }
           }

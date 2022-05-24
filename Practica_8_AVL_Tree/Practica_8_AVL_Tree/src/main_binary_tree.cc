@@ -44,16 +44,18 @@ int main (int argc, char* argv[]) {
   /// Creammos el arbol binario y luego pasa a ser un árbol binario equilibrado
   AB<KEY>* binary_tree{NULL};
   bool ABB_selected = false;
+  bool AVL_selected = false;
   while (true) {
     std::cout << "Seleccione una opción: "
               << "\n[0] Salir"
               << "\n[1] Árbol binario equilibrado"
               << "\n[2] Árbol binario de búsqueda"
+              << "\n[3] Árbol AVL"
               << GREEN << "\n>>>>> ";
     int option{0};
     std::cin >> option;
     std::cout << RESET << std::endl;
-    if (std::regex_match(std::to_string(option), std::regex("[0-2]"))) {
+    if (std::regex_match(std::to_string(option), std::regex("[0-3]"))) {
       switch (option) {
         case 0:
           exit(EXIT_SUCCESS);
@@ -65,6 +67,20 @@ int main (int argc, char* argv[]) {
           binary_tree = new ABB<KEY>();
           ABB_selected = true;
           break;
+        case 3: {
+          bool traza = false;
+          while (true) {
+            std::cout << "¿Traza? (s/n): ";
+            std::string s;
+            std::cin >> s;
+            if (s == "s") { AVL_selected = true; break;}
+            else {
+              std::cout << RED << "Opción incorrecta" << RESET << std::endl;
+            }
+          }
+          binary_tree = new AVL<KEY>(traza);
+
+        }
         default:
           break;
       }

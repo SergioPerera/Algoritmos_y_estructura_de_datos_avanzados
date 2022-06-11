@@ -5,7 +5,7 @@ CFLAGS = -I -Weffc++ -Wall -g
 
 
 #Variables
-EJECUTABLE = lifecycle
+EJECUTABLE = basuraloca
 
 #En DEPSSRC va la dirección de los .h 
 DEPSSRC = include
@@ -73,5 +73,68 @@ pull:
 	git pull
 
 
+################################################################################
+########################## PARA DEBUGUEAR ######################################
+################################################################################
 
+# LAUNCH.JSON
 
+# {
+#   // Use IntelliSense to learn about possible attributes.
+#   // Hover to view descriptions of existing attributes.
+#   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+#   "version": "0.2.0",
+#   "configurations": [
+#     {
+#       "name": "g++ - Compilar y depurar el archivo activo",
+#       "type": "cppdbg",
+#       "request": "launch",
+#       "program": "${fileDirname}/../bin/basuraloca",
+#       "args": [],
+#       "stopAtEntry": true,
+#       "cwd": "${fileDirname}",
+#       "environment": [],
+#       "externalConsole": false,
+#       "MIMode": "gdb",
+#       "setupCommands": [
+#         {
+#           "description": "Habilitar la impresión con sangría para gdb",
+#           "text": "-enable-pretty-printing",
+#           "ignoreFailures": true
+#         },
+#         {
+#           "description": "Establecer tipo de desensamblado en Intel",
+#           "text": "-gdb-set disassembly-flavor intel",
+#           "ignoreFailures": true
+#         }
+#       ],
+#       "preLaunchTask": "C/C++: g++ compilar archivo activo",
+#       "miDebuggerPath": "/usr/bin/gdb"
+#     }
+#   ]
+# }
+
+# TASK.JSON
+# {
+#   "tasks": [
+#     {
+#       "type": "cppbuild",
+#       "label": "C/C++: g++ compilar archivo activo",
+#       "command": "make",
+#       "args": [
+#       ],
+#       "options": {
+#         "cwd": "${fileDirname}/../"
+#       },
+#       "problemMatcher": [
+#         "$gcc"
+#       ],
+#       "group": {
+#         "kind": "build",
+#         "isDefault": true
+#       },
+#       "detail": "Tarea generada por el depurador."
+#     }
+#   ],
+#   "version": "2.0.0"
+# }

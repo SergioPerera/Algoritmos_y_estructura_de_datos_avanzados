@@ -53,5 +53,10 @@
     "streambuf": "cpp",
     "typeinfo": "cpp"
   },
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#4E144E",
+    "titleBar.activeBackground": "#6D1B6D",
+    "titleBar.activeForeground": "#FDF8FD"
+  },
   "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
 }
